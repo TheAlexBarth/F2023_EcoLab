@@ -1,0 +1,56 @@
+project:
+  type: website
+
+website:
+  title: "570L Fall 2023"
+  navbar:
+    background: dark
+    search: false
+    right:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus
+      - text: Class Code
+        menu:
+        - href: code_main.qmd
+          text: General Resources
+      - text: Class Documents
+        menu:
+        - href: intro_assignment.qmd
+          text: Intro Assignment
+        - href: lab_1.qmd
+          text: "Lab 1"
+        - href: lab_2.qmd
+          text: "Lab 2"
+        - href: lab_3.qmd
+          text: "Lab 3"
+        - href: lab_4.qmd
+          text: "Lab 4"
+        - href: lab_5.qmd
+          text: "Lab 5"
+        - href: proj_main.qmd
+          text: "Independent Projects"
+        
+        
+      - href: additional_resources.qmd
+        text: Additional Resources
+        
+
+    tools:
+      - icon: github
+        href: https://github.com/TheAlexBarth/DMV_BATS
+      - icon: house-fill
+        href: https://thealexbarth.github.io/#about
+
+format:
+  html:
+    theme: journal
+    css: styles.css
+    code-fold: false
+    code-tools: false
+    
+execute: 
+  warning: false
+
+editor: visual

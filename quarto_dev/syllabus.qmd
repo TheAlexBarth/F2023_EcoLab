@@ -1,0 +1,133 @@
+---
+title: "Syllabus"
+---
+
+### Instructor & Office Information
+
+Instructor: Alex Barth, AB93\@email.sc.edu
+
+Office: EWS 706
+
+Office Hours: MW: 1pm - 2:30pm; F: 11am - 12pm; other times by appointment.
+
+I am generally in my office, if not there I will be in Josh Stone's Lab in EWS 615. Please email me to ensure I'll be present if you urgently need to see me!
+
+### Course Website:
+
+All course documents will be shared via the course website: https://USC-Ecology-Lab.github.io
+
+### Course Description:
+
+This is a 1 credit lab based course for ecological investigation. Students will be trained in basic field techniques and analyses common in ecology. A core portion of this course will be an independent investigation on an ecological topic selected by students.
+
+### Learning Outcomes:
+
+-   Understand fundamental ecology sampling schemes
+
+-   Utilize appropriate statistical tools for analyzing ecological data
+
+-   Ability to design quality investigations to test hypotheses
+
+-   Gain experience with communicating scientific results to peers
+
+### Course Technology:
+
+Lab activities will included data analysis in the R programming language. While this course will rely heavily on R, prior knowledge is not expected. Students should have access to both R and Rstudio. See [here](https://posit.co/download/rstudio-desktop/) for download information. Data, documents, and code for this course will all be hosted on github. Git and GitHub will not be taught yet it is a great tool for any scientist to be familiar with. Interested people should look more [here](https://happygitwithr.com/index.html) for a friendly introduction.
+
+For independent projects, students are welcome to use whichever software they are most productive in. However R is encouraged.
+
+### Outdoor activity & safety policy:
+
+Ecology research often requires outdoor data collections in variable conditions and environments. This course is no exception. There will be multiple field trips to nearby areas. Students are expected to consult the pre-lab content and arrive prepared for weather and lab conditions. It is expected that students, to the best of their ability, will engage in data collection during labs. However, please contact be if you feel uncomfortable or unsafe with any lab activity.
+
+### Transportation:
+
+For labs which are not initially meeting at the lab space (Week 2,3,4). You can either meet at the lab space, or at the specified location. Meeting time will vary based on location. Transportation will be available to any students who don't have access. Carpooling is encouraged.
+
+All field trips will end with enough time for students to return to campus by the specified end time of lab.
+
+### Grades:
+
+This is a one credit lab based course. The majority of student grades will be centered on their independent project and lab-based worksheets. There is a total of 1000 points available. Point breakdowns are as follows:
+
+-   Introduction Worksheet (10 points) : Prior to the start of lab, students must complete the introduction worksheet.
+
+-   Lab-based worksheets (50 points each, 200 total): In the first weeks of lab students will complete field labs to test assigned hypotheses. These assignments will be worth 50 points each. Note that there is a tentative 5th worksheet. If we are able to complete the 5th worksheet, then the lowest of the 5 worksheet grades will be dropped. If a lab is cancelled due to weather or other unforeseen circumstance, we will adjust the value of all worksheets to scale to a total of 200 points.
+
+-   Project Plan (100 points): Groups/Individual students will propose their independent project following the assigned project plan worksheet. This assignment may be subject to a round of revisions. Early submissions are encouraged.
+
+-   Data Collection Progress Report (15 points each, 45 total): During the data collection period, students must attend the beginning of lab regardless of their planned collection activities. Students will share with the class their project status and challenges. Active discussion between groups is expected.
+
+-   Data Analysis Progress Report (15 points each, 45 total): During the data analysis period, students must attend the beginning of lab regardless of their planned activities. Students will share with the class their project status and challenges. Active discussion between groups is expected.
+
+-   Final Presentation (250 Points): Final independent projects will be shared in a standard 15 minute research presentation format. Group members may allocate presentation responsibilities independently, however all group members are expected to present an equal portion. See rubric for more details.
+
+-   Final Paper (300 Points): Final independent projects will be written in a full paper format. See rubric for grading details.
+
+-   Author contribution statement (50 Points): Evaluation of group members contributions to the final project. Group members will independently report the activity of all group members and assign points. Severe discrepancies will may warrant point deductions on individual project grades.
+
+### Late work & make-up policy:
+
+Any assignments turned in late will be subject to a 10% grade penalty starting immediately following the due date. For each additional 24-hour period late, a 10% penalty will be added. Some assignments are ineligible for late submission, including the progress reports, final presentation, and author contribution statement.
+
+### Attendance Policy:
+
+Attendance is expected for all lab sections. Any expected lab absences should be discussed prior to the start of that lab period.
+
+### Academic Integrity:
+
+Any cases of plagiarism will result in a minimum failure of assignment and may result in further penalties, including automatic failure of the course.
+
+### Generative AI & ChatGPT:
+
+Generative AI is an extremely powerful tool for anyone who wishes to be a productive scientist. It can be particularly helpful for organizing and writing code and providing the blueprint for text. However, in its current state, ChatGPT and other generative AI applications do not produce work at the level expected of an upper-division undergraduate. If you want to receive a good grade in the course you should not rely exclusively on ChatGPT. If you are not outworking the machine, you are falling behind. Be skeptical of its responses as it cannot be trusted.
+
+### Co-enrollment with 570 Lecture:
+
+This lab course is a fully independent credit. Co-enrollment in the lecture section of 570 is not required nor expected. While content will overlap and it will be beneficial to take both courses, the content will not be synchronous. Note that the major assignment in the lecture section is the Research Proposal. You are welcome to use your independent project as the basis for that assignment. However note that these are separate assignments with different grading structure.
+
+### Class Schedule:
+
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| Week (Dates)               | Location                          | Lab                                              | Assignments Given | Assignments Due                        |
++============================+===================================+==================================================+===================+========================================+
+| 1 (9/6 & 9/8)              | Lab room and near-by campus areas | Introduction & Mammal Behavior                   | WS1               | Intro Worksheet                        |
+|                            |                                   |                                                  |                   |                                        |
+|                            |                                   |                                                  | Project Plan      |                                        |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 2 (9/13 & 9/15)            | Harbison State Forest             | Intermediate Disturbance & Succession            | WS2               | WS1                                    |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 3 (9/20 & 9/22)            | USC Arboretum                     | Community Assemblages                            | WS3               | WS2                                    |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 4 (9/27 & 9/29)            | Various Stream Locations          | Urban Aquatic Systems                            | WS4               | WS3                                    |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 5 (10/4 & 10/6)            | Lab Room                          | Phenology Lab                                    | WS5\*             | WS4                                    |
+|                            |                                   |                                                  |                   |                                        |
+|                            |                                   |                                                  |                   | Project Plan                           |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 6 (10/11 & 10/13)          | Lab Room & TBD                    | Project Planning and Preliminary data collection |                   | WS5\*                                  |
+|                            |                                   |                                                  |                   |                                        |
+|                            |                                   |                                                  |                   | Project Plan Revisions (If applicable) |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 7 (10/18 & 10/20)          | Lab Room & TBD                    | Data Collection                                  |                   | Data Collection Progress Report        |
+|                            |                                   |                                                  |                   |                                        |
+| Fall Break Modified Class! |                                   |                                                  |                   |                                        |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 8 (10/25 & 10/27)          | Lab Room & TBD                    | Data Collection                                  |                   | Data Collection Progress Report        |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 9 (11/1 & 11/3)            | Lab Room & TBD                    | Data Collection                                  |                   | Data Collection Progress Report        |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 10 (11/8 & 11/10)          | Lab Room                          | Data Analysis                                    |                   | Data Analysis Progress Report          |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 11 (11/15 & 11/17)         | Lab Room                          | Data Analysis                                    |                   | Data Analysis Progress Report          |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 12 (11/22 & 11/24)         | Lab Room                          | Data Analysis                                    |                   | Data Analysis Progress Report          |
+|                            |                                   |                                                  |                   |                                        |
+| Thanksgiving Break         |                                   |                                                  |                   |                                        |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 13 (11/29 & 12/1)          |                                   | Final Presentations                              |                   | Final Presentation                     |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
+| 14 (12/6 & 12/8)           |                                   | Course Recap                                     |                   | Final Project Paper                    |
+|                            |                                   |                                                  |                   |                                        |
+|                            |                                   |                                                  |                   | Author Contribution Statement          |
++----------------------------+-----------------------------------+--------------------------------------------------+-------------------+----------------------------------------+
