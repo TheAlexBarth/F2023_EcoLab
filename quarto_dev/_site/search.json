@@ -1,10 +1,94 @@
 [
   {
+    "objectID": "addtl_resources.html",
+    "href": "addtl_resources.html",
+    "title": "Additional Resources",
+    "section": "",
+    "text": "Advanced Concepts\n\nGit and version control are great ways to organize computational projects. This is increasingly a useful skill to understand:\n\nHappy Git with R\n\nIf you want to learn more about organizing files in a meaningful way, I found this workshop to be extremely helpful:\n\nR for Reproducible Research\n\nThis website was made with quarto, a new markdown format and interactive programming environment. Quarto offers a great way to make pretty documents and presentations with incorporate code:\n\nQuarto"
+  },
+  {
+    "objectID": "code_lab-00.html",
+    "href": "code_lab-00.html",
+    "title": "Introductory Lab Guide",
+    "section": "",
+    "text": "When starting a new analysis in R, it is best to create a new R script. You can save this script in your course folder. At the start of each script, it is good form to load any needed packages. In this exercise we’ll need ggplot. If you haven’t already installed ggplot2, enter into the console install.packages(\"ggplot2\").\nAt the top of your script, load the package:\n\nlibrary(ggplot2)"
+  },
+  {
+    "objectID": "code_lab-00.html#reading-the-data-into-r.",
+    "href": "code_lab-00.html#reading-the-data-into-r.",
+    "title": "Introductory Lab Guide",
+    "section": "Reading the data into R.",
+    "text": "Reading the data into R.\nIf you downloaded the data to your folder, you can read it in with read.csv(). First make sure your working directory is focused on your file.\n\nsetwd('~/BIOL570L_Docs') # set this to your path in your computer's folder\ncrab_width <- read.csv('LTER_CrabCarapaces.csv')"
+  },
+  {
+    "objectID": "code_lab-00.html#base-r-option",
+    "href": "code_lab-00.html#base-r-option",
+    "title": "Introductory Lab Guide",
+    "section": "Base R Option:",
+    "text": "Base R Option:\nFirst, I’ll create individual variables for each mean value and sd value by site:\n\nmean_BC <- mean(crab_width$carapace_width[which(crab_width$Site == 'BC')]) # take mean of BC\nsd_BC <- sd(crab_width$carapace_width[which(crab_width$Site == 'BC')]) # take sd of BC\n\n# same for GTM\nmean_GTM <- mean(crab_width$carapace_width[which(crab_width$Site == 'GTM')])\nsd_GTM <- sd(crab_width$carapace_width[which(crab_width$Site == 'GTM')])\n\nWe can look at those values individually:\n\nprint(mean_GTM)\n\n[1] 12.40321\n\n\nThen we’ll need to pull all those values into a data frame\n\ncrab_means <- data.frame(Site = c('BC','GTM'),\n                        mean = c(mean_BC, mean_GTM),\n                        sd = c(sd_BC, sd_GTM))\n\nWe now can take a look at those values\n\ncrab_means\n\n  Site     mean       sd\n1   BC 16.19730 4.814464\n2  GTM 12.40321 1.804449"
+  },
+  {
+    "objectID": "code_lab-00.html#dplyr-option",
+    "href": "code_lab-00.html#dplyr-option",
+    "title": "Introductory Lab Guide",
+    "section": "dplyr option:",
+    "text": "dplyr option:\nThis is the cleaner approach but it does abstract a few steps away. First you want to make sure you have installed dplyr. Also you should load the library (do this at the top of the script).\n\nlibrary(dplyr)\n\nThe tidyverse syntax is really big on piping code together. So we’ll use a number of functions here and chain them all together. Piping takes the value on the left of the pipe operator (|>) and pushes it to the first argument of the function on the right. In tidyverse/dplyr functions, the first argument is often a data.frame. This makes it easy to chain together these functions. In this code, I will chain it all together, but if you want to learn more, you can run one pipe at a time and see what happens in each step.\n\ncrab_means <- crab_width |> \n  filter(Site %in% c('BC', 'GTM')) |> #filter only to these sites\n  group_by(Site) |> #group by site\n  summarize(mean = mean(carapace_width),\n            sd = sd(carapace_width)) # apply mean and sd functions\n\nNow we can look at the data. Note that tidyverse functions will create tibbles rather than data.frames. For most purposes this is a very minor detail that will not matter until you are working on high-level problems or developing software in R.\n\ncrab_means\n\n# A tibble: 2 × 3\n  Site   mean    sd\n  <chr> <dbl> <dbl>\n1 BC     16.2  4.81\n2 GTM    12.4  1.80"
+  },
+  {
+    "objectID": "code_main.html",
+    "href": "code_main.html",
+    "title": "Programming in Ecology",
+    "section": "",
+    "text": "Broadly speaking, ecology is a field focused studying organisms and how they interact with others and their surroundings. This often involves identifying, describing, and hypothesizing about ecological patterns. In the pursuit of studying such patterns, ecologists in the modern world utilize a vast array of tools to collect and analyze data. Ecological data spans a wide range of formats and sampling distributions. As ecologists, we must be able to properly interrogate our data so that we can identify meaningful trends. That is where the application of statistics comes into the picture. Simply collecting data and making general conclusions cannot inform thorough conclusions. Analyzing data through the proper application of statistical tests will help us as scientists.\nWith the advancement of technology and statistical computing, ecological data analysis has progressed beyond the point of simple calculations. The large amounts of data acquired in ecology require us to be proficient programmers and statisticians. Luckily, there are several, free tools which are growing in popularity for people to use, making data analysis extreme accessible. Arguably the most common tool used in ecology, academia, and data science is R. R is an open-source programming environment and language. R was developed primarily by statisticians which makes it extreme versatile. Additionally, because so many ecologists use it, there are many add-ons (called packages) which are taylor-made for ecological applications.\nIn this course, I will provide examples and support for processing lab data in R. The goal is that someone who has never used R will be able to still be successful. This means at times I may over-explain somethings. Alternatively, it is difficult to remember what it was like to first learn something, so if I am not explaining anything well, please come ask me! Finally, when it comes to completing your assignments, I don’t care what software you use to get it done. For example, if you have to make a bar graph, you might know how to complete something quicker in excel than in R. So, go ahead and use what is most comfortable. However, time invested in learning R will only better equip you to expand your skills.\n\n\nGoogle, chatGPT, and Stack Overflow are all extremely useful resources for solving any issues you may encounter while working with R. Often times if you get an error, simply copy and paste it in a search and there’s likely someone else who experienced a similar issue. This is a fundamental piece of the process. Working with R (or any programming language) is a rarely a smooth process. Don’t be dissuaded by needing to search and solve issues. It’s all just part of the game."
+  },
+  {
+    "objectID": "code_main.html#downloading-r-studio-r",
+    "href": "code_main.html#downloading-r-studio-r",
+    "title": "Programming in Ecology",
+    "section": "Downloading R studio & R",
+    "text": "Downloading R studio & R\nGo to the posit website at https://posit.co/download/rstudio-desktop/. This website has instruction for downloading both R and RStudio.\nWhen downloading R, select the right one for your computer at the top panel. If on the initial installation it asks you to select a mirror, it doesn’t matter. Just select whatever.\nOnce you have both R and Rstudio downloaded, you can just open Rstudio."
+  },
+  {
+    "objectID": "code_main.html#rstudio-layout",
+    "href": "code_main.html#rstudio-layout",
+    "title": "Programming in Ecology",
+    "section": "RStudio Layout",
+    "text": "RStudio Layout\nWhen you first open RStudio, there will be three main tabs, the largest of which is the console. On the right are two windows with multiple tabs. The preselected tab on the bottom is a file browser and the one of top shows what is active in your R environment. At the start this is empty but as you create variables or functions they are visible in this window.\nMy setup is a bit different but you can see a good orientation at this website."
+  },
+  {
+    "objectID": "code_main.html#understanding-r-code",
+    "href": "code_main.html#understanding-r-code",
+    "title": "Programming in Ecology",
+    "section": "Understanding R code",
+    "text": "Understanding R code\nThere are several great resources for learning R in detail which I’ll link at the bottom. Very briefly, I want people to understand some very basic items:\nComments are great for understanding code. You should include it for your future self to refer back to. I will include comments in all our class code.\n\n# comments are written on lines starting with hastags. These will appear different.\n# Comments can also be written after code\n2+2 == 4 # running this line will return TRUE\n\nWe can assign values to objects using an “assignment operator”. Traditionally, in R this is an arrow <-. You can also use an equal sign =. I prefer the arrow for a number of reasons but it is also intuitive. You take all the values on the left and put them into the storage variable on the left.\n\nx <- 5 # take 5 and put it into x\ny = 5 # take 5 and put it into y\n\nprint(x == y) # will print TRUE\n\nz <- x * y # take the product of x and y and put it into z\nprint(z) # print z\n\nFinally, functions are operations which can be preformed on values/objects. Functions are executed by feeding arguments into a call. This generally looks like function(arg1, arg2, ...). This is very similar to excel where you would write =function(arg1, arg2) in a cell.\nNote in the examples above, print is a function. You can learn more about any function through the documentation. Simply write into the r console ?function. where the function is listed.\n\n?print\n\nFunctions can also be wrapped around one another and are preformed inside-out. Standard order of operations. For example:\n\n# c() is a function short for concatenate or combine. it chains together values\nc(5,5,3,4)\n\n# the mean function takes the mean of a range of values.\n# so you could do this two ways:\n\n# option 1:\nx <- c(5,5,3,4)\nmean(x)\n\n# option 2:\nmean(c(5,5,3,4))\n\nA unique aspect of R, which has recently been added to the base functionality\nThis is an extremely simplistic overview. I encourage everyone to look at some of the additional resources for help with learning R."
+  },
+  {
+    "objectID": "code_main.html#organizing-your-computer-files-importing-to-r",
+    "href": "code_main.html#organizing-your-computer-files-importing-to-r",
+    "title": "Programming in Ecology",
+    "section": "Organizing your computer files & importing to R",
+    "text": "Organizing your computer files & importing to R\nMany people do not maintain a clear organization of files in their computer’s storage. This problem is compounded by .\nA common problem that many students using the university’s office licence run into is that their word/excel documents are saved into their University cloud storage (onedrive). Then it can be tricky to find those files through a programming approach. If you have a good file organization system, please keep to it and you should be fine. However, if you haven’t put much thought into organizing your files, I encourage you to create a new folder for this course. You can store all your files in that folder. Then when trying to work with R, you can load your files from that path.\nSo let’s talk about file paths. In windows, you can use the file explorer to look up files. Then you can access the path by clicking on the top bar. Typically, it will look something like this: ‘C:\\Users\\yourname\\Documents\\EcologyLab’. In Mac, it will look a little different. Notably, the slashes will be front-slash instead of back-slash. If you try to read a file from R, mac users can just copy-paste their file paths. However, windows users need to write it out with a front-slash. Alternatively, you can use double-backslashes but this is a bad habit to develop.\nIf you want to be an advanced R user, you should learn about organizing your files in a package format and taking advantage of RStudio’s project feature. You should also use relative file paths and set-up projects using git. However, this is beyond the scope of the course and likely most applications for ecology projects.\nRead more about file organization in the additional resources page.\n\nReading in files\nThe most common US-based data format is a comma separated value file (*.csv). However, most people are more familiar with working in excel which has its own file format (.xlsx or .xls). There are several R packages to help you read in excel files. But for the sake of keeping things simple this course, we will stick to .csv files.\nYou can save any excel file as a .csv. Just make sure you keep your headers simple.\nTo read in a file, you can call read.csv(). This is where file paths become important. In R, you have a working directory. This is where R is currently looking for files. You can look at your working directory with the function getwd(). Also RStudio displays the working directory at the top of the console window. Note that the tilde (~) often will refer to your Documents folder. At least for Windows machines.\n\nYou can change your working directory with setwd(). You simply put the file path to the folder where you want to access data from.\nIn short, loading files might look like this:\n\nmy_path <- '~/BIOL570L Docs' #replace this with your path file\nsetwd(my_path) #reassign working directory. This is only necessary if not already there\nmy_data <- read.csv('mydata.csv') #load data\n\n#altarntively\nmy_data <- read.csv('~/BIOL570L Docs/mydata.csv')"
+  },
+  {
+    "objectID": "code_main.html#packages",
+    "href": "code_main.html#packages",
+    "title": "Programming in Ecology",
+    "section": "Packages",
+    "text": "Packages\nA great benefit of R is that there are user-made packages which contain functions and data for particular purposes. Most functions I’ve used in this example are ‘base’ R, meaning they exist by default. Other functions can be loaded by packages. To keep R simple, most packages are not loaded by default. To load a package, you must first install it. Luckily, R does a great job maintaining all packages in R, through the Comprehensive R Archive Network (CRAN). So you can download CRAN packages directly though R.\nTo install a package, you can use the install.packages() function.\n\n# we will use ggplot2 in our first assingment so you'll need to download it.\ninstall.packages(\"ggplot2\")\n\nThen each time you need to utilize a package in an R script, you will need to load the package. Typically this is done at the top of a script. You can load a package with the library() function.\n\nlibrary(ggplot2)\n\nNote that when installing we use quotes and when loading we don’t. It’s tricky that way. You should only need to install a package once unless you need to update it. Often times beginners in R get stuck on trying to use functions they haven’t loaded. So make sure you called library() if you get an error about not finding a function."
+  },
+  {
     "objectID": "index.html#about-this-course",
     "href": "index.html#about-this-course",
     "title": "Fall 2023 570L - Ecology Lab",
     "section": "About this course:",
     "text": "About this course:\nThis is an independent, one-credit lab course for upper division students interested in ecology. The primary goal of this course is for students to develop independent ecological investigations which they will complete over the course of the semester. However, there will also be several assigned labs at the beginning of the course to introduce students to basic ecology field techniques."
+  },
+  {
+    "objectID": "lab_0_intro_assignment.html",
+    "href": "lab_0_intro_assignment.html",
+    "title": "Introductory Assignment",
+    "section": "",
+    "text": "Part 1: Background about you (5 points):\n\n1.a What made you interested in this course?\n\n\n1.b What skills do you hope to gain through this lab?\n\n\n1.c What are your career goals?\n\n\n\nPart 2: Intro to R\nTo get some basic familiarity with using R, I want you to make a graph.\nGraph fiddler crab carapace width by two sites. The graph should be appropriate for the type of data and display the mean crab carapace width by site. Standard error bars should be available as well.\nYou can download fiddler crab data which I formatted here. The data originally comes from the LTER’s educational resources page. Just click the link, right-click (or command/control S) and save the data as a .csv file. Note you should be able to open the .csv file using excel.\n\nBONUS (5 points):\nRemake the plot but this time include all sites, not just the two. hint: this can be achieved by removing one line of dplyr code."
   },
   {
     "objectID": "syllabus.html",

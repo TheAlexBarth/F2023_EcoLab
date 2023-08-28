@@ -1,0 +1,27 @@
+---
+title: Additional Resources
+---
+
+# Learning R:
+
+-   Hadley Wickham is the developer behind Posit, Tidyverse, ggplot, and many of the modern R applications. He has several books which cover R. While there are several books which teach R, his books are by far the most comprehensive. Furthermore, these resources are the forefront of good practice and standards.
+    -   [r4ds](https://r4ds.had.co.nz/index.html)
+    -   [Advanced R](https://adv-r.hadley.nz/index.html)
+-   I came across this book Google image searching for the basic RStudio interface to see what it looks like by default. It seems to be good for setting up:
+    -   [intro2r](https://intro2r.com/)
+-   A great resource for making graphs is the R graph gallery:
+    -   [R Graph Gallery](https://r-graph-gallery.com/)
+
+# Advanced Concepts
+
+-   Git and version control are great ways to organize computational projects. This is increasingly a useful skill to understand:
+
+    -   [Happy Git with R](https://happygitwithr.com/)
+
+-   If you want to learn more about organizing files in a meaningful way, I found this workshop to be extremely helpful:
+
+    -   [R for Reproducible Research](https://annakrystalli.me/rrresearch/index.html)
+
+-   This website was made with quarto, a new markdown format and interactive programming environment. Quarto offers a great way to make pretty documents and presentations with incorporate code:
+
+    -   [Quarto](https://quarto.org/)

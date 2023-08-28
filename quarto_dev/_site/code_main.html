@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 – code_main</title>
+<title>570L Fall 2023 - Programming in Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -35,10 +98,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -92,13 +157,17 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./code_main.html">
  <span class="dropdown-text">General Resources</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-00.html">
+ <span class="dropdown-text">Intro Assignment Code</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Documents</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
         <li>
-    <a class="dropdown-item" href="./intro_assignment.qmd">
+    <a class="dropdown-item" href="./lab_0_intro_assignment.html">
  <span class="dropdown-text">Intro Assignment</span></a>
   </li>  
         <li>
@@ -128,19 +197,17 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./additional_resources.qmd">Additional Resources</a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/TheAlexBarth/DMV_BATS"><i class="bi bi-github" role="img">
-</i> 
- </a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://thealexbarth.github.io/#about"><i class="bi bi-house-fill" role="img">
-</i> 
- </a>
+    <a class="nav-link" href="./addtl_resources.html">Additional Resources</a>
   </li>  
 </ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -154,10 +221,134 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Programming in Ecology</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>Broadly speaking, ecology is a field focused studying organisms and how they interact with others and their surroundings. This often involves identifying, describing, and hypothesizing about ecological patterns. In the pursuit of studying such patterns, ecologists in the modern world utilize a vast array of tools to collect and analyze data. Ecological data spans a wide range of formats and sampling distributions. As ecologists, we must be able to properly interrogate our data so that we can identify meaningful trends. That is where the application of statistics comes into the picture. Simply collecting data and making general conclusions cannot inform thorough conclusions. Analyzing data through the proper application of statistical tests will help us as scientists.</p>
+<p>With the advancement of technology and statistical computing, ecological data analysis has progressed beyond the point of simple calculations. The large amounts of data acquired in ecology require us to be proficient programmers and statisticians. Luckily, there are several, free tools which are growing in popularity for people to use, making data analysis extreme accessible. Arguably the most common tool used in ecology, academia, and data science is R. R is an open-source programming environment and language. R was developed primarily by statisticians which makes it extreme versatile. Additionally, because so many ecologists use it, there are many add-ons (called packages) which are taylor-made for ecological applications.</p>
+<p>In this course, I will provide examples and support for processing lab data in R. The goal is that someone who has never used R will be able to still be successful. This means at times I may over-explain somethings. Alternatively, it is difficult to remember what it was like to first learn something, so if I am not explaining anything well, please come ask me! Finally, when it comes to completing your assignments, I don’t care what software you use to get it done. For example, if you have to make a bar graph, you might know how to complete something quicker in excel than in R. So, go ahead and use what is most comfortable. However, time invested in learning R will only better equip you to expand your skills.</p>
+<section id="a-note-about-the-internet" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-about-the-internet">A note about the internet</h2>
+<p>Google, chatGPT, and Stack Overflow are all extremely useful resources for solving any issues you may encounter while working with R. Often times if you get an error, simply copy and paste it in a search and there’s likely someone else who experienced a similar issue. This is a fundamental piece of the process. Working with R (or any programming language) is a rarely a smooth process. Don’t be dissuaded by needing to search and solve issues. It’s all just part of the game.</p>
+</section>
+</section>
+<section id="setting-up-r" class="level1">
+<h1>Setting up R</h1>
+<p>Setting up R on your computer is the first barrier and possible source of frustration. We don’t need to worry too much about the technical background of R to be able to utilize it for our purposes. However, I do want to provide some brief background on terminology which can help us understand what is actually going on when we use R. R is a language where we can instruct the computer to preform actions. R as a language is very beginner friendly because it is an interpreted language. This means that you can directly enter code into the “console” and it will provide immediate results. So when using R, you can write directly to the console or in a script then enter that into the console. R scripts are just text files (like a simple word document). While you’re beginning it can be useful to directly write into the console. However, once you write more complicated programs, a script is useful.</p>
+<p>The basic R interface is not very intuitive. Instead, we can use the RStudio IDE (integrated development environment). This is a free product which helps organize projects and communicating with R.</p>
+<section id="downloading-r-studio-r" class="level2">
+<h2 class="anchored" data-anchor-id="downloading-r-studio-r">Downloading R studio &amp; R</h2>
+<p>Go to the posit website at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. This website has instruction for downloading both R and RStudio.</p>
+<p>When downloading R, select the right one for your computer at the top panel. If on the initial installation it asks you to select a mirror, it doesn’t matter. Just select whatever.<img src="media/code_main_00_download-R.png" class="img-fluid"></p>
+<p>Once you have both R and Rstudio downloaded, you can just open Rstudio.</p>
+</section>
+</section>
+<section id="some-basics-of-working-in-r" class="level1">
+<h1>Some basics of working in R</h1>
+<section id="rstudio-layout" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio-layout">RStudio Layout</h2>
+<p>When you first open RStudio, there will be three main tabs, the largest of which is the console. On the right are two windows with multiple tabs. The preselected tab on the bottom is a file browser and the one of top shows what is active in your R environment. At the start this is empty but as you create variables or functions they are visible in this window.</p>
+<p>My setup is a bit different but you can see a good orientation at this <a href="https://intro2r.com/rstudio_orient.html">website</a>.</p>
+</section>
+<section id="understanding-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-r-code">Understanding R code</h2>
+<p>There are several great resources for learning R in detail which I’ll link at the bottom. Very briefly, I want people to understand some very basic items:</p>
+<p>Comments are great for understanding code. You should include it for your future self to refer back to. I will include comments in all our class code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comments are written on lines starting with hastags. These will appear different.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Comments can also be written after code</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">4</span> <span class="co"># running this line will return TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can assign values to objects using an “assignment operator”. Traditionally, in R this is an arrow <code>&lt;-</code>. You can also use an equal sign <code>=</code>. I prefer the arrow for a number of reasons but it is also intuitive. You take all the values on the left and put them into the storage variable on the left.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># take 5 and put it into x</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">5</span> <span class="co"># take 5 and put it into y</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x <span class="sc">==</span> y) <span class="co"># will print TRUE</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">*</span> y <span class="co"># take the product of x and y and put it into z</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z) <span class="co"># print z</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Finally, functions are operations which can be preformed on values/objects. Functions are executed by feeding arguments into a call. This generally looks like <code>function(arg1, arg2, ...)</code>. This is very similar to excel where you would write <code>=function(arg1, arg2)</code> in a cell.</p>
+<p>Note in the examples above, print is a function. You can learn more about any function through the documentation. Simply write into the r console <code>?function</code>. where the function is listed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?print</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Functions can also be wrapped around one another and are preformed inside-out. Standard order of operations. For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c() is a function short for concatenate or combine. it chains together values</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean function takes the mean of a range of values.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># so you could do this two ways:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2:</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A unique aspect of R, which has recently been added to the base functionality</p>
+<p>This is an extremely simplistic overview. I encourage everyone to look at some of the additional resources for help with learning R.</p>
+</section>
+<section id="organizing-your-computer-files-importing-to-r" class="level2">
+<h2 class="anchored" data-anchor-id="organizing-your-computer-files-importing-to-r">Organizing your computer files &amp; importing to R</h2>
+<p>Many people do not maintain a clear organization of files in their computer’s storage. This problem is compounded by .</p>
+<p>A common problem that many students using the university’s office licence run into is that their word/excel documents are saved into their University cloud storage (onedrive). Then it can be tricky to find those files through a programming approach. If you have a good file organization system, please keep to it and you should be fine. However, if you haven’t put much thought into organizing your files, I encourage you to create a new folder for this course. You can store all your files in that folder. Then when trying to work with R, you can load your files from that path.</p>
+<p>So let’s talk about file paths. In windows, you can use the file explorer to look up files. Then you can access the path by clicking on the top bar. Typically, it will look something like this: ‘C:\Users\yourname\Documents\EcologyLab’. In Mac, it will look a little different. Notably, the slashes will be front-slash instead of back-slash. If you try to read a file from R, mac users can just copy-paste their file paths. However, windows users need to write it out with a front-slash. Alternatively, you can use double-backslashes but this is a bad habit to develop.</p>
+<p>If you want to be an advanced R user, you should learn about organizing your files in a package format and taking advantage of RStudio’s project feature. You should also use relative file paths and set-up projects using git. However, this is beyond the scope of the course and likely most applications for ecology projects.</p>
+<p>Read more about file organization in the additional resources page.</p>
+<section id="reading-in-files" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-files">Reading in files</h3>
+<p>The most common US-based data format is a comma separated value file (*.csv). However, most people are more familiar with working in excel which has its own file format (.xlsx or .xls). There are several R packages to help you read in excel files. But for the sake of keeping things simple this course, we will stick to .csv files.</p>
+<p>You can save any excel file as a .csv. Just make sure you keep your headers simple.</p>
+<p>To read in a file, you can call <code>read.csv()</code>. This is where file paths become important. In R, you have a working directory. This is where R is currently looking for files. You can look at your working directory with the function <code>getwd()</code>. Also RStudio displays the working directory at the top of the console window. Note that the tilde (<code>~</code>) often will refer to your Documents folder. At least for Windows machines.</p>
+<p><img src="media/code_main_01_Rwd.png" class="img-fluid"></p>
+<p>You can change your working directory with <code>setwd()</code>. You simply put the file path to the folder where you want to access data from.</p>
+<p>In short, loading files might look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_path <span class="ot">&lt;-</span> <span class="st">'~/BIOL570L Docs'</span> <span class="co">#replace this with your path file</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(my_path) <span class="co">#reassign working directory. This is only necessary if not already there</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'mydata.csv'</span>) <span class="co">#load data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#altarntively</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'~/BIOL570L Docs/mydata.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>A great benefit of R is that there are user-made packages which contain functions and data for particular purposes. Most functions I’ve used in this example are ‘base’ R, meaning they exist by default. Other functions can be loaded by packages. To keep R simple, most packages are not loaded by default. To load a package, you must first install it. Luckily, R does a great job maintaining all packages in R, through the Comprehensive R Archive Network (CRAN). So you can download CRAN packages directly though R.</p>
+<p>To install a package, you can use the <code>install.packages()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we will use ggplot2 in our first assingment so you'll need to download it.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then each time you need to utilize a package in an R script, you will need to load the package. Typically this is done at the top of a script. You can load a package with the <code>library()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that when installing we use quotes and when loading we don’t. It’s tricky that way. You should only need to install a package once unless you need to update it. Often times beginners in R get stuck on trying to use functions they haven’t loaded. So make sure you called <code>library()</code> if you get an error about not finding a function.</p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -180,6 +371,119 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
