@@ -8,7 +8,7 @@ website:
     background: dark
     search: false
     right:
-      - href: Index.qmd
+      - href: index.qmd
         text: Home
       - href: syllabus.qmd
         text: Syllabus
