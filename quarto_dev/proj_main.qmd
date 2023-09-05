@@ -1,0 +1,20 @@
+---
+title: Independent Projects
+---
+
+The primary objective of this lab course will be for students to pursue a self-led investigation of an ecological hypothesis. Students must propose their own projects which they will pursue over the course of the semester.
+
+# General Guidelines:
+
+-   Students may work in groups up to 3 members or individually
+-   Projects should be feasible, clearly organized, and interesting. A common pitfall is to create a project that is too complicated and unable to complete in the limited time of lab. A good experiment should be elegant!
+-   Projects will take the bulk of the semester, however there will be several milestones along the way to ensure progress.
+-   The projects will incorporate ecological concepts learned throughout the semester.
+
+# Phase 1: Idea generation
+
+The first few weeks of lab will involve individual one-week labs. These will introduce students to field work and working in nearby ecosystems. During these labs students should take some time to think about the lab topic and their surroundings. Ask questions about the ecosystem and think of possible projects on these activities.
+
+Access the project plan guide [here](./docs/2023_GenDoc_ProjectPlanGuide.pdf)
+
+Access the project plan rubric [here](./docs/2023_GenDoc_ProjectPlanRubric.pdf)

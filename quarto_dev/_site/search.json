@@ -91,6 +91,20 @@
     "text": "Part 1: Background about you (5 points):\n\n1.a What made you interested in this course?\n\n\n1.b What skills do you hope to gain through this lab?\n\n\n1.c What are your career goals?\n\n\n\nPart 2: Intro to R (5 points):\nTo get some basic familiarity with using R, I want you to make a graph.\nGraph fiddler crab carapace width by two sites. The graph should be appropriate for the type of data and display the mean crab carapace width by site. Standard error bars should be available as well.\nYou can download fiddler crab data which I formatted here. The data originally comes from the LTER’s educational resources page. Just click the link, right-click (or command/control S) and save the data as a .csv file. Note you should be able to open the .csv file using excel.\n\nBONUS (5 points):\nRemake the plot but this time include all sites, not just the two. hint: this can be achieved by removing one line of dplyr code."
   },
   {
+    "objectID": "lab_1_behavioral-ecology.html",
+    "href": "lab_1_behavioral-ecology.html",
+    "title": "Behavioral & Urban Ecology",
+    "section": "",
+    "text": "Fun Squirrel Information: - https://sc.edu/uofsc/posts/2021/10/remembering_the_days_natural_history_stroll_ep_35.php - https://www.instagram.com/usc.squirrels/?hl=en - https://www.facebook.com/watch/?v=499139211340770 - https://www.tiktok.com/@uofsc/video/7191269652230720814 (not available on campus wifi due to tiktok restrictions despite this is university’s account)\nIn this lab, we will study movement and behavior of squirrels on the USC campus. The primary objective will be to introduce students to conducting basic ecological fieldwork in a convenient location. However, don’t take this lab for granted! There are plenty of opportunities to develop an independent project utilizing nearby spaces on campus. Try to be curious of your surroundings!\nStudying organism behavior may seem fairly straightforward. However, it can be extremely challenging to do so with robust scientific methods. A basic tool in behavioral ecology research is to use an ethogram. This is a table which clearly defines possible actions to observe in an individual’s behavior.\nIn this lab we will construct ethograms to test a hypothesis about squirrel activity.\nDownload the full project plan here Download the worksheet here"
+  },
+  {
+    "objectID": "proj_main.html",
+    "href": "proj_main.html",
+    "title": "Independent Projects",
+    "section": "",
+    "text": "General Guidelines:\n\nStudents may work in groups up to 3 members or individually\nProjects should be feasible, clearly organized, and interesting. A common pitfall is to create a project that is too complicated and unable to complete in the limited time of lab. A good experiment should be elegant!\nProjects will take the bulk of the semester, however there will be several milestones along the way to ensure progress.\nThe projects will incorporate ecological concepts learned throughout the semester.\n\n\n\nPhase 1: Idea generation\nThe first few weeks of lab will involve individual one-week labs. These will introduce students to field work and working in nearby ecosystems. During these labs students should take some time to think about the lab topic and their surroundings. Ask questions about the ecosystem and think of possible projects on these activities.\nAccess the project plan guide here Access the project plan rubric here"
+  },
+  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",

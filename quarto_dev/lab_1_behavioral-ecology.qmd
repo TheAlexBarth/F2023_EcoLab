@@ -1,0 +1,25 @@
+---
+title: Behavioral & Urban Ecology
+---
+
+When thinking of studying ecology, may people think we need travel to national parks, undisturbed areas, or wild places. However, we are surrounded by ecology. All interactions which govern our lives and the environments in which we live can be studied with an ecological lens. Generally, urbanization has negatively impacted biodiversity and native ecosystems. However, within these areas, there are several organisms which, while traditionally evolved to live in other areas, have developed strategies to survive and thrive. An organism around USC's campus which seemingly thrives is the squirrels (most likely eastern grey squirrels, **Sciurus carolinensis**).
+
+Fun Squirrel Information:
+
+-   https://sc.edu/uofsc/posts/2021/10/remembering_the_days_natural_history_stroll_ep_35.php
+
+-   https://www.instagram.com/usc.squirrels/?hl=en
+
+-   https://www.facebook.com/watch/?v=499139211340770
+
+-   https://www.tiktok.com/@uofsc/video/7191269652230720814 (not available on campus wifi due to tiktok restrictions despite this is university's account)
+
+In this lab, we will study movement and behavior of squirrels on the USC campus. The primary objective will be to introduce students to conducting basic ecological fieldwork in a convenient location. However, don't take this lab for granted! There are plenty of opportunities to develop an independent project utilizing nearby spaces on campus. Try to be curious of your surroundings!
+
+Studying organism behavior may seem fairly straightforward. However, it can be extremely challenging to do so with robust scientific methods. A basic tool in behavioral ecology research is to use an ethogram. This is a table which clearly defines possible actions to observe in an individual's behavior.
+
+In this lab we will construct ethograms to test a hypothesis about squirrel activity.
+
+Download the full project plan [here](./docs/2023_WS1_ProjectPlan.pdf)
+
+Download the worksheet [here](./docs/2023_WS1_Template.pdf)

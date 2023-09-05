@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 - Fall 2023 570L - Ecology Lab</title>
+<title>570L Fall 2023 - Independent Projects</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,10 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+    <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./syllabus.html">Syllabus</a>
@@ -92,18 +94,26 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./code_main.html">
  <span class="dropdown-text">General Resources</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-00.html">
+ <span class="dropdown-text">Intro Assignment Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-01.html">
+ <span class="dropdown-text">Behavioral Ecology Analysis Code</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Documents</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
         <li>
-    <a class="dropdown-item" href="./intro_assignment.qmd">
+    <a class="dropdown-item" href="./lab_0_intro_assignment.html">
  <span class="dropdown-text">Intro Assignment</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lab_1.qmd">
- <span class="dropdown-text">Lab 1</span></a>
+    <a class="dropdown-item" href="./lab_1_behavioral-ecology.html">
+ <span class="dropdown-text">Lab 1: Behavioral Urban Ecology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./lab_2.qmd">
@@ -122,25 +132,23 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Lab 5</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./proj_main.qmd">
+    <a class="dropdown-item" href="./proj_main.html">
  <span class="dropdown-text">Independent Projects</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./additional_resources.qmd">Additional Resources</a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/TheAlexBarth/DMV_BATS"><i class="bi bi-github" role="img">
-</i> 
- </a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://thealexbarth.github.io/#about"><i class="bi bi-house-fill" role="img">
-</i> 
- </a>
+    <a class="nav-link" href="./addtl_resources.html">Additional Resources</a>
   </li>  
 </ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
               <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -156,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Fall 2023 570L - Ecology Lab</h1>
+<h1 class="title">Independent Projects</h1>
 </div>
 
 
@@ -170,18 +178,22 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<div class="coumn-page-inset">
-<p><img src="./media/main_banner.jpg" class="img-fluid"></p>
-</div>
-<section id="welcome" class="level1">
-<h1>Welcome!</h1>
-<p>This is the main course site for BIOL 570L. On this site you will have access to the syllabus, course information, code, and other resources. I will frequently update this site as we progress through the course so make sure to check back for content. Assignments will still be submitted through blackboard. Additionally, announcements can be found there as well.</p>
-<section id="about-this-course" class="level2">
-<h2 class="anchored" data-anchor-id="about-this-course">About this course:</h2>
-<p>This is an independent, one-credit lab course for upper division students interested in ecology. The primary goal of this course is for students to develop independent ecological investigations which they will complete over the course of the semester. However, there will also be several assigned labs at the beginning of the course to introduce students to basic ecology field techniques.</p>
-
-
+<p>The primary objective of this lab course will be for students to pursue a self-led investigation of an ecological hypothesis. Students must propose their own projects which they will pursue over the course of the semester.</p>
+<section id="general-guidelines" class="level1">
+<h1>General Guidelines:</h1>
+<ul>
+<li>Students may work in groups up to 3 members or individually</li>
+<li>Projects should be feasible, clearly organized, and interesting. A common pitfall is to create a project that is too complicated and unable to complete in the limited time of lab. A good experiment should be elegant!</li>
+<li>Projects will take the bulk of the semester, however there will be several milestones along the way to ensure progress.</li>
+<li>The projects will incorporate ecological concepts learned throughout the semester.</li>
+</ul>
 </section>
+<section id="phase-1-idea-generation" class="level1">
+<h1>Phase 1: Idea generation</h1>
+<p>The first few weeks of lab will involve individual one-week labs. These will introduce students to field work and working in nearby ecosystems. During these labs students should take some time to think about the lab topic and their surroundings. Ask questions about the ecosystem and think of possible projects on these activities.</p>
+<p>Access the project plan guide <a href="./docs/2023_GenDoc_ProjectPlanGuide.pdf">here</a> Access the project plan rubric <a href="./docs/2023_GenDoc_ProjectPlanRubric.pdf">here</a></p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -205,6 +217,119 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

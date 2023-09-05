@@ -18,12 +18,14 @@ website:
           text: General Resources
         - href: code_lab-00.qmd
           text: Intro Assignment Code
+        - href: code_lab-01.qmd
+          text: Behavioral Ecology Analysis Code
       - text: Class Documents
         menu:
         - href: lab_0_intro_assignment.qmd
           text: Intro Assignment
-        - href: lab_1.qmd
-          text: "Lab 1"
+        - href: lab_1_behavioral-ecology.qmd
+          text: "Lab 1: Behavioral Urban Ecology"
         - href: lab_2.qmd
           text: "Lab 2"
         - href: lab_3.qmd
