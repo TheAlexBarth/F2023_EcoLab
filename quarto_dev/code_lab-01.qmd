@@ -1,6 +1,119 @@
 ---
 title: Lab 1 Code
+execute: 
+  eval: true
+  echo: true
 ---
 
-
 # Organizing data
+
+The first major challenge (and likely only one) will be organizing your data so that it works well with the provided code. Take the data and format it in an excel sheet. For this analysis, you should total the time spent on each action and put that as rows. You should also count the number of times each action occurred.
+
+Here's how my data look. Note that I made this prior to lab so I am using imaginary data:
+
+![](media/code_lab_01_excel-layout.png)
+
+If you want to use the code provided, you must exactly match the layout that I used here. While your data might be different R is very picky about a few things. Here's some potential issues students might run into:
+
+-   Make sure column names match ***exactly.*** R is case sensitive
+
+-   Generally spaces are challenges in character vectors so use a `_` instead.
+
+-   While our data collection sheet on paper had merged cells for behavior, in R, they must be individually represented in each row. So make sure you don't format the excel sheet in a fancy way
+
+-   Make sure to save the files as a `.csv` file. This is not the excel default. You must select 'save as'.
+
+-   Save the file as a name you can find and remember!
+
+# Loading the data:
+
+Once you have entered the data and saved it, let's load it into R
+
+```{r, eval = FALSE}
+setwd('C:/Users/abart/OneDrive/Documents/UofSC/Classes/BIOL570L') #set working directory
+sqdf <- read.csv('2023_WS1_ex-data.csv')
+```
+
+```{r, echo = TRUE}
+rm(list= ls())
+sqdf <- read.csv('https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_1_Mammal-Behavior/main/data/example_data.csv')
+
+source("./utils.R")
+```
+
+## Check out the data
+
+If you succesfully loaded the data you should take a look at it to make sure the layout is how you want.
+
+```{r}
+head(sqdf)
+```
+
+Note that here I used `head()`. But in reality, I typically use the `View()` function to take a peek at data.
+
+Some possible issues at this step would be that your column headers are wrong or your num_events column or total_mins column are characters (they should be 'int'). If this is the case, there is something wrong with how you formatted your excel sheet.
+
+# Graphing the data.
+
+Let's go ahead and make our graph. We'll be using `ggplot2` and `dplyr`. Remember it is standard practice to place these at the top of the script!
+
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+For the purposes of this worksheet, I'll keep things relatively simple. Let's plot the total time spent per behavior category. This requires pooling together across all actions. Note that your behavior categories and actions will be different than mine. However, if you formatted your columns correctly, all this code should work.
+
+What I'm first going to do is create a new summary `data.frame` called `sq_summary`.
+
+```{r}
+# summarize by category
+sq_summary <- sqdf |> 
+  group_by(category) |> 
+  summarize(total_time = sum(total_mins))
+```
+
+This is dplyr code and might look familiar to what we had in Week 0.
+
+Now, we can use that code to make a quick figure. In the provided code, I'm not breaking apart each element of the figure like we did last week. However, if you are curious about learning more, I encourage you to play around with the `ggplot` code and see what changes!
+
+```{r, eval=FALSE}
+ggplot(data = sq_summary) +
+  geom_bar(aes(x = category, y = total_time, fill = category),
+           stat = 'identity') +
+  scale_fill_discrete()+
+  labs(x = "Behavior Category", y = "Total Time Spent [mins]")+
+  theme_classic()+
+  theme(legend.position = 'none')
+
+```
+
+```{r, echo=FALSE, eval = TRUE}
+basic_fig <- ggplot(data = sq_summary) +
+  geom_bar(aes(x = category, y = total_time, fill = category),
+           stat = 'identity') +
+  scale_fill_discrete()+
+  labs(x = "Behavior Category", y = "Total Time Spent [mins]")+
+  theme_classic()+
+  theme(legend.position = 'none')
+
+watermark_plot(basic_fig)
+```
+
+# Statistical Analysis.
+
+The purpose of this lab was to test if squirrels spend more time in conflict than in other activities. A great analysis to compare proportions is the chi-squared test ($\chi^2$). This test compares the distribution of observed values to an expected value range. The observed values in our case are the proportion of time spent on any given behavior category.
+
+For the sake of simplicity, we will just test if the time allocations are significantly different than if the squirrel allocated time equally to all its behaviors. In R, it is one easy function to run this test. The default settings for the function require you to input your observed distribution. By default it will compare the observed values to what is expected if there was an equal distribution across all categories.
+
+```{r}
+###
+# Chi-squared analysis
+####
+chisq.test(sq_summary$total_time)
+
+```
+
+Running the chi-squared function in R will create a model object and print out some immediate results of the analysis. Here, the main result of interest is the 'p-value'. The p-value tells us whether or not the observed and expected values are 'statistically significantly' different from one another. When writing your results, you should be very cautious of how/when you use the term 'significant'. It simply means that there is a high probability the observed values are truly from a different distribution than the expected ones, in this case.
+
+We should address some caveats with this approach. The chi-squared test simply states whether the distribution of time spent on activities is significantly different than if the squirrel were to equally allocate its time across all behaviors. With my example data, I clearly made it so that very little time is spent on avoidance. However, we can't say from this analysis alone which category receives significantly more time spent, just that they are not evenly distributed.

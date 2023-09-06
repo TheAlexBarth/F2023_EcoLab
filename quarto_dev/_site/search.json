@@ -35,6 +35,20 @@
     "text": "dplyr option:\nThis is the cleaner approach but it does abstract a few steps away. First you want to make sure you have installed dplyr. Also you should load the library (do this at the top of the script).\n\nlibrary(dplyr)\n\nThe tidyverse syntax is really big on piping code together. So we’ll use a number of functions here and chain them all together. Piping takes the value on the left of the pipe operator (|>) and pushes it to the first argument of the function on the right. In tidyverse/dplyr functions, the first argument is often a data.frame. This makes it easy to chain together these functions. In this code, I will chain it all together, but if you want to learn more, you can run one pipe at a time and see what happens in each step.\n\ncrab_means <- crab_width |> \n  filter(Site %in% c('BC', 'GTM')) |> #filter only to these sites\n  group_by(Site) |> #group by site\n  summarize(mean = mean(carapace_width),\n            sd = sd(carapace_width)) # apply mean and sd functions\n\nNow we can look at the data. Note that tidyverse functions will create tibbles rather than data.frames. For most purposes this is a very minor detail that will not matter until you are working on high-level problems or developing software in R.\n\ncrab_means\n\n# A tibble: 2 × 3\n  Site   mean    sd\n  <chr> <dbl> <dbl>\n1 BC     16.2  4.81\n2 GTM    12.4  1.80"
   },
   {
+    "objectID": "code_lab-01.html",
+    "href": "code_lab-01.html",
+    "title": "Lab 1 Code",
+    "section": "",
+    "text": "The first major challenge (and likely only one) will be organizing your data so that it works well with the provided code. Take the data and format it in an excel sheet. For this analysis, you should total the time spent on each action and put that as rows. You should also count the number of times each action occurred.\nHere’s how my data look. Note that I made this prior to lab so I am using imaginary data:\n\nIf you want to use the code provided, you must exactly match the layout that I used here. While your data might be different R is very picky about a few things. Here’s some potential issues students might run into:\n\nMake sure column names match exactly. R is case sensitive\nGenerally spaces are challenges in character vectors so use a _ instead.\nWhile our data collection sheet on paper had merged cells for behavior, in R, they must be individually represented in each row. So make sure you don’t format the excel sheet in a fancy way\nMake sure to save the files as a .csv file. This is not the excel default. You must select ‘save as’.\nSave the file as a name you can find and remember!"
+  },
+  {
+    "objectID": "code_lab-01.html#check-out-the-data",
+    "href": "code_lab-01.html#check-out-the-data",
+    "title": "Lab 1 Code",
+    "section": "Check out the data",
+    "text": "Check out the data\nIf you succesfully loaded the data you should take a look at it to make sure the layout is how you want.\n\nhead(sqdf)\n\n   category           action num_events total_mins\n1  conflict          chasing         19         37\n2  conflict running_squirrel         24         35\n3  conflict         taunting         10          3\n4 avoidance    running_other          4          2\n5 avoidance running_predator          1          1\n6    forage        searching         13         45\n\n\nNote that here I used head(). But in reality, I typically use the View() function to take a peek at data.\nSome possible issues at this step would be that your column headers are wrong or your num_events column or total_mins column are characters (they should be ‘int’). If this is the case, there is something wrong with how you formatted your excel sheet."
+  },
+  {
     "objectID": "code_main.html",
     "href": "code_main.html",
     "title": "Programming in Ecology",
