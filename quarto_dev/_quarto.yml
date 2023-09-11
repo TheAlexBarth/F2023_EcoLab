@@ -20,6 +20,8 @@ website:
           text: Intro Assignment Code
         - href: code_lab-01.qmd
           text: Behavioral Ecology Analysis Code
+        - href: code_lab-02.qmd
+          text: Biodiversity Analysis Code
       - text: Class Documents
         menu:
         - href: lab_0_intro_assignment.qmd

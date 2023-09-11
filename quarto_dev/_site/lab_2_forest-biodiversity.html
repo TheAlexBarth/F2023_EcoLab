@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 - Behavioral &amp; Urban Ecology</title>
+<title>570L Fall 2023 - Forest Biodiversity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -61,6 +61,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -168,7 +169,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Behavioral &amp; Urban Ecology</h1>
+<h1 class="title">Forest Biodiversity</h1>
 </div>
 
 
@@ -182,21 +183,79 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>When thinking of studying ecology, may people think we need travel to national parks, undisturbed areas, or wild places. However, we are surrounded by ecology. All interactions which govern our lives and the environments in which we live can be studied with an ecological lens. Generally, urbanization has negatively impacted biodiversity and native ecosystems. However, within these areas, there are several organisms which, while traditionally evolved to live in other areas, have developed strategies to survive and thrive. An organism around USC’s campus which seemingly thrives is the squirrels (most likely eastern grey squirrels, <em>Sciurus carolinensis</em>).</p>
-<p>Fun Squirrel Information:</p>
+<p>Download the project plan <a href="'./docs/2023_WS2_ProjectPlan.pdf'">here</a></p>
+<p>Download the worksheet <a href="'2023_WS2_Template.pdf'">here</a></p>
+<section id="lab-context" class="level1">
+<h1>Lab Context</h1>
+<p>For this lab, we will be evaluating how biodiversity varies based on different disturbance regimes. A classic concept in ecology is the intermediate disturbance hypothesis. This concept was formulated by Connell in 1978. The hypothesis is an extension of the concept of ecological succession. Succession theory suggests that communities, in a new environment, will develop following a predictable pattern in which the first organisms are colonizing ones (fast-life histories, r-selected individuals). These taxa are quick to reproduce and establish a population. Then, as resources develop in the environment, longer living yet better competing individuals will move into the area. Thus the community will slowly become dominated by organisms which have slow-life history strategies (K-selected). This concept is a persistent idea in ecology and was developed in coastal dunes <a href="https://brittlebooks.library.illinois.edu/brittlebooks_open/Books2009-04/cowlhe0001ecorel/cowlhe0001ecorel.pdf">[1]</a>, freshwater streams <a href="https://www.journals.uchicago.edu/doi/pdf/10.2307/1535983">[2]</a>, and carrion studies <a href="https://www.journals.uchicago.edu/doi/full/10.1086/679763?casa_token=bG333uO0yaMAAAAA%3A8tEgPiPLXtoybN8HcqLKrb3a4yDicmZtptbhefY1kXhl5PJvbqQSH-ob08CC7EFVTJjAdFACNuU">[3]</a>. Yet is has been extended into many other areas of ecology, including plankton (see <a href="https://www.sciencedirect.com/science/article/pii/S096706451200197X?casa_token=bVpzSokdMO0AAAAA:L71mL144_GCXG4b5glUaWpBXu02bofNdwe6SVvtNkA8efcLHp6lwQYEbl2vv3EI46r5K9WrNXg">Margalef’s Mandala</a>).</p>
+<p>So, how does this lead to the intermediate disturbance hypothesis? Well, what “resets” an environment is disturbances (wildfiles, storms, waves, etc.). So the intermediate disturbance hypothesis posits that if a disturbances are too frequent, then only early succesional species will be present. However, if undisturbed, the community will move towards a late-stage succesional community equilibrium. If there are “intermediate” levels of disturbance. Then we might expect higher levels of biodiversity as it sustains a mixture of community types.</p>
+<p><img src="media/lab_02_intermediate-disturbance.png" class="img-fluid"></p>
+<p>In this lab we will test the intermediate disturbance hypothesis by sampling thre regions in Harbison forest which correspond to different levels of disturbance. We’ll have a low-disturbance area which has been essentially undisturbed. Then we’ll have a high disturbance region which is consistently mowed. Finally, we’ll have a mid-disturbance area which was subjected to a burn 1 year ago.</p>
+</section>
+<section id="measuring-biodiversity" class="level1">
+<h1>Measuring biodiversity</h1>
+<p>There are several metrics to evaluate biodiversity. In this lab we will calculate a few of the most common ones. For your worksheets you will only be required to select one of them.</p>
+<p>A straightforward metric is Species Richness (<span class="math inline">\(R\)</span>). This is the number of unique species in a region. <span class="math display">\[
+R = \# of\_unique\_taxa
+\]</span> However, this is not the most informative metric as it does not account for the number of taxa there are of each species. For example, if there are 100 different species, yet 99% of them were one type, the area wouldn’t be very biodiverse. Species richness alone is not very informative in such cases.</p>
+<p>Alternatively species diversity can be measured through a variety of indices. Arguable the most common is the Shannon-Wiener Index (<span class="math inline">\(H\)</span>). This ranges from 0 (a low diversity) to larger numbers. The larger the <span class="math inline">\(H\)</span>, the more diverse the community is.</p>
+<p><span class="math display">\[
+H = -\sum_{i = 1}^{R}{p_i lnp_i}
+\]</span> Here, for each unique taxa, we add up the proportion (<span class="math inline">\(p\)</span>) of each (<span class="math inline">\(i^{th}\)</span>) taxa, multiplied by the natural log of that taxa. We do that for all unique taxa (<span class="math inline">\(R\)</span>) For count data, we can extend the formula:</p>
+<p><span class="math display">\[
+H = -\sum_{i = 1}^{R}{\frac{n_i}{N}ln\frac{n_i}{N}}
+\]</span></p>
+<p>Here, <span class="math inline">\(n_i\)</span> is the count of the specific taxa while <span class="math inline">\(N\)</span> is the total count of taxa.</p>
+<p>While <span class="math inline">\(H\)</span> provides a nice measure of biodiversiy, it is still related to the overall richness. An alternative metric is to measure evenness. This will report the how spread across the different taxa the relative abundace is. For example, if we had 5 individuals each of two taxa, it would be more “even” than 1 of taxa A and 9 of taxa B. This metric is independent of the overall richness and give a perspective to the relative success of the taxa which are present. The more common metric for evenness is Pileou’s (<span class="math inline">\(D\)</span>):</p>
+<p><span class="math display">\[
+D = 1 - \sum_{i=1}^{R}{\frac{n_i(n_i-1)}{N(N - 1)}}
+\]</span></p>
+</section>
+<section id="quantitative-sampling" class="level1">
+<h1>Quantitative Sampling</h1>
+<p>A large challenge for ecologists who conduct field studies is how to collect quantitative, unbiased estimates of population abundance, community structure, or other ecologically relevant metrics. Here we want to collect biodiversity metrics in four forest regions.</p>
+<p>There are several common field sampling techniques:</p>
+<p>Some basic tools:</p>
 <ul>
-<li><p>https://sc.edu/uofsc/posts/2021/10/remembering_the_days_natural_history_stroll_ep_35.php</p></li>
-<li><p>https://www.instagram.com/usc.squirrels/?hl=en</p></li>
-<li><p>https://www.facebook.com/watch/?v=499139211340770</p></li>
-<li><p>https://www.tiktok.com/<span class="citation" data-cites="uofsc/video/7191269652230720814">@uofsc/video/7191269652230720814</span> (not available on campus wifi due to tiktok restrictions despite this is university’s account)</p></li>
+<li><p>Quadrat (basically a square, typically of PVC)</p>
+<ul>
+<li>These are useful for defining a set sampling area. They give us the ability to quantify density (count per area) which then standardizes our metrics across regions</li>
+</ul></li>
+<li><p>Transect</p>
+<ul>
+<li>A fixed line which we go and sample along. Sampling along a transect can be done with point counts (whatever is touching the transect), line-quadrat methods (placing quadrats systematically or randomly along the transect), or band-transect methods (counting everything within a fixed width of the transect).</li>
+</ul></li>
 </ul>
-<p>In this lab, we will study movement and behavior of squirrels on the USC campus. The primary objective will be to introduce students to conducting basic ecological fieldwork in a convenient location. However, don’t take this lab for granted! There are plenty of opportunities to develop an independent project utilizing nearby spaces on campus. Try to be curious of your surroundings!</p>
-<p>Studying organism behavior may seem fairly straightforward. However, it can be extremely challenging to do so with robust scientific methods. A basic tool in behavioral ecology research is to use an ethogram. This is a table which clearly defines possible actions to observe in an individual’s behavior.</p>
-<p>In this lab we will construct ethograms to test a hypothesis about squirrel activity.</p>
-<p>Download the full project plan <a href="./docs/2023_WS1_ProjectPlan.pdf">here</a></p>
-<p>Download the worksheet <a href="./docs/2023_WS1_Template.pdf">here</a></p>
+<p>When deploying these tools, there are several ways we can try to reduce bias. We want to have a fixed way to sample. Some common methods are:</p>
+<ul>
+<li><p>Haphazard sampling</p>
+<ul>
+<li>This is just sampling when we encounter our study target. This is inherently biased although it is sometimes necessary when we are interested in highly mobile or elusive organisms. It also could be that we are interested in particular taxa so we just observe those. This is what we did for our Behavioral Ecology Lab last week</li>
+</ul></li>
+<li><p>Systematic Sampling</p>
+<ul>
+<li>Here, samples are collected at a fixed interval (say every 2m along a transect or in set regions of a grid). This allows us to sub-sample a region. This can be particularly useful for measuring change along a gradient.</li>
+</ul></li>
+<li><p>Random Sampling</p>
+<ul>
+<li>Here, random coordinates are selected in a study area (grid or transect). This ensures a non-bias sample of our study region. However, we should be cautious if there is confounding variables in the area. This is what we will do this week for the intermediate disturbance hypothesis lab.</li>
+</ul></li>
+<li><p>Stratified-Random Sampling</p>
+<ul>
+<li>If we are sampling an area with known variation (differences in moisture, elevation, etc), we can create strata. These are set sub-regions to sample. Here we can then generate random coordinates within each strata for a stratified, but still random approach.</li>
+</ul></li>
+</ul>
+<p>When we construct our sampling design some key considerations are: How can we be unbias our samples? What are we measuring? If it is just the overall area, random sampling may be sufficient. However if we believe there is variation within our study area we might want to use a transect with systematic sampling, or a stratified random design. These are all things you’ll want to consider when designing your sampling schemes.</p>
+</section>
+<section id="harbison-forest-directions" class="level1">
+<h1>Harbison Forest Directions</h1>
+<p>Go to the main entrance to Harbison Forest off broad river road. Note that some people turn early and go to the South Carolina Forestry Commission. Drive forward (past the first parking lot on the left) and keep left towards the gate (marked in blue). Drive straight down the gravel road. Shortly after the intersection for the Eagle Trail lot (you’ll see signs about a gazeebo, just go straight), you’ll see a parking lot on the left (marked by yellow X).</p>
+<p><img src="media/lab_02_forest-directions.png" class="img-fluid"></p>
+<p>If you have problems getting there, you can call my cell 440-668-8376.</p>
+<p>Dress for being outside! It will be warm but there are a lot of bugs and sharp plants. I always opt for covering up rather than being cool but it’s a personal trade-off. Also wear appropriate shoes!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
