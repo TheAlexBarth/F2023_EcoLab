@@ -4,4 +4,4 @@ permalink: /404.html
 
 # Uh oh!
 
-This page is not yet public. If you think it should be, contact me asap!
+This page is not yet public. If you think it should be, contact me asap.

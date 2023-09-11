@@ -28,8 +28,8 @@ website:
           text: Intro Assignment
         - href: lab_1_behavioral-ecology.qmd
           text: "Lab 1: Behavioral Urban Ecology"
-        - href: lab_2.qmd
-          text: "Lab 2"
+        - href: lab_2_forest-biodiversity.qmd
+          text: "Lab 2: Intermediate Distrubance & Forest Ecology"
         - href: lab_3.qmd
           text: "Lab 3"
         - href: lab_4.qmd
