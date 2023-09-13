@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 – code_lab-02</title>
+<title>570L Fall 2023 - Lab 1 Code</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -61,6 +124,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -166,10 +230,446 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 1 Code</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="setting-up-r" class="level1">
+<h1>Setting up R</h1>
+<p>This week we’ll use three packages: <code>ggplot2</code>, <code>dplyr</code>, and <code>dunn.test</code>. You might not yet have dunn.test installed yet. Remember, if you need to install a package, you only need to do it once. So in your console (the main bottom tab of RStudio) run:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'dunn.test'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, each time we run R, we’ll need to load all our packages</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dunn.test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="accessing-the-data" class="level1">
+<h1>Accessing the data</h1>
+<p>You can download the data from the course github org: <a href="https://github.com/USC-Ecology-Lab/Lab_2_Forest-Biodiversity/blob/main/Data/2023_WS2_Data-Share.csv">link</a></p>
+<p>Download and save the data in your files/folder</p>
+<p>Then load it into R. I’m going to name it <code>raw_data</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'C:/Users/abart/OneDrive/Documents/UofSC/Classes/BIOL570L'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'2023_WS2_Data-Share.csv'</span>) <span class="co"># whatever you named i</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<p>Now let’s take a look and make sure the structure is as we expect:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(raw_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   105 obs. of  4 variables:
+ $ Region : chr  "High-Disturbance" "High-Disturbance" "High-Disturbance" "High-Disturbance" ...
+ $ Quadrat: int  1 1 1 1 2 2 2 3 3 3 ...
+ $ Taxa   : chr  "A" "B" "C" "D" ...
+ $ Count  : int  1 2 7 2 2 9 4 2 3 7 ...</code></pre>
+</div>
+</div>
+<p>Look’s good to me!</p>
+</section>
+<section id="analyzing-the-data" class="level1">
+<h1>Analyzing the data</h1>
+<p>This week the question is somewhat straightforward but the code will get quite complex. This guide walks through some of the process of building out the code. If you just want to get to plots and core statistical analyses, you don’t need all this code. I will clearly distinguish between the required and the “bonus” portions. However, I encourage you to skim through all sections as it will inform the process.</p>
+<p>The main object is to test the intermediate disturbance hypothesis. For this, we have three forest regions: High-Disturbance, Mid-Disturbance, Low-Disturbance. Thus, our predictive variable will be “Region” (which is categorical with three levels). Our response variable should test if the three regions are significantly different from one another in some metric of biodiversity. What is expected for this week’s worksheet, is to select <strong><em>ONE</em></strong> metric to test the hypothesis. Our three possible response variables are (1) Species richness (integer/count data), (2) Shannon’s H (continuous), and (3) Pileou’s D (continuous).</p>
+<p>So in all cases, we’ll have a categorical predictor variable with a continuous response. Because our categorical variable has three levels, we’ll need to use an ANOVA test, or its non-parametric equivalent. In all cases, we will be comparing are the regions <em>on average</em> significantly different from one another. So we’ll need to calculate the metric for each quadrat, then average by region. Thankfully, much of the <code>dplyr</code> syntax (code) we’ve seen is very useful for these operations.</p>
+<p>Regardless of metric, we’ll make a simple barplot and run a statistical analysis to assess if the observed differences in the barplot are significantly different.</p>
+</section>
+<section id="a.-species-richness" class="level1">
+<h1>A. Species Richness</h1>
+<p>First, let’s run the analysis for species richness. This is the most straightforward from a coding perspective. We just need to count the number of unique species in each quadrat.</p>
+<p>This could feasibly be done by hand but it is easier in R. Also, it would not be feasible if we had more regions and we’re less likely to make a mistake!</p>
+<p>The first step will be to make a data.frame with just counts the number of unique species in each quadrat. We can do that with <code>dplyr</code> I’ll name it <code>richness_df.</code></p>
+<p>Inside this complex chunk of code the key operation comes in the summarize function, where I create the new column <code>richness</code>. Note that here, I’m saying “take the raw data, group it by region and quadrat, then for each group, calculate richness in a new column”. We can calculate richness by finding the <code>unique</code> taxa and then counting them (<code>length</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>richness_df <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Quadrat) <span class="sc">|&gt;</span> <span class="co">#group these</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">richness =</span> <span class="fu">length</span>(<span class="fu">unique</span>(Taxa))) <span class="co"># make a column for the # of unique taxa</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can compare the new richness data.frame to your raw data. Take a look with these functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(richness_df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(raw_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is a good opportunity to spot-check some of the math. Does the high-density, quadrat 1 have the correct number?</p>
+<section id="a.1-plotting-species-richness" class="level3">
+<h3 class="anchored" data-anchor-id="a.1-plotting-species-richness">A.1 Plotting Species Richness</h3>
+<p>To make our plot, we’ll need to make a summary data frame which has the mean richness per region with standard deviation. I’ll call it <code>richness_plot_df</code></p>
+<p>We can use <code>dplyr</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>richness_plot_df <span class="ot">&lt;-</span> richness_df <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_richness =</span> <span class="fu">mean</span>(richness),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_richness =</span> <span class="fu">sd</span>(richness))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can make our plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(richness_plot_df) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_richness),</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_richness,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_richness <span class="sc">+</span> sd_richness),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Mean Richness"</span>)<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(richness_plot_df) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_richness),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_richness,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_richness <span class="sc">+</span> sd_richness),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Mean Richness"</span>)<span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">watermark_plot</span>(p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Great! It looks pretty good!</p>
+</section>
+<section id="a.1b-plotting-bonus" class="level3">
+<h3 class="anchored" data-anchor-id="a.1b-plotting-bonus">A.1b Plotting Bonus</h3>
+<p>One issue with the plot above is I don’t like the order of the categories. When we look back to the lab reading, Connell’s figure has the categories as a gradient from high-to-mid-to-low.</p>
+<p>So let’s reorganize the plot to match. Here we need to reassign factor levels in the data frame then it will work in ggplot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What if I want my figures in a different order?</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>richness_plot_df<span class="sc">$</span>Region <span class="ot">&lt;-</span> <span class="fu">factor</span>(richness_plot_df<span class="sc">$</span>Region, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"High-Disturbance"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="st">"Mid-Disturbance"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                                                      <span class="st">"Low-Disturbance"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we actually can just run the same plot code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(richness_plot_df) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_richness),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_richness,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_richness <span class="sc">+</span> sd_richness),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Mean Richness"</span>)<span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(richness_plot_df) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_richness),</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_richness,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_richness <span class="sc">+</span> sd_richness),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Mean Richness"</span>)<span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">watermark_plot</span>(p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="a.2-richness-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="a.2-richness-analysis">A.2 Richness Analysis</h3>
+<p>In the project plan we suggested running an ANOVA to compare between the categories. However, ANOVAs assume that our (response) data are normally distributed.</p>
+<p><em>Technical note: ANOVAs are just extensions of linear models. There are several assumptions but normality of residuals is the main one. This is not normality of the data, but are the data within a group normally distributed around the mean. However, typically if the data are non-normal then the residuals will be non-normal at small sample sizes. At larger sample sizes this is less of a concern due to the Central Limit Theorem.</em></p>
+<p>So first we need to see if the species richness are normally distributed within each group. We can do this a number of ways but the easiest is to see if the density distribution looks normal. Note these are not plots we’d share with anyone, or put in your worksheet but it is a quick way for us to see:</p>
+<p>Here, I’m using base R graphics and some advanced approaches just to keep it short. Don’t worry about all these details. Here, we’re primary concerned about the question of normality:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># set up plotting window in 2x2 grid</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(group <span class="cf">in</span> <span class="fu">unique</span>(richness_df<span class="sc">$</span>Region)) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>(richness_df<span class="sc">$</span>richness[richness_df<span class="sc">$</span>Region <span class="sc">==</span> group]) <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> group)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looking at the figures, it seems that non-normality might be a concern. So we’ll need to use a non-parametric test. The alternative to an ANOVA in this case is a Kruskal-Wallace test.</p>
+<p>The kruskal-wallace test is similar to our chi-squared test in that it asks: “Are there any differences between the distributions of the groups”.</p>
+<p>Let’s run this test in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(richness_df<span class="sc">$</span>richness <span class="sc">~</span> richness_df<span class="sc">$</span>Region) <span class="co"># Tell's us it is significantly different</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  richness_df$richness by richness_df$Region
+Kruskal-Wallis chi-squared = 6.9755, df = 2, p-value = 0.03057</code></pre>
+</div>
+</div>
+<p>Here, the p-value tells us if the groups are signficantly different, however it doesn’t tell us which groups are different.</p>
+<p>Now we can use the dunn.test as a post-hoc test. This compares values between each individual groups:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(<span class="at">x =</span> richness_df<span class="sc">$</span>richness, <span class="at">g =</span> richness_df<span class="sc">$</span>Region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 6.9755, df = 2, p-value = 0.03
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |   High-Dis   Low-Dist
+---------+----------------------
+Low-Dist |  -2.309266
+         |    0.0105*
+         |
+Mid-Dist |  -2.278936   0.231662
+         |    0.0113*     0.4084
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2</code></pre>
+</div>
+</div>
+<p>Note that in this output, this gives us the kruskall test up above but it also gives us a p-value for each group-specific comparison of means. This is where we can write our results from!</p>
+</section>
+</section>
+<section id="b.-shannons-h-diversity-metric" class="level1">
+<h1>B. Shannon’s H Diversity Metric</h1>
+<p>Calculating the Shannon-Wiener index is a little more complicated from an R perspective. Look at the formula:</p>
+<p><span class="math display">\[
+H = -\sum_{i = 1}^{R}{\frac{n_i}{N}ln\frac{n_i}{N}}
+\]</span></p>
+<p>We need to caculate for each quadrat, the total number of species (<span class="math inline">\(N\)</span>) and the proportion of each <span class="math inline">\(i^{th}\)</span> species in that quadrat, the natural log of that proportion and then sum it up for all species in that quadrat!</p>
+<p>Again you could brute-force this calculation or do it in Excel. For this lab it might be feasible, but what if you had years of data! This is where R is useful.</p>
+<section id="b.0-bonus" class="level3">
+<h3 class="anchored" data-anchor-id="b.0-bonus">B.0 Bonus</h3>
+<p>Let’s first calculate H for just one region, one quadrat by “hand”. I’ll create a data frame of just one quadrat</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># just for one case:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>quadrat_1 <span class="ot">&lt;-</span>  raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">"Low-Disturbance"</span>, Quadrat <span class="sc">==</span> <span class="st">'1'</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>quadrat_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Region Quadrat Taxa Count
+1 Low-Disturbance       1    A     1
+2 Low-Disturbance       1    B     1
+3 Low-Disturbance       1    C     3</code></pre>
+</div>
+</div>
+<p>Now we can calculate all those values. Note here, I’m using <code>p</code> as the term for <span class="math inline">\(\frac{n_i}{N_i}\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> quadrat_1<span class="sc">$</span>Count <span class="sc">/</span> <span class="fu">sum</span>(quadrat_1<span class="sc">$</span>Count) <span class="co"># create counts</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lnp <span class="ot">&lt;-</span> <span class="fu">log</span>(p)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="fu">sum</span>(p <span class="sc">*</span> lnp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9502705</code></pre>
+</div>
+</div>
+</section>
+<section id="b.0-calculating-h-for-all-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="b.0-calculating-h-for-all-the-data">B.0 Calculating H for all the data</h3>
+<p>Here, we will create our own function for calculating H. Honestly, this is more advanced than your typical intro-to-R but it makes the analysis easier on the whole. So let’s roll with it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can write a function to do this repeatedly!</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>diversity_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(count) {</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="co"># create counts</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  lnp <span class="ot">&lt;-</span> <span class="fu">log</span>(p)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  H <span class="ot">&lt;-</span>  <span class="sc">-</span><span class="fu">sum</span>(p <span class="sc">*</span> lnp)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(H)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>If you did the bonus above, you can check the function works but just running on the quadrat 1 data!</em></p>
+<p>Now we can use same code were familiar with to calculate H, just with our own function inside <code>summarize.</code> I’ll create a new data.frame called <code>diversity_df</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diversity_df <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Quadrat) <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">H =</span> <span class="fu">diversity_calculator</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b.1-plotting-diversity" class="level3">
+<h3 class="anchored" data-anchor-id="b.1-plotting-diversity">B.1 Plotting Diversity</h3>
+<p>Let’s make our summary data frame to plot with. I’ll call it <code>div_plot</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>div_plot <span class="ot">&lt;-</span> diversity_df <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_H =</span> <span class="fu">mean</span>(H),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_H =</span> <span class="fu">sd</span>(H))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s plot it. Note that I’m included the code in here to reorganize the order of the categories from the A.1b section:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What if I want my figures in a different order?</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>div_plot<span class="sc">$</span>Region <span class="ot">&lt;-</span> <span class="fu">factor</span>(div_plot<span class="sc">$</span>Region, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"High-Disturbance"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="st">"Mid-Disturbance"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                                                      <span class="st">"Low-Disturbance"</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(div_plot) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_H),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_H,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_H <span class="sc">+</span> sd_H),</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Shannon's H"</span>)<span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="b.2-analyzing-h" class="level3">
+<h3 class="anchored" data-anchor-id="b.2-analyzing-h">B.2 Analyzing H</h3>
+<p>Let’s take a look at if normality might be a concern for this dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># set up plotting window in 2x2 grid</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(group <span class="cf">in</span> <span class="fu">unique</span>(diversity_df<span class="sc">$</span>Region)) {</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>(diversity_df<span class="sc">$</span>H[richness_df<span class="sc">$</span>Region <span class="sc">==</span> group]) <span class="sc">|&gt;</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> group)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Again, non-normality might be a considerable concern. So let’s use the kruskal-wallace test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(diversity_df<span class="sc">$</span>H<span class="sc">~</span>diversity_df<span class="sc">$</span>Region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  diversity_df$H by diversity_df$Region
+Kruskal-Wallis chi-squared = 4.3288, df = 2, p-value = 0.1148</code></pre>
+</div>
+</div>
+<p>Here, this test suggests that there is no significant difference between the regions. So we can write that as our result. (This might change with added data).</p>
+</section>
+</section>
+<section id="c.-evenness" class="level1">
+<h1>C. Evenness</h1>
+<p>Finally let’s calculate pileou’s evenness. Again, this might create some new code challenges but it will make it easier in the long-run.</p>
+<p>Remember the formula:</p>
+<p><span class="math display">\[ D = 1 - \sum_{i=1}^{R}{\frac{n_i(n_i-1)}{N(N - 1)}} \]</span></p>
+<section id="c.0-bonus" class="level3">
+<h3 class="anchored" data-anchor-id="c.0-bonus">C.0 Bonus</h3>
+<p>Here, we can calculate the value for just one quadrat. Here, I’m using the <code>quadrat_1</code> data frame I created in B.0 bonus. If you skipped that go back and make sure you have <code>quadrat_1</code> in your environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> quadrat_1<span class="sc">$</span>Count</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="fu">sum</span>(quadrat_1<span class="sc">$</span>Count)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve for D</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>((n<span class="sc">*</span>(n<span class="dv">-1</span>))<span class="sc">/</span>(N<span class="sc">*</span>(N<span class="dv">-1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7</code></pre>
+</div>
+</div>
+</section>
+<section id="c.0-calculating-pileous-evenness" class="level3">
+<h3 class="anchored" data-anchor-id="c.0-calculating-pileous-evenness">C.0 Calculating Pileou’s evenness</h3>
+<p>Here’s the self-defined function which will calculate pileou’s evenness:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pileou_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(count) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> count</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  N <span class="ot">=</span> <span class="fu">sum</span>(count)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>((n<span class="sc">*</span>(n<span class="dv">-1</span>))<span class="sc">/</span>(N<span class="sc">*</span>(N<span class="dv">-1</span>)))</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(D)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can calculate it for all quadrats. I’ll call it <code>evenness_df</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate for all!</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>evenness_df <span class="ot">&lt;-</span> raw_data <span class="sc">|&gt;</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region, Quadrat) <span class="sc">|&gt;</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">D =</span> <span class="fu">pileou_calculator</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="c.1-plotting-evenness" class="level3">
+<h3 class="anchored" data-anchor-id="c.1-plotting-evenness">C.1 Plotting Evenness</h3>
+<p>We’ll need to make a summary dataframe first. I’ll call it <code>evenness_plot</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>evenness_plot <span class="ot">&lt;-</span> evenness_df <span class="sc">|&gt;</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Region) <span class="sc">|&gt;</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_D =</span> <span class="fu">mean</span>(D),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_D =</span> <span class="fu">sd</span>(D))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can plot that dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What if I want my figures in a different order?</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>evenness_plot<span class="sc">$</span>Region <span class="ot">&lt;-</span> <span class="fu">factor</span>(evenness_plot<span class="sc">$</span>Region, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"High-Disturbance"</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                                                      <span class="st">"Mid-Disturbance"</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                                                      <span class="st">"Low-Disturbance"</span>))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(evenness_plot) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_D),</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">fill =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_D,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_D <span class="sc">+</span> sd_D),</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">'black'</span>)<span class="sc">+</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Region"</span>,<span class="at">y =</span> <span class="st">"Pileou's D"</span>)<span class="sc">+</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="c.2-analyzing-d" class="level3">
+<h3 class="anchored" data-anchor-id="c.2-analyzing-d">C.2 Analyzing D</h3>
+<p>First, let’s check the normality of our groups:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>)) <span class="co"># set up plotting window in 2x2 grid</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(group <span class="cf">in</span> <span class="fu">unique</span>(evenness_df<span class="sc">$</span>Region)) {</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>(evenness_df<span class="sc">$</span>D[evenness_df<span class="sc">$</span>Region <span class="sc">==</span> group]) <span class="sc">|&gt;</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> group)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-02_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Again, non-normality might be a concern so let’s use the kruskall.wallace test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(evenness_df<span class="sc">$</span>D<span class="sc">~</span>evenness_df<span class="sc">$</span>Region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  evenness_df$D by evenness_df$Region
+Kruskal-Wallis chi-squared = 6.9544, df = 2, p-value = 0.03089</code></pre>
+</div>
+</div>
+<p>It suggests that there is some significant difference in average evennnes between the groups. Let’s look at that by group specific comparisons with the dunn.test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(<span class="at">x =</span> evenness_df<span class="sc">$</span>D, <span class="at">g =</span> evenness_df<span class="sc">$</span>Region)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 6.9544, df = 2, p-value = 0.03
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |   High-Dis   Low-Dist
+---------+----------------------
+Low-Dist |  -2.544257
+         |    0.0055*
+         |
+Mid-Dist |  -0.698480   1.999694
+         |     0.2424    0.0228*
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

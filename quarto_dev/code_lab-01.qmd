@@ -118,17 +118,13 @@ Running the chi-squared function in R will create a model object and print out s
 
 We should address some caveats with this approach. The chi-squared test simply states whether the distribution of time spent on activities is significantly different than if the squirrel were to equally allocate its time across all behaviors. With my example data, I clearly made it so that very little time is spent on avoidance. However, we can't say from this analysis alone which category receives significantly more time spent, just that they are not evenly distributed.
 
-
 # Advanced Approaches
 
 ## Figures
 
-The original approach can be improved on in a few ways. First, let's think about that figure.
-While it was easy to compile the data by behavior category, we smoothed over the details we recorded for 
-individual actions. Below is code to make a similar figure but with a little more detail.
+The original approach can be improved on in a few ways. First, let's think about that figure. While it was easy to compile the data by behavior category, we smoothed over the details we recorded for individual actions. Below is code to make a similar figure but with a little more detail.
 
-This one is a bit trickier since I have to specify the colors I want to use. I'm still making bars by behavior 
-category but now I'm filling the colors with stacked actions. Here, I specify some colors for each action:
+This one is a bit trickier since I have to specify the colors I want to use. I'm still making bars by behavior category but now I'm filling the colors with stacked actions. Here, I specify some colors for each action:
 
 ```{r}
 colors = c(
@@ -170,8 +166,8 @@ adv_plot = ggplot(sqdf) +
 
 watermark_plot(adv_plot)
 ```
-While this figure isn't perfect, I'd probably want to change the colors a bit more. It provides a good idea of how to improve this figure.
-Another idea, is that while time spent on a category is a great metric, we might also be interested in the number of events that each item happened.
+
+While this figure isn't perfect, I'd probably want to change the colors a bit more. It provides a good idea of how to improve this figure. Another idea, is that while time spent on a category is a great metric, we might also be interested in the number of events that each item happened.
 
 ```{r, eval = FALSE}
 ggplot(sqdf) + 
@@ -194,8 +190,8 @@ adv_event_plot <- ggplot(sqdf) +
 
 watermark_plot(adv_event_plot)
 ```
-This figure provides a different perspective than the first one. We can see that avoidance events occur 
-more often than previously suggested while rest events are less common.
+
+This figure provides a different perspective than the first one. We can see that avoidance events occur more often than previously suggested while rest events are less common.
 
 We could also look at the average duration of each event:
 
@@ -206,6 +202,7 @@ ggplot(sqdf) +
   labs(x = "Average Duration of Action [mins]", y = "Action", fill = "Behavior Category")+
   theme_classic()
 ```
+
 ```{r, echo = FALSE, fig.cap="Average action direction of Eastern Grey squirrels observed on USC's Horseshoe campus."}
 action_dur <- ggplot(sqdf) +
   geom_bar(aes(x = total_mins/num_events, y = action, fill = category),
@@ -214,6 +211,7 @@ action_dur <- ggplot(sqdf) +
   theme_classic()
 watermark_plot(action_dur)
 ```
+
 As you can see, even with a fairly rudimentary dataset, we can display the information in a number of ways. Making a variety of plots can be extremely useful. First, as a researcher this is a critical step of exploratory data analysis (EDA). EDA allows us to notice major trends in our data, sometimes surprising ourselves. Additionally, we can try to think about what is the best way to communicate our findings. We want our figures to be clear to a reader who has no familiarity with our research project. The captions should be brief yet informative. When making your figures, ask your self: "What is the main message I want a reader to take away from this figure?" and then you can think about how effectively you communicate that message through the figure.
 
 ## Other data analyses
@@ -223,6 +221,7 @@ In our initial analysis, we simply tested if the distribution of time allocated 
 Here, I'm going to make an expected model to match my hypothsis, where a squirrel spends 5% of its time in avoidance, 40% in confilct, 30% foraging, and 25% resting.
 
 To make these proportions, I'm matching the order to the order of my observed categories:
+
 ```{r}
 sq_summary$category
 ```
@@ -239,7 +238,7 @@ expected_proportions <- c(0.05,0.4,0.3,0.25)
 chisq.test(x = sq_summary$total_time, p = expected_proportions)
 ```
 
-From this result, we have a p-value > 0.05. This would lead me to write a statement similar to this as a result:
+From this result, we have a p-value \> 0.05. This would lead me to write a statement similar to this as a result:
 
 "There was no significant difference between the time allocation of our observed squirrels and the expected allocations under a conflict-heavy time allocation (chi-squared test, p-value = 0.23)."
 

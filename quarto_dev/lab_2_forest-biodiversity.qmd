@@ -56,7 +56,7 @@ Some basic tools:
 
 -   Transect
 
-    -    A fixed line which we go and sample along. Sampling along a transect can be done with point counts (whatever is touching the transect), line-quadrat methods (placing quadrats systematically or randomly along the transect), or band-transect methods (counting everything within a fixed width of the transect).
+    -   A fixed line which we go and sample along. Sampling along a transect can be done with point counts (whatever is touching the transect), line-quadrat methods (placing quadrats systematically or randomly along the transect), or band-transect methods (counting everything within a fixed width of the transect).
 
 When deploying these tools, there are several ways we can try to reduce bias. We want to have a fixed way to sample. Some common methods are:
 
