@@ -30,8 +30,8 @@ website:
           text: "Lab 1: Behavioral Urban Ecology"
         - href: lab_2_forest-biodiversity.qmd
           text: "Lab 2: Intermediate Distrubance & Forest Ecology"
-        - href: lab_3.qmd
-          text: "Lab 3"
+        - href: lab_3_community-assemblages.qmd
+          text: "Lab 3: Community Assemblages"
         - href: lab_4.qmd
           text: "Lab 4"
         - href: lab_5.qmd
