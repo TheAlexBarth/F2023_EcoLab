@@ -109,7 +109,7 @@ ggplot(richness_plot_df) +
 
 ```
 
-```{r}
+```{r, echo =FALSE}
 p1 = ggplot(richness_plot_df) +
   geom_bar(aes(x = Region, y = mean_richness),
            stat = 'identity', fill = 'black')+
@@ -191,15 +191,7 @@ Let's run this test in R:
 kruskal.test(richness_df$richness ~ richness_df$Region) # Tell's us it is significantly different
 ```
 
-Here, the p-value tells us if the groups are signficantly different, however it doesn't tell us which groups are different.
-
-Now we can use the dunn.test as a post-hoc test. This compares values between each individual groups:
-
-```{r}
-dunn.test(x = richness_df$richness, g = richness_df$Region)
-```
-
-Note that in this output, this gives us the kruskall test up above but it also gives us a p-value for each group-specific comparison of means. This is where we can write our results from!
+*As of thursday's data addition, we do not have a significant difference in species richness between groups (p = 0.149, kruskall-wallis test).*
 
 # B. Shannon's H Diversity Metric
 
@@ -257,7 +249,7 @@ diversity_df <- raw_data |>
   summarise(H = diversity_calculator(Count))
 ```
 
-### B.1 Plotting Diversity 
+### B.1 Plotting Diversity
 
 Let's make our summary data frame to plot with. I'll call it `div_plot`
 
@@ -428,8 +420,4 @@ Again, non-normality might be a concern so let's use the kruskall.wallace test
 kruskal.test(evenness_df$D~evenness_df$Region)
 ```
 
-It suggests that there is some significant difference in average evennnes between the groups. Let's look at that by group specific comparisons with the dunn.test
-
-```{r}
-dunn.test(x = evenness_df$D, g = evenness_df$Region)
-```
+Again there is no difference in evenness between the regions.
