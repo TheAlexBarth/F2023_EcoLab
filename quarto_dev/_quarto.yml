@@ -24,6 +24,8 @@ website:
           text: Biodiversity Analysis Code
       - text: Class Documents
         menu:
+        - href: gen_expectations.qmd
+          text: General Grading Expectations
         - href: lab_0_intro_assignment.qmd
           text: Intro Assignment
         - href: lab_1_behavioral-ecology.qmd
