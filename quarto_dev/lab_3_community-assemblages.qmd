@@ -1,0 +1,28 @@
+---
+title: Community Assemblages 
+---
+
+Download project plan [here](./docs/2023_WS3_ProjectPlan.pdf)
+
+Download worksheet [here](./docs/2023_WS3_Template.pdf)
+
+# Lab Context
+
+Last week we got the opportunity to look at forest communities in different stages of successional communities. However, we just looked at the different plants present in the area. Yet, the community structure of one portion of the environment can influence the entire ecosystem. A fairly long standing concept in ecology is the idea of foundational species. These are organisms whose presence defines the overall structure of an ecosystem. In forests, trees often can play a foundational role in an ecosystem. When thinking of trees, many people probably think of the animals that are associated with them. Birds, squirrels, insects all live in the upper portion of trees. However, trees also can influence the ecosystem by altering soil properties. Trees have root networks which support sub-surface communities of fungal networks, invertebrates, and bacteria. Additionally, their roots can create physical structure to the soil, altering the hydrological characteristics. Trees also can alter the soil chemistry through their leaves. As their leaves fall, they can change soil chemistry as they decompose.
+
+We refer to these fallen leaves as the "leaf litter". In the litter, there can be a diverse community of arthropods which thrive in the leaf litter and upper layer of the top soil. This week, we'll be investigating which factor is the major factor in determining the soil invertebrate community: trees or abiotic factors.
+
+We'll be sampling up a hill, with a strong moisture gradient. We'll start in a wetland and move to the top of a dry hill. Along this gradient, we'll expect to see a difference difference in the soil characteristics as well as the primary trees which occupy this area.
+
+# Sampling Plan
+
+In last weeks lab background I provided a brief overview different field sampling techniques. Last week we did a random-grid approach. That was the appropriate approach because we were interested in the average biodiversity in a given plot of land. However, this week, we're interested in how things change along a gradient.\
+So we'll want to use a transect-based approach. Because this week we're looking at trees, which are relatively sparse, we'll use a band transect approach. This allows us to characterize every tree and it's exact position along the hill. We'll identify and measure each within 1-m of either side of the transect (2-m bands). The starting position of the transects will be randomly assigned. These data will allow us to characterize changes in abundance of major trees, as well as the relative importance of each tree in regions of the hill.
+
+Then, to characterize the soil invertebrate community, we'll want to collect samples along the hill. However, this is a little more tricky. Notably, we are interested in testing the hypothesis that trees alter the invertebrate community, more so than abiotic factors. However, the dominant tree species will likely change as we go up the hill. So we need account for the fact that species are confounded with the abiotic environment. To do this, we'll take multiple invertebrate samples in distinct regions along the transect. The exact position of the samples will be collected haphazardly within distinct 10-m sections of the transect. One sample will be collected next to representative species of trees in that region of the transect. The sample will be collected right at the base. Then to account for soil-moisture variation, we'll collect a sample which is located far-away from any tree. Thus, within each region we can compare litter community and account for variation due to the soil invertebrate community.
+
+# Meeting location:
+
+We'll meet at the Gordon Belser Arboretum: [see details here](https://sc.edu/study/colleges_schools/artsandsciences/biological_sciences/research/resources_facilities/arboretum/index.php).
+
+The address for the gate is 4080 Bloomwood Road. We it takes about 15 minutes to get there from campus. So let's plan on getting there and starting lab at 3:15pm.
