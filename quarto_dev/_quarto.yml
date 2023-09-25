@@ -34,6 +34,8 @@ website:
           text: "Lab 2: Intermediate Distrubance & Forest Ecology"
         - href: lab_3_community-assemblages.qmd
           text: "Lab 3: Community Assemblages"
+        - href: lab_3b_data-day.qmd
+          text: "Lab 3.5 Data Analyses"
         - href: lab_4.qmd
           text: "Lab 4"
         - href: lab_5.qmd

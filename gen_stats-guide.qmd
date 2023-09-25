@@ -1,0 +1,43 @@
+# Common Statistical Tests
+
+Ecologists have relied on a suite of statistical tools to make inferences about their data. Traditionally, frequentist methods have dominated the landscape. At a broad level, this category of approach assumes that there is a fixed parameter among a population of interest. For example, say we were interested in the average weight of squirrels on the horseshoe. The population is all squirrels on the horseshoe and the parameter is mean weight. However, scientists
+
+However, it ackowledges that when scientists collect a sample, they don't sample the entire population.
+
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Predictive Variable (Independent)**  | **Response Variable (Dependent)** | **Appropriate Data Analysis / Statistical Test**                                                                     |
++========================================+===================================+======================================================================================================================+
+| **Categorical (2 levels)**             | **Numerical**                     | t-test if normally distributed, Mann-Whitney U if not                                                                |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Categorical (\>2 levels)**           | **Numerical**                     | ANOVA (linear-model extention) if assumptions met,                                                                   |
+|                                        |                                   |                                                                                                                      |
+|                                        |                                   | Kruskal-Wallis test if not                                                                                           |
+|                                        |                                   |                                                                                                                      |
+|                                        |                                   | Various post-hoc tests                                                                                               |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+|                                        | **Categorical**                   | Chi-Square Test                                                                                                      |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Numerical**                          | **Categorical**                   | Logistic Regression (for binary response) or Multinomial Logistic Regression (for multiple categories)               |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+|                                        | **Numerical**                     | Linear Regression (for linear relationship) or Nonlinear Regression (for nonlinear relationship)                     |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Time Series**                        | **Numerical**                     | Time Series Analysis (e.g., ARIMA, Exponential Smoothing)                                                            |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Categorical**                        | **Time to Event**                 | Survival Analysis (e.g., Kaplan-Meier, Cox Proportional-Hazards Regression)                                          |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Continuous**                         | **Continuous**                    | Correlation (pearson's for linear, Spearmans for non-linear)                                                         |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Multivariate (Multiple Predictors)** | **Numerical**                     | Multiple Linear Regression (for linear relationships) or Multiple Nonlinear Regression (for nonlinear relationships) |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+|                                        | **Categorical**                   | Multinomial Logistic Regression                                                                                      |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Ordinal**                            | **Ordinal**                       | Ordinal Regression (e.g., Proportional Odds Model)                                                                   |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+| **Count**                              | **Count**                         | Poisson Regression (for count data) or Negative Binomial Regression (for overdispersed count data)                   |
++----------------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------+
+
+# Emerging approaches
+
+Multivariate models are increasingly common in ecology. Often times
+
+Machine learning methods are growing in popularity as well. The exact term "machine learning" can be broadly interpretted depending on how flashy authors might want their titles to be. However, at a basic level, Ordinary least squares is technically a machine learning approach
