@@ -1,3 +1,29 @@
+# Statistics in Ecology
+
+As ecologists, we often are interested in testing hypotheses about some ecological relationship, prediction, or theory. Generally, our hypotheses may relate to some wild population, large ecosystem, or a broad-scale relationship (e.g. a predicted relationship from a theory; like allometric scaling or survival under different conditions, etc). However, it is typically impossible to survey the entire group of interest. In statistics, we define the entire group of interest as our "population" or the "population-level". Note that this may be slightly different than the ecological definition of population as a group of same-species organisms in an ecosystem. For the purposes of this article, I'll use "population" in the statistical sense.
+
+Let's say we were interested in whether or not campus squirrels were fatter than squirrels from Harbison forest. To test this prediction, we'd need to collect some campus squirrels and some forest squirrels, get a body-fat composition analysis and compare them. Well, in this example, our "population-level" interest is all the squirrels in the forest and all the squirrels on campus. What specifically we are interested in is the difference between mean campus body fat and mean forest body fat. In statistical notation, this would be written as: $\mu_{c} - \mu_{f}$. Where c and f denote campus and forest. The term $\mu$ is common for population-level mean. Any metric of interest at the population-level, we can call a ***parameter.*** However, it would be impossible to capture every single squirrel. So we can't actually measure our parameter of interest. Instead we have to take a ***sample*** from the population. Let's say we collect 5 squirrels each from the forest and campus. Well now we could calculate the mean of our sample. The metric calculated at the sample-level, is referred to as a statistic. In our case that would be the sample mean of campus and forest squirrels (in statistics notation this is either $\bar{x}_c - \bar{x}_f$ or $\hat{\mu}_c - \hat{\mu}_f$). Well, how can we know if our statistics are actually representative of the true population parameter of interest? That is where inferential statistical tests enter the picture. At the most broad level, statistical analyses give us the ability to discuss how confident we are that our samples are representative of reality (the population-level parameters).
+
+In this document, I'll briefly summarize some basics of data types, how to plot them, and a basic tool kit for statistically testing your data. This is by no means an exhaustive list, but hopefully a good starting point. Additionally, in this article I'll try to provide a little bit more detail for those who are interested. Don't feel the need to deeply understand everything. Like most things, learning how and when to apply a given test, comes with experience. So I hope you are able to refer back while working on independent projects.
+
+![](quarto_dev/media/gen_stats-inferential-diagram.png)
+
+Let's recap some basic terms:
+
+Population - in a statistical sense, this is the entire group of interest (could be multiple, or less, biological populations)
+
+Parameter - a metric which describes a feature at the population level
+
+Sample - a sub-group of the population
+
+Statistic - a metric describing the sample-level, which can be used to make inferences about the population.
+
+# Types of Data
+
+# Plotting Data
+
+Plots should always
+
 # Common Statistical Tests
 
 Ecologists have relied on a suite of statistical tools to make inferences about their data. Traditionally, frequentist methods have dominated the landscape. At a broad level, this category of approach assumes that there is a fixed parameter among a population of interest. For example, say we were interested in the average weight of squirrels on the horseshoe. The population is all squirrels on the horseshoe and the parameter is mean weight. However, scientists
