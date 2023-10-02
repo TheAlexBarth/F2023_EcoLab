@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 - Programming in Ecology</title>
+<title>570L Fall 2023 - A guide to making basic plots in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -124,11 +124,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -240,13 +250,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link active" data-scroll-target="#scatterplot">Scatterplot</a>
+  <ul class="collapse">
+  <li><a href="#base-r-plotting" id="toc-base-r-plotting" class="nav-link" data-scroll-target="#base-r-plotting">Base R plotting</a></li>
+  <li><a href="#adding-to-the-scatterplot" id="toc-adding-to-the-scatterplot" class="nav-link" data-scroll-target="#adding-to-the-scatterplot">Adding to the scatterplot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Programming in Ecology</h1>
+<h1 class="title">A guide to making basic plots in R</h1>
 </div>
 
 
@@ -261,114 +283,81 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="background" class="level1">
-<h1>Background</h1>
-<p>Broadly speaking, ecology is a field focused studying organisms and how they interact with others and their surroundings. This often involves identifying, describing, and hypothesizing about ecological patterns. In the pursuit of studying such patterns, ecologists in the modern world utilize a vast array of tools to collect and analyze data. Ecological data spans a wide range of formats and sampling distributions. As ecologists, we must be able to properly interrogate our data so that we can identify meaningful trends. That is where the application of statistics comes into the picture. Simply collecting data and making general conclusions cannot inform thorough conclusions. Analyzing data through the proper application of statistical tests will help us as scientists.</p>
-<p>With the advancement of technology and statistical computing, ecological data analysis has progressed beyond the point of simple calculations. The large amounts of data acquired in ecology require us to be proficient programmers and statisticians. Luckily, there are several, free tools which are growing in popularity for people to use, making data analysis extreme accessible. Arguably the most common tool used in ecology, academia, and data science is R. R is an open-source programming environment and language. R was developed primarily by statisticians which makes it extreme versatile. Additionally, because so many ecologists use it, there are many add-ons (called packages) which are taylor-made for ecological applications.</p>
-<p>In this course, I will provide examples and support for processing lab data in R. The goal is that someone who has never used R will be able to still be successful. This means at times I may over-explain somethings. Alternatively, it is difficult to remember what it was like to first learn something, so if I am not explaining anything well, please come ask me! Finally, when it comes to completing your assignments, I don’t care what software you use to get it done. For example, if you have to make a bar graph, you might know how to complete something quicker in excel than in R. So, go ahead and use what is most comfortable. However, time invested in learning R will only better equip you to expand your skills.</p>
-<section id="a-note-about-the-internet" class="level2">
-<h2 class="anchored" data-anchor-id="a-note-about-the-internet">A note about the internet</h2>
-<p>Google, chatGPT, and Stack Overflow are all extremely useful resources for solving any issues you may encounter while working with R. Often times if you get an error, simply copy and paste it in a search and there’s likely someone else who experienced a similar issue. This is a fundamental piece of the process. Working with R (or any programming language) is a rarely a smooth process. Don’t be dissuaded by needing to search and solve issues. It’s all just part of the game.</p>
-</section>
-</section>
-<section id="setting-up-r" class="level1">
-<h1>Setting up R</h1>
-<p>Setting up R on your computer is the first barrier and possible source of frustration. We don’t need to worry too much about the technical background of R to be able to utilize it for our purposes. However, I do want to provide some brief background on terminology which can help us understand what is actually going on when we use R. R is a language where we can instruct the computer to preform actions. R as a language is very beginner friendly because it is an interpreted language. This means that you can directly enter code into the “console” and it will provide immediate results. So when using R, you can write directly to the console or in a script then enter that into the console. R scripts are just text files (like a simple word document). While you’re beginning it can be useful to directly write into the console. However, once you write more complicated programs, a script is useful.</p>
-<p>The basic R interface is not very intuitive. Instead, we can use the RStudio IDE (integrated development environment). This is a free product which helps organize projects and communicating with R.</p>
-<section id="downloading-r-studio-r" class="level2">
-<h2 class="anchored" data-anchor-id="downloading-r-studio-r">Downloading R studio &amp; R</h2>
-<p>Go to the posit website at <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. This website has instruction for downloading both R and RStudio.</p>
-<p>When downloading R, select the right one for your computer at the top panel. If on the initial installation it asks you to select a mirror, it doesn’t matter. Just select whatever.<img src="media/code_main_00_download-R.png" class="img-fluid"></p>
-<p>Once you have both R and Rstudio downloaded, you can just open Rstudio.</p>
-</section>
-</section>
-<section id="some-basics-of-working-in-r" class="level1">
-<h1>Some basics of working in R</h1>
-<section id="rstudio-layout" class="level2">
-<h2 class="anchored" data-anchor-id="rstudio-layout">RStudio Layout</h2>
-<p>When you first open RStudio, there will be three main tabs, the largest of which is the console. On the right are two windows with multiple tabs. The preselected tab on the bottom is a file browser and the one of top shows what is active in your R environment. At the start this is empty but as you create variables or functions they are visible in this window.</p>
-<p>My setup is a bit different but you can see a good orientation at this <a href="https://intro2r.com/rstudio_orient.html">website</a>.</p>
-</section>
-<section id="understanding-r-code" class="level2">
-<h2 class="anchored" data-anchor-id="understanding-r-code">Understanding R code</h2>
-<p>There are several great resources for learning R in detail which I’ll link at the bottom. Very briefly, I want people to understand some very basic items:</p>
-<p>Comments are great for understanding code. You should include it for your future self to refer back to. I will include comments in all our class code.</p>
+<p>Making good plots requires researchers to be well-informed about ways to best communicate their data. Below, I’ll provide a quick guide for making plots for different types of data. Like most of this course, this information is far from exhaustive. Yet, it might provide a good launching pad to explore ideas. Other good resources for making nice plots are the R graph gallery, and asking ChatGPT.</p>
+<p>In this example, I’ll use ggplot2, so if you are interested in recreating these figures in your own machine, make sure to load the package:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comments are written on lines starting with hastags. These will appear different.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Comments can also be written after code</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">4</span> <span class="co"># running this line will return TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can assign values to objects using an “assignment operator”. Traditionally, in R this is an arrow <code>&lt;-</code>. You can also use an equal sign <code>=</code>. I prefer the arrow for a number of reasons but it is also intuitive. You take all the values on the left and put them into the storage variable on the left.</p>
+<p>I will also be using the iris dataset. This is a default example dataset which is already loaded in R. Take a look below at its structure. We have three species of flowers from the <em>Iris</em> genus: <em>I. verginica, I. versicolor,</em> and <em>I. setosa</em>. There are 50 observations of each of the species with corresponding measurements for sepal length, width and petal length and width.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># take 5 and put it into x</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="dv">5</span> <span class="co"># take 5 and put it into y</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x <span class="sc">==</span> y) <span class="co"># will print TRUE</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x <span class="sc">*</span> y <span class="co"># take the product of x and y and put it into z</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(z) <span class="co"># print z</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-789c78ece23f5664278b" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-789c78ece23f5664278b">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150"],[5.1,4.9,4.7,4.6,5,5.4,4.6,5,4.4,4.9,5.4,4.8,4.8,4.3,5.8,5.7,5.4,5.1,5.7,5.1,5.4,5.1,4.6,5.1,4.8,5,5,5.2,5.2,4.7,4.8,5.4,5.2,5.5,4.9,5,5.5,4.9,4.4,5.1,5,4.5,4.4,5,5.1,4.8,5.1,4.6,5.3,5,7,6.4,6.9,5.5,6.5,5.7,6.3,4.9,6.6,5.2,5,5.9,6,6.1,5.6,6.7,5.6,5.8,6.2,5.6,5.9,6.1,6.3,6.1,6.4,6.6,6.8,6.7,6,5.7,5.5,5.5,5.8,6,5.4,6,6.7,6.3,5.6,5.5,5.5,6.1,5.8,5,5.6,5.7,5.7,6.2,5.1,5.7,6.3,5.8,7.1,6.3,6.5,7.6,4.9,7.3,6.7,7.2,6.5,6.4,6.8,5.7,5.8,6.4,6.5,7.7,7.7,6,6.9,5.6,7.7,6.3,6.7,7.2,6.2,6.1,6.4,7.2,7.4,7.9,6.4,6.3,6.1,7.7,6.3,6.4,6,6.9,6.7,6.9,5.8,6.8,6.7,6.7,6.3,6.5,6.2,5.9],[3.5,3,3.2,3.1,3.6,3.9,3.4,3.4,2.9,3.1,3.7,3.4,3,3,4,4.4,3.9,3.5,3.8,3.8,3.4,3.7,3.6,3.3,3.4,3,3.4,3.5,3.4,3.2,3.1,3.4,4.1,4.2,3.1,3.2,3.5,3.6,3,3.4,3.5,2.3,3.2,3.5,3.8,3,3.8,3.2,3.7,3.3,3.2,3.2,3.1,2.3,2.8,2.8,3.3,2.4,2.9,2.7,2,3,2.2,2.9,2.9,3.1,3,2.7,2.2,2.5,3.2,2.8,2.5,2.8,2.9,3,2.8,3,2.9,2.6,2.4,2.4,2.7,2.7,3,3.4,3.1,2.3,3,2.5,2.6,3,2.6,2.3,2.7,3,2.9,2.9,2.5,2.8,3.3,2.7,3,2.9,3,3,2.5,2.9,2.5,3.6,3.2,2.7,3,2.5,2.8,3.2,3,3.8,2.6,2.2,3.2,2.8,2.8,2.7,3.3,3.2,2.8,3,2.8,3,2.8,3.8,2.8,2.8,2.6,3,3.4,3.1,3,3.1,3.1,3.1,2.7,3.2,3.3,3,2.5,3,3.4,3],[1.4,1.4,1.3,1.5,1.4,1.7,1.4,1.5,1.4,1.5,1.5,1.6,1.4,1.1,1.2,1.5,1.3,1.4,1.7,1.5,1.7,1.5,1,1.7,1.9,1.6,1.6,1.5,1.4,1.6,1.6,1.5,1.5,1.4,1.5,1.2,1.3,1.4,1.3,1.5,1.3,1.3,1.3,1.6,1.9,1.4,1.6,1.4,1.5,1.4,4.7,4.5,4.9,4,4.6,4.5,4.7,3.3,4.6,3.9,3.5,4.2,4,4.7,3.6,4.4,4.5,4.1,4.5,3.9,4.8,4,4.9,4.7,4.3,4.4,4.8,5,4.5,3.5,3.8,3.7,3.9,5.1,4.5,4.5,4.7,4.4,4.1,4,4.4,4.6,4,3.3,4.2,4.2,4.2,4.3,3,4.1,6,5.1,5.9,5.6,5.8,6.6,4.5,6.3,5.8,6.1,5.1,5.3,5.5,5,5.1,5.3,5.5,6.7,6.9,5,5.7,4.9,6.7,4.9,5.7,6,4.8,4.9,5.6,5.8,6.1,6.4,5.6,5.1,5.6,6.1,5.6,5.5,4.8,5.4,5.6,5.1,5.1,5.9,5.7,5.2,5,5.2,5.4,5.1],[0.2,0.2,0.2,0.2,0.2,0.4,0.3,0.2,0.2,0.1,0.2,0.2,0.1,0.1,0.2,0.4,0.4,0.3,0.3,0.3,0.2,0.4,0.2,0.5,0.2,0.2,0.4,0.2,0.2,0.2,0.2,0.4,0.1,0.2,0.2,0.2,0.2,0.1,0.2,0.2,0.3,0.3,0.2,0.6,0.4,0.3,0.2,0.2,0.2,0.2,1.4,1.5,1.5,1.3,1.5,1.3,1.6,1,1.3,1.4,1,1.5,1,1.4,1.3,1.4,1.5,1,1.5,1.1,1.8,1.3,1.5,1.2,1.3,1.4,1.4,1.7,1.5,1,1.1,1,1.2,1.6,1.5,1.6,1.5,1.3,1.3,1.3,1.2,1.4,1.2,1,1.3,1.2,1.3,1.3,1.1,1.3,2.5,1.9,2.1,1.8,2.2,2.1,1.7,1.8,1.8,2.5,2,1.9,2.1,2,2.4,2.3,1.8,2.2,2.3,1.5,2.3,2,2,1.8,2.1,1.8,1.8,1.8,2.1,1.6,1.9,2,2.2,1.5,1.4,2.3,2.4,1.8,1.8,2.1,2.4,2.3,1.9,2.3,2.5,2.3,1.9,2,2.3,1.8],["setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","setosa","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","versicolor","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica","virginica"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Sepal.Length<\/th>\n      <th>Sepal.Width<\/th>\n      <th>Petal.Length<\/th>\n      <th>Petal.Width<\/th>\n      <th>Species<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
-<p>Finally, functions are operations which can be preformed on values/objects. Functions are executed by feeding arguments into a call. This generally looks like <code>function(arg1, arg2, ...)</code>. This is very similar to excel where you would write <code>=function(arg1, arg2)</code> in a cell.</p>
-<p>Note in the examples above, print is a function. You can learn more about any function through the documentation. Simply write into the r console <code>?function</code>. where the function is listed.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>?print</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Functions can also be wrapped around one another and are preformed inside-out. Standard order of operations. For example:</p>
+<p>Thus, in the dataset, we have a categorical variable (Species), with three levels. We also have four continuous variables.</p>
+<section id="scatterplot" class="level1">
+<h1>Scatterplot</h1>
+<p>A scatterplot is probably a plot you are familiar with. This type of figure is excellent for comparing two continuous variables and assessing their relationship. This type of figure likely can be paired with a correlation analysis or a linear regression.</p>
+<section id="base-r-plotting" class="level3">
+<h3 class="anchored" data-anchor-id="base-r-plotting">Base R plotting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># c() is a function short for concatenate or combine. it chains together values</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># the mean function takes the mean of a range of values.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># so you could do this two ways:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># option 1:</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># option 2:</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>A unique aspect of R, which has recently been added to the base functionality</p>
-<p>This is an extremely simplistic overview. I encourage everyone to look at some of the additional resources for help with learning R.</p>
-</section>
-<section id="organizing-your-computer-files-importing-to-r" class="level2">
-<h2 class="anchored" data-anchor-id="organizing-your-computer-files-importing-to-r">Organizing your computer files &amp; importing to R</h2>
-<p>Many people do not maintain a clear organization of files in their computer’s storage. This problem is compounded by .</p>
-<p>A common problem that many students using the university’s office licence run into is that their word/excel documents are saved into their University cloud storage (onedrive). Then it can be tricky to find those files through a programming approach. If you have a good file organization system, please keep to it and you should be fine. However, if you haven’t put much thought into organizing your files, I encourage you to create a new folder for this course. You can store all your files in that folder. Then when trying to work with R, you can load your files from that path.</p>
-<p>So let’s talk about file paths. In windows, you can use the file explorer to look up files. Then you can access the path by clicking on the top bar. Typically, it will look something like this: ‘C:\Users\yourname\Documents\EcologyLab’. In Mac, it will look a little different. Notably, the slashes will be front-slash instead of back-slash. If you try to read a file from R, mac users can just copy-paste their file paths. However, windows users need to write it out with a front-slash. Alternatively, you can use double-backslashes but this is a bad habit to develop.</p>
-<p>If you want to be an advanced R user, you should learn about organizing your files in a package format and taking advantage of RStudio’s project feature. You should also use relative file paths and set-up projects using git. However, this is beyond the scope of the course and likely most applications for ecology projects.</p>
-<p>Read more about file organization in the additional resources page.</p>
-<section id="reading-in-files" class="level3">
-<h3 class="anchored" data-anchor-id="reading-in-files">Reading in files</h3>
-<p>The most common US-based data format is a comma separated value file (*.csv). However, most people are more familiar with working in excel which has its own file format (.xlsx or .xls). There are several R packages to help you read in excel files. But for the sake of keeping things simple this course, we will stick to .csv files.</p>
-<p>You can save any excel file as a .csv. Just make sure you keep your headers simple.</p>
-<p>To read in a file, you can call <code>read.csv()</code>. This is where file paths become important. In R, you have a working directory. This is where R is currently looking for files. You can look at your working directory with the function <code>getwd()</code>. Also RStudio displays the working directory at the top of the console window. Note that the tilde (<code>~</code>) often will refer to your Documents folder. At least for Windows machines.</p>
-<p><img src="media/code_main_01_Rwd.png" class="img-fluid"></p>
-<p>You can change your working directory with <code>setwd()</code>. You simply put the file path to the folder where you want to access data from.</p>
-<p>In short, loading files might look like this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_path <span class="ot">&lt;-</span> <span class="st">'~/BIOL570L Docs'</span> <span class="co">#replace this with your path file</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(my_path) <span class="co">#reassign working directory. This is only necessary if not already there</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'mydata.csv'</span>) <span class="co">#load data</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#altarntively</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'~/BIOL570L Docs/mydata.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 </div>
 </section>
-</section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p>A great benefit of R is that there are user-made packages which contain functions and data for particular purposes. Most functions I’ve used in this example are ‘base’ R, meaning they exist by default. Other functions can be loaded by packages. To keep R simple, most packages are not loaded by default. To load a package, you must first install it. Luckily, R does a great job maintaining all packages in R, through the Comprehensive R Archive Network (CRAN). So you can download CRAN packages directly though R.</p>
-<p>To install a package, you can use the <code>install.packages()</code> function.</p>
+<section id="adding-to-the-scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="adding-to-the-scatterplot">Adding to the scatterplot</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we will use ggplot2 in our first assingment so you'll need to download it.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example data from the iris dataset</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Scatterplot</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Sepal.Width, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatterplot: Sepal Length vs. Sepal Width"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="gen_R-guide-plotting_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
-<p>Then each time you need to utilize a package in an R script, you will need to load the package. Typically this is done at the top of a script. You can load a package with the <code>library()</code> function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Histogram</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram: Distribution of Sepal Length"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"setosa"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"versicolor"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"virginica"</span> <span class="ot">=</span> <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="gen_R-guide-plotting_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
 </div>
-<p>Note that when installing we use quotes and when loading we don’t. It’s tricky that way. You should only need to install a package once unless you need to update it. Often times beginners in R get stuck on trying to use functions they haven’t loaded. So make sure you called <code>library()</code> if you get an error about not finding a function.</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Bar Chart (Counts of Species)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, <span class="fu">aes</span>(<span class="at">x =</span> Species)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Chart: Species Counts"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="gen_R-guide-plotting_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Boxplot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Petal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot: Petal Length by Species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="gen_R-guide-plotting_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Line Plot (Not typically used with iris dataset)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Line plots are more suitable for time series or continuous data)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Heatmap (Correlation Matrix)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>iris_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(iris[, <span class="sc">-</span><span class="dv">5</span>]) <span class="co"># Exclude the Species column</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(<span class="fu">as.table</span>(iris_cor)), <span class="fu">aes</span>(<span class="at">x =</span> Var1, <span class="at">y =</span> Var2, <span class="at">fill =</span> Freq)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"white"</span>, <span class="at">high =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heatmap: Correlation Matrix of Iris Variables"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="gen_R-guide-plotting_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 
 
 </section>

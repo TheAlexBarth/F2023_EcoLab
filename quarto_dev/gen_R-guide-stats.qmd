@@ -1,0 +1,29 @@
+---
+title: A starter guide to analyzing data in R
+---
+
+There is a wide, wide, wide, range of ways to analyze data. Here, I hope to provide a starting tool kit for you to explore your data with. However, keep in mind you should always take extended precaution when using an analysis to ensure that you
+
+# t-test
+
+# Correlation Tests
+
+# Linear Models
+
+## ANOVA
+
+## Simple Linear Regression
+
+## Multiple Linear Regression
+
+## Logistic Regression
+
+# Chi-Squared test
+
+# Other Common Tests
+
+## NMDS
+
+## Clustering
+
+## PCA

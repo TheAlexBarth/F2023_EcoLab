@@ -1,0 +1,363 @@
+---
+title: A guide to making basic plots in R
+toc: true
+toc-location: right
+---
+
+Making good plots requires researchers to be well-informed about ways to best communicate their data. Below, I'll provide a quick guide for making plots for different types of data. Like most of this course, this information is far from exhaustive. Yet, it might provide a good launching pad to explore ideas. Other good resources for making nice plots are the R graph gallery, and asking ChatGPT.
+
+In this example, I'll use ggplot2, so if you are interested in recreating these figures in your own machine, make sure to load the package. However, I'll also display how the `plot()` function in R allows for versitile and quick plotting. This can be used to get a quick idea about how to best plot your data. We'll also use `dplyr`
+
+```{r}
+library(ggplot2)
+library(dplyr)
+```
+
+# Scatterplot: Assessing continuous relationships
+
+A scatterplot is probably a plot you are familiar with. This type of figure is excellent for comparing two continuous variables and assessing their relationship. This type of figure likely can be paired with a correlation analysis or a linear regression.
+
+For these examples, I will be using the iris dataset. This is a default example dataset which is already loaded in R. Take a look below at its structure. We have three species of flowers from the *Iris* genus: *I. verginica, I. versicolor,* and *I. setosa*. There are 50 observations of each of the species with corresponding measurements for sepal length, width and petal length and width.
+
+```{r}
+DT::datatable(iris)
+```
+
+Thus, in the dataset, we have a categorical variable (Species), with three levels. We also have four continuous variables.
+
+## The simplest form:
+
+### Base R plotting
+
+Plotting in base R allows for a similar format to many of the functions you'll see in the `stats` package where you can use what I call "formula" structure. That is, rather than specifying the x and y axis, you can specify a relationship with `~`.
+
+```{r}
+plot(Petal.Width ~ Petal.Length, data = iris,
+     xlab = 'Petal Length [mm]',
+     ylab = 'Petal Width [mm]')
+# The same plot could be achieved with
+# plot(iris$Petal.Width ~ iris$Petal.Length)
+# plot(y = iris$Petal.Width, x = iris$Petal.Length)
+```
+
+### ggplot approach
+
+plotting in ggplot may seem a little more complicated. However, in the long-run it facilitates better looking graphics with easier-to-read code. The fundamental idea behind ggplot is using `geoms`, which are plotting objects (called by functions) to make a particular type of plot. In a geom function, there is a similar layout where plotting objects can be called using `aes()` where users specify x and y values. Similar to base R plotting, the data argument can be utilized to avoid specifying each value with `$`. Learning ggplot can be particularly tricky because of the range of ways to format the code and produce the same plot. I have very particular reasons for my preferred method but I won't divulge them all here.
+
+Another great feature of ggplot is the built in `theme` functions. These can allow you to quickly clean up the plot an make the features all look the same! In this guide, I'll rely on `theme_bw()`. However, in most my work, I use `theme_pubr()` from the `ggpubr` package, with customization in `theme()`. Explore around with the themes for your own purposes!
+
+```{r}
+ggplot(data = iris)+
+  geom_point(aes(x = Petal.Length, y=Petal.Width))+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+  
+# same as:
+# ggplot(data = iris, aes(x = Petal.Length, y = Petal.Width))
+```
+
+## Adding to the scatterplot
+
+### Trendlines:
+
+Scatterplots can be greatly improved by adding features. For example, we might want to add a trendline to the figure. These can be useful for demonstrating a linear replationship between the variables.
+
+In baseR, we need to use the `abline()` function. This function requires you to specify the linear relationship. Fortunately, we can just feed it a model object. Here, I use `lm()` inside the `abline` function. However, if you defined your linear model elsewhere, you can put that object in place.
+
+```{r}
+plot(Petal.Width ~ Petal.Length, data = iris,
+     xlab = 'Petal Length [mm]',
+     ylab = 'Petal Width [mm]')
+abline(lm(Petal.Width ~ Petal.Length, data = iris))
+```
+
+Personally I find ggplot a bit more flexible for making trend lines. We can use `geom_smooth()` or `stat_smooth()`. By default, this function will create a smoothed trend line (the exact smoothing default varies based on the data):
+
+```{r}
+ggplot(data = iris)+
+  geom_point(aes(x = Petal.Length, y=Petal.Width))+
+  geom_smooth(aes(x = Petal.Length, y=Petal.Width))+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+```
+
+However, we can change the smoothing method to fit whatever trendline we want. Here, we can use 'lm'. I also usually like to get rid of the error line with `se = F`:
+
+```{r}
+ggplot(data = iris)+
+  geom_point(aes(x = Petal.Length, y=Petal.Width))+
+  geom_smooth(aes(x = Petal.Length, y=Petal.Width),
+              method = 'lm', se = F)+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+```
+
+### Coloring by group:
+
+Color can be a great tool to add to scatterplots to give context to the data or display a third dimension.
+
+We can first look at grouping by species:
+
+In base r we can use the `col` argument. I'm also going to add a legend but it is a bit trick to do this in base R:
+
+```{r}
+plot(Petal.Width ~ Petal.Length, 
+     col = Species,
+     data = iris,
+     xlab = 'Petal Length [mm]',
+     ylab = 'Petal Width [mm]')
+legend('bottomright', legend = unique(iris$Species),
+       col = c('black','red', 'green'), pch = c(20))
+abline(lm(Petal.Width ~ Petal.Length, data = iris))
+```
+
+The above plot is OK, but we're starting to hit the wall of base R graphics. In ggplot, we can make the same figure but we can add some better features. For example, group-specific trend lines!
+
+```{r}
+ggplot(data = iris,
+       aes(x = Petal.Length, y=Petal.Width,
+                 color = Species))+
+  geom_point()+
+  geom_smooth(method = 'lm', se = F)+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+```
+
+### Color by a continuous factor:
+
+We could also color by a continuous variable. In the iris dataset, this is not the most useful approach. However, I'll demonstrate here with coloring by Sepal.Width. I'll also change the color scale to make it more visible using the `scale_color_diverge()` function.
+
+```{r}
+ggplot(data = iris,
+       aes(x = Petal.Length, y=Petal.Width))+
+  geom_point(aes(color = Sepal.Width))+
+  geom_smooth(method = 'lm', se = F)+
+  scale_color_gradient(low = 'grey', high = 'black')+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+```
+
+### More factors!
+
+We could also use size to communicate a fourth dimension. Again, the iris dataset may not really require this feature. However, I'll use the Sepal.Length as a bubbling element for demonstration purposes. If you are paying attention, you'll notice I'm moving around where I assign the aesthetic mappings (`aes()`). I also added a transparency value to the points (`alpha`).
+
+```{r}
+ggplot(data = iris,
+       aes(x = Petal.Length, y=Petal.Width))+
+  geom_point(alpha = 0.7, aes(size = Sepal.Length,
+                              color = Sepal.Width))+
+  geom_smooth(method = 'lm', se = F)+
+  scale_color_gradient(low = 'grey', high = 'black')+
+  labs(x = 'Petal Length [mm]', y = 'Petal Width [mm]') +
+  theme_bw()
+```
+
+### Correlogram
+
+Correlograms are great ways to assess multiple relationships at once. There's some great packages to make nice figures for theses. However, base R offers a quick way to assess multiple relationships at once. Here we can use the first four columns of the iris dataset to see how each individual variable is related to one another.
+
+```{r}
+plot(iris[,1:4])
+```
+
+We can calculate the correlation matrix for each of those values using `cor()`
+
+```{r}
+cor(iris[,1:4])
+```
+
+# Line Plots: Assessing continuous change
+
+Line plots are similar to scatterplots. However, in a scatterplot there isn't necessarily an implied relationship that is continuous across the x-axis. A line plot is typically used for time or some other variable which through which we imply that change change did occur over that variable, even if not observed.
+
+To demonstrate the lineplots, we'll use the `ChickWeight` dataset. This is the growth of 50 chicks over 21 days (measured every day). The chicks were given four different diets.
+
+```{r}
+DT::datatable(ChickWeight)
+```
+
+### The "raw" approach.
+
+A raw line plot in the case would be a bit chaotic. Given that there are 50 separate chicks, each with their own growth time series, this would mean 50 different lines. However, let's look at it just for fun:
+
+base R:
+
+In base R, we can utilize the `type =` argument to specify the plot to make. Here, we want a line plot so we tell it 'l'.
+
+```{r}
+plot(weight ~ Time, ChickWeight,
+     type = 'l',
+     xlab = 'Days Since Hatching',
+     ylab = 'Weight [g]')
+```
+
+ggplot:
+
+In ggplot, we'll rely on the `geom_line()` function to make a line plot
+
+```{r}
+ggplot(data = ChickWeight)+
+  geom_line(aes(x = Time, y = weight, group = Chick))+
+  labs(x = 'Days Since Hatching', y = "Weight [g]")+
+  theme_bw()
+```
+
+## Summarizing the data
+
+As discussed in the [general expectations](./gen_expectations.html), a good plot should offer a summary of the data. So here, we can average the chick weights to show a better summary of the data.
+
+### Summary by all chicks
+
+```{r}
+all_chicks <- ChickWeight |>
+  group_by(Time = Time) |> 
+  summarize(mean_weight = mean(weight),
+            se_weight = sd(weight)/sqrt(nrow(ChickWeight)))
+```
+
+Now we can use that data to make a plot of the average chick growth across time, regardless of diet:
+
+In Base R:
+
+for the base r case, I'm going to use both points with lines that way we can show the standard error
+
+```{r}
+plot(mean_weight ~ Time, all_chicks,
+     type = 'b',
+     xlab = 'Days Since Hatching',
+     ylab = 'Mean Weight [g]')
+arrows(x0 = all_chicks$Time, 
+       x = all_chicks$Time, 
+       y0 = all_chicks$mean_weight - all_chicks$se_weight,
+       y = all_chicks$mean_weight + all_chicks$se_weight,
+       angle = 90, length = 0.075, code = 3)
+```
+
+In ggplot:
+
+There's two nice ways to make this figure in ggplot. We can use the point-and-line method as shown above or we can use ribbons for standard error.
+
+```{r}
+ggplot(all_chicks,
+       aes(x = Time, y = mean_weight))+
+  geom_point()+
+  geom_errorbar(aes(ymin = mean_weight - se_weight,
+                    ymax = mean_weight + se_weight))+
+  geom_line()+
+  labs(x = "Days Since Hatching",
+       y = 'Mean Weight [g]')+
+  theme_bw()
+```
+
+```{r}
+ggplot(all_chicks,
+       aes(x = Time, y = mean_weight))+
+  geom_line(size = 1)+
+  geom_ribbon(aes(ymin = mean_weight - se_weight,
+                  ymax = mean_weight + se_weight),
+              size = 1,
+              fill = 'grey', alpha = 0.7)+
+  labs(x = "Days Since Hatching",
+       y = 'Mean Weight [g]')+
+  theme_bw()
+```
+
+### Summary by diet
+
+The nature of this dataset really implies we should be investigating how growth varied based on diet. So let's look at the data grouped by diet. I'm only going to do this in ggplot at this point and jump to the final figure, but we build on the figures above!
+
+```{r}
+chicks_by_diet <- ChickWeight |>
+  group_by(Time = Time, diet = Diet) |> 
+  summarize(mean_weight = mean(weight),
+            se_weight = sd(weight)/sqrt(nrow(ChickWeight)))
+```
+
+For this ggplot, I'll just use the ribbon approach. Pay attention to the details here. Note that lines require `color` arguments while ribbons require `fill`.
+
+```{r}
+ggplot(chicks_by_diet,
+       aes(x = Time, y = mean_weight))+
+  geom_line(size = 1, aes(color = diet))+
+  geom_ribbon(aes(ymin = mean_weight - se_weight,
+                  ymax = mean_weight + se_weight,
+                  fill = diet),
+              size = 1, alpha = 0.25)+
+  labs(x = "Days Since Hatching",
+       y = 'Mean Weight [g]',
+       fill = 'Diet', color = "Diet")+
+  theme_bw()
+```
+
+## A complex example:
+
+Let's take this all one step further. While it may be nice to show summary data, it can be fun to have each individual line shown as well. This is effectively the "raw" approach but we can clean it up a bit by playing around with transparency values:
+
+```{r}
+ggplot()+
+  geom_line(data = chicks_by_diet,
+            aes(x = Time, y = mean_weight,
+                color = diet),
+            size = 1) +
+  geom_line(data = ChickWeight,
+            aes(x = Time, y = weight,
+                color = Diet, group = Chick),
+            alpha = 0.15)+
+  labs(x = "Days Since Hatching",
+       y = 'Mean Weight [g]',
+       fill = 'Diet', color = "Diet")+
+  theme_bw()
+```
+
+I don't think this plot is as effective as the summary ones, however, it is fun to make. This type of figure might be useful to display simulation results.
+
+# Bar plots: Categorical-Continuous Relationships
+
+# Displaying proportions
+
+# Histogram/Density Plots: distribution of data
+
+# Boxplots: Distribution by group
+
+# Heatmaps: Two continuous relationships
+
+```{r}
+# Load the required libraries
+library(ggplot2)
+
+# Example data from the iris dataset
+data(iris)
+
+# 1. Scatterplot
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point() +
+  labs(title = "Scatterplot: Sepal Length vs. Sepal Width")
+
+# 2. Histogram
+ggplot(data = iris, aes(x = Sepal.Length, fill = Species)) +
+  geom_histogram(binwidth = 0.1, color = "black") +
+  labs(title = "Histogram: Distribution of Sepal Length") +
+  scale_fill_manual(values = c("setosa" = "red", "versicolor" = "blue", "virginica" = "green"))
+
+# 3. Bar Chart (Counts of Species)
+ggplot(data = iris, aes(x = Species)) +
+  geom_bar(fill = "lightblue", color = "black") +
+  labs(title = "Bar Chart: Species Counts")
+
+# 4. Boxplot
+ggplot(data = iris, aes(x = Species, y = Petal.Length, fill = Species)) +
+  geom_boxplot() +
+  labs(title = "Boxplot: Petal Length by Species")
+
+# 5. Line Plot (Not typically used with iris dataset)
+# (Line plots are more suitable for time series or continuous data)
+
+# 6. Heatmap (Correlation Matrix)
+iris_cor <- cor(iris[, -5]) # Exclude the Species column
+ggplot(data = as.data.frame(as.table(iris_cor)), aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile() +
+  scale_fill_gradient(low = "white", high = "blue") +
+  labs(title = "Heatmap: Correlation Matrix of Iris Variables")
+
+
+```

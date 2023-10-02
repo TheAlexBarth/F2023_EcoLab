@@ -87,7 +87,7 @@ Let's take the squirrel example above. In that case, our explanatory variable wo
 
 Plots should always offer a nice visual representation of your data. They should have some level of summary or trends visible through the image. Always make sure that your figure caption and axes titles
 
-See this example guide for
+See this example guide for a reference on what plots work well for what data
 
 # The basic idea behind most analyses
 
