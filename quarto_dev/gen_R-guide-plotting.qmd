@@ -313,51 +313,228 @@ I don't think this plot is as effective as the summary ones, however, it is fun 
 
 # Bar plots: Categorical-Continuous Relationships
 
-# Displaying proportions
+Bar plots are great tools to compare the value of multiple categories. They can be great for looking at values (like mean, median, etc).
+
+For this example, I'll use the beavers datasets. There are measurements of beaver (*Castor canadensis*) temperature from two beavers, one in December and the other in November. While two beavers is a limited sample size we can still make some good plots with these. The columns correspond to day of year, time of day, body-temp, and activity (binary if they're in or out of the burrow). I'm adding a column for the month the beaver was observed.
+
+First, I need to wrangle the beaver data together.
+
+```{r}
+beaver1$beaver <- 'dec'
+beaver2$beaver <- 'nov'
+
+beavers <- rbind(beaver1, beaver2)
+DT::datatable(beavers)
+```
+
+We can use bar plots to demonstrate how a beaver varies based on activity. 1 is out of the burrow, 0 is in the burrow. In ggplot, we use the `geom_bar()` function to make bars. However, it can be a little tricky. `geom_bar()` requires a `stat` argument. You can use that argument to do all sorts of things (by default it counts)
+
+```{r}
+ggplot(beavers)+
+  geom_bar(aes(x = as.factor(activ)))+
+  labs(x = "Active",y = 'Num. of events') +
+  theme_bw()
+```
+
+We can also add fill colors to explore activity.
+
+```{r}
+ggplot(beavers)+
+  geom_bar(aes(x = as.factor(activ), fill = beaver))+
+  labs(x = "Active",y = 'Num. of events', fill = "Month") +
+  theme_bw()
+```
+
+By default, the bar plot will stack categories. However, we can alter this with the `position` argument
+
+```{r}
+ggplot(beavers)+
+  geom_bar(aes(x = as.factor(activ), fill = beaver),
+           position = 'dodge')+
+  labs(x = "Active",y = 'Num. of events', fill = "Month") +
+  theme_bw()
+```
+
+### Expanding bar plots
+
+Above, we just showed a bar-plot with count data. However these also are useful for demonstrating average values. As a note, `geom_bar` has a `stat` argument where you can add a value.\
+For example, we can
+
+```{r}
+ggplot(beavers)+
+  geom_bar(aes(x = as.factor(activ),y = temp, fill = beaver),
+           stat = 'summary', position = 'dodge')+
+  labs(x = "Active",y = 'Mean Body Temp [C]', fill = "Month") +
+  theme_bw()
+```
+
+However, I find it much easier to create my own summary dataframe then use that for plotting. This allows me to create things like standard deviation easily. Then I just use `stat = 'identitiy'` with the bar plot:
+
+For example:
+
+```{r}
+beaver_sum <- beavers |> 
+  group_by(beaver = beaver, activ = activ) |> 
+  summarize(mean = mean(temp),
+            sd = sd(temp))
+
+ggplot(beaver_sum) +
+  geom_bar(aes(x = activ, y = mean, fill = beaver),
+           stat = 'identity', position = 'dodge')+
+  geom_errorbar(aes(x = activ, 
+                    ymin = mean-sd,
+                    ymax = mean+sd,
+                    color = beaver),
+                position = 'dodge') +
+  labs(x = 'Active', y = 'Mean Body Temp [C]',
+       fill = 'Month', color = 'Month') +
+  theme_bw()
+```
+
+In the above case, the error bars are tiny.
 
 # Histogram/Density Plots: distribution of data
 
+To visualize the spread of data, we can use histograms or density plots. To visualize these, let's return to the beaver dataset.
+
+### Base R Histograms & Density Plots:
+
+In base R, these figures are very easy but not necessarily pretty. I use them all the time to get a quick look at the data.
+
+First, let's talk about histograms. In base R, these are made with `hist()` which you can just feed a numeric vector. By default it will select bin-sizes for you and display the frequency (counts) of the different bins. These are useful but can be misleading based on the bin-size selection. For example, the below three plots with different break-values
+
+```{r}
+par(mfrow = c(1,3))
+hist(beavers$temp, breaks = 5, main = 'Large Bins')
+hist(beavers$temp, main = 'Default Bins')
+hist(beavers$temp, breaks = 100, main = 'Small Bins')
+```
+
+Clearly, our understanding of the data then can be influenced by the bin-size of a histogram. Which is why I generally avoid them and use density plots as a replacement. In base R, we can use the `density()` function to generate a estimate of a probability density for the numeric vector we give it. Then we can feed that PDF to `plot()`
+
+```{r}
+density(beavers$temp) |> 
+  plot(main = "", xlab = "Temperature")
+```
+
+### ggplot histograms & density plots:
+
+For reasons discussed above, I don't love histograms. However we can briefly show how to make them in ggplot below:
+
+```{r}
+ggplot(beavers) +
+  geom_histogram(aes(x = temp))+
+  labs(x = 'Temperature [C]', y = 'Counts') +
+  theme_bw()
+```
+
+Yet again, density plots I find much more reliable.
+
+```{r}
+ggplot(beavers) +
+  geom_density(aes(x = temp)) +
+  labs(x = 'Temperature') +
+  theme_bw()
+```
+
+We can play around with the grouping and colors to add even more context to the figures. Notice, again I'm using `alpha` to set transparency so that all the data are visible:
+
+```{r}
+ggplot(beavers) +
+  geom_density(aes(x = temp, fill = beaver),
+               alpha = 0.5)+
+  labs(x = 'Temperature', fill = 'Month', y = "") +
+  theme_bw()
+```
+
 # Boxplots: Distribution by group
+
+Box plots, sometimes called box-and-whisker plots are useful to show the spread of data with different groups. Again we can use our beaver data here.
+
+### Base R
+
+The base R approach is again fairly quick to make an ugly plot. We can use the `boxplot()` function which also allows us to utilize the formula layout similar to `plot()` :
+
+First let's look at temperature as a function of beaver/month:
+
+```{r}
+boxplot(beavers$temp ~ beavers$beaver,
+        xlab = 'Month',
+        ylab = 'Temperature')
+```
+
+Boxplots can be useful for displaying multiple-categories as well. We can add activity level to this boxplot:
+
+```{r}
+boxplot(temp ~ beaver + activ, data = beavers,
+        xlab = 'Month.Activity',
+        ylab = 'Temperature')
+```
+
+### ggplot:
+
+Now we can make the same figures in ggplot but a little but cleaner (in my opinion). Notably, it will be easier to make one of the categorical factors, let's use activity, as a color rather than jamming everything on the x-axis:
+
+```{r}
+ggplot(data = beavers) +
+  geom_boxplot(aes(x = beaver, y = temp, fill = as.factor(activ))) +
+  labs(x = 'Month', y = 'Temperature', fill = 'Activity Level') +
+  theme_bw()
+```
+
+### Violin plots:
+
+A nice variation of the box plot is the violin-plot. These are effectively a box-plot merged with the density plots we looked at above:
+
+```{r}
+ggplot(data = beavers) +
+  geom_violin(aes(x = beaver, y = temp, fill = beaver)) +
+  labs(x = 'Month', y = 'Temperature', fill = '') +
+  theme_bw()+
+  guides(fill = 'none')
+```
+
+If you notice, this figure is the exact same as the density plot above, just the data are separated and mirrored on the x-axis.
+
+We can add groups to make it look better:
+
+```{r}
+ggplot(data = beavers) +
+  geom_violin(aes(x = beaver, y = temp, fill = as.factor(activ))) +
+  labs(x = 'Month', y = 'Temperature', fill = 'Activity Level') +
+  theme_bw()
+```
 
 # Heatmaps: Two continuous relationships
 
+A slightly more advanced graph which can be useful is the heatmap. These are great for communicating multiple continuous relationships and can work as an alternative to a scatterplots or line plots. This example will be ggplot only.
+
+I'll use data from Hawaii's Mauna Loa Atmospheric CO2 concentration observatory from 1959 to 1997. This is available as a time-series object `co2`. However, I'm going to manipulate the data to be a dataframe which I find easier for plotting in ggplot:
+
 ```{r}
-# Load the required libraries
-library(ggplot2)
-
-# Example data from the iris dataset
-data(iris)
-
-# 1. Scatterplot
-ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point() +
-  labs(title = "Scatterplot: Sepal Length vs. Sepal Width")
-
-# 2. Histogram
-ggplot(data = iris, aes(x = Sepal.Length, fill = Species)) +
-  geom_histogram(binwidth = 0.1, color = "black") +
-  labs(title = "Histogram: Distribution of Sepal Length") +
-  scale_fill_manual(values = c("setosa" = "red", "versicolor" = "blue", "virginica" = "green"))
-
-# 3. Bar Chart (Counts of Species)
-ggplot(data = iris, aes(x = Species)) +
-  geom_bar(fill = "lightblue", color = "black") +
-  labs(title = "Bar Chart: Species Counts")
-
-# 4. Boxplot
-ggplot(data = iris, aes(x = Species, y = Petal.Length, fill = Species)) +
-  geom_boxplot() +
-  labs(title = "Boxplot: Petal Length by Species")
-
-# 5. Line Plot (Not typically used with iris dataset)
-# (Line plots are more suitable for time series or continuous data)
-
-# 6. Heatmap (Correlation Matrix)
-iris_cor <- cor(iris[, -5]) # Exclude the Species column
-ggplot(data = as.data.frame(as.table(iris_cor)), aes(x = Var1, y = Var2, fill = Freq)) +
-  geom_tile() +
-  scale_fill_gradient(low = "white", high = "blue") +
-  labs(title = "Heatmap: Correlation Matrix of Iris Variables")
-
-
+co2df <- data.frame(
+  co2 = co2,
+  mo = rep(c(1:12),
+           length(1959:1997)),
+  year = rep(c(1959:1997), each = 12)
+)
+DT::datatable(co2df)
 ```
+
+Now let's make the plot:
+
+```{r}
+ggplot(co2df) +
+  geom_raster(aes(x = mo,
+                y = year,
+                fill = as.numeric(co2))) +
+  scale_fill_gradient(low = 'grey', high = 'red')+
+  labs(x = "Month", y = 'Year', fill = 'CO2 [ppt]') +
+  theme_minimal()
+```
+
+# Further Work:
+
+As stated, this is far from an exhaustive list of potential plots. R is very flexible and data visualization is an art which takes creativity and practice. I encourage you to explore new visualizations and think about how people make figures when you are analyzing them.
+
+I always recommend you check out the [R Graph Gallery](https://r-graph-gallery.com/) for some great ideas on how to make better figures.

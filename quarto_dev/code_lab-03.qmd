@@ -1,0 +1,35 @@
+---
+title: Analyzing Community Structure
+---
+
+Analyzing community structure can be achieved through a wide range of approaches. Our two main questions for this lab are (1) Does the tree community vary up the hillside? and (2) Does litter invertebrate community vary based on tree composition or soil composition?
+
+# In-class analysis
+
+In class, form groups. Groups should choose to address either the first or second question using our data.
+
+You can access your data [here](https://github.com/USC-Ecology-Lab/Lab_3_Community-Assemblages/tree/main/data).
+
+There's a lot of data, and I've formatted it in different ways. Here is a brief description of each:
+
+-   inverts.csv: Counts of different invertebrate data, with region, tree, and Tag (bag ID) as columns
+
+-   raw_litter-invert-data.csv: Unprocessed data, don't use
+
+-   tree_cat_5m.csv: Trees, group into broad categories, calculated their relative importance value (RIV) in 5m bins along the transect
+
+-   tree_cat_subregion.csv: Trees, group into broad categories, calculated their relative importance value (RIV) in the three sub regions of the hillside
+
+-   tree_sp_riv 5m.csv: Trees, grouped by species, calculated their relative importance value (RIV) in 5m bins along the transect
+
+-   tree_sp_riv_subregion.csv: Trees, grouped by species, calculated their relative importance value (RIV) in the three sub regions of the hillside
+
+-   tree_raw.csv: Raw measurements of trees up the hillside with DBH (diameter at breast height), exact transect location, and subregion.
+
+In your groups, choose which dataset you think will be most useful for your analyses. With your dataset:
+
+-   Identify the different types of data
+
+-   Decide how to visualize your data
+
+-   Choose the appropriate statistical analysis for you data

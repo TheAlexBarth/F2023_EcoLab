@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -83,17 +83,13 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html">
- <span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="./syllabus.html">Syllabus</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Code</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Code</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-code">    
         <li>
     <a class="dropdown-item" href="./code_main.html">
@@ -111,16 +107,22 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./code_lab-02.html">
  <span class="dropdown-text">Biodiversity Analysis Code</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-03.html">
+ <span class="dropdown-text">Community Assemblage Analysis Code</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Documents</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Documents</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
         <li>
     <a class="dropdown-item" href="./gen_expectations.html">
  <span class="dropdown-text">General Grading Expectations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gen_stats-guide.html">
+ <span class="dropdown-text">Statistics for Ecology</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./lab_0_intro_assignment.html">
@@ -157,8 +159,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./addtl_resources.html">
- <span class="menu-text">Additional Resources</span></a>
+    <a class="nav-link" href="./addtl_resources.html">Additional Resources</a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -178,7 +179,35 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#statistics-in-ecology" id="toc-statistics-in-ecology" class="nav-link active" data-scroll-target="#statistics-in-ecology">Statistics in Ecology</a></li>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data">Types of Data</a></li>
+  <li><a href="#types-of-variables" id="toc-types-of-variables" class="nav-link" data-scroll-target="#types-of-variables">Types of Variables</a></li>
+  <li><a href="#plotting-data" id="toc-plotting-data" class="nav-link" data-scroll-target="#plotting-data">Plotting Data</a></li>
+  <li><a href="#the-basic-idea-behind-most-analyses" id="toc-the-basic-idea-behind-most-analyses" class="nav-link" data-scroll-target="#the-basic-idea-behind-most-analyses">The basic idea behind most analyses</a>
+  <ul class="collapse">
+  <li><a href="#null-hypothesis-significance-testing" id="toc-null-hypothesis-significance-testing" class="nav-link" data-scroll-target="#null-hypothesis-significance-testing">Null hypothesis significance testing</a></li>
+  <li><a href="#p-values" id="toc-p-values" class="nav-link" data-scroll-target="#p-values">P-values</a></li>
+  <li><a href="#effect-size" id="toc-effect-size" class="nav-link" data-scroll-target="#effect-size">Effect size:</a></li>
+  </ul></li>
+  <li><a href="#common-statistical-tests-analyses" id="toc-common-statistical-tests-analyses" class="nav-link" data-scroll-target="#common-statistical-tests-analyses">Common Statistical Tests &amp; Analyses</a>
+  <ul class="collapse">
+  <li><a href="#caveats-with-common-approaches" id="toc-caveats-with-common-approaches" class="nav-link" data-scroll-target="#caveats-with-common-approaches">Caveats with common approaches:</a></li>
+  </ul></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq">FAQ:</a>
+  <ul class="collapse">
+  <li><a href="#wait-is-it-significant" id="toc-wait-is-it-significant" class="nav-link" data-scroll-target="#wait-is-it-significant">Wait, is it significant?</a></li>
+  <li><a href="#what-is-a-model-what-is-a-test" id="toc-what-is-a-model-what-is-a-test" class="nav-link" data-scroll-target="#what-is-a-model-what-is-a-test">What is a model, what is a test?</a></li>
+  <li><a href="#all-these-hypotheses-are-confusing-me.-what-is-what" id="toc-all-these-hypotheses-are-confusing-me.-what-is-what" class="nav-link" data-scroll-target="#all-these-hypotheses-are-confusing-me.-what-is-what">All these hypotheses are confusing me. What is what?</a></li>
+  </ul></li>
+  <li><a href="#emerging-approaches" id="toc-emerging-approaches" class="nav-link" data-scroll-target="#emerging-approaches">Emerging approaches</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -258,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="plotting-data" class="level1">
 <h1>Plotting Data</h1>
 <p>Plots should always offer a nice visual representation of your data. They should have some level of summary or trends visible through the image. Always make sure that your figure caption and axes titles</p>
-<p>See this example guide for a reference on what plots work well for what data</p>
+<p>See this <a href="./gen_R-guide-plotting.html">example guide</a>for a reference on what plots work well for what data types.</p>
 </section>
 <section id="the-basic-idea-behind-most-analyses" class="level1">
 <h1>The basic idea behind most analyses</h1>
@@ -273,14 +302,27 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="p-values" class="level3">
 <h3 class="anchored" data-anchor-id="p-values">P-values</h3>
-<p>The p-value is the metric used to determine whether or not to reject a null hypothesis. There’s a number of ways which I’ve heard the p-value explained</p>
-<p>The probability</p>
-<p>I think the most intuitive way of thinking about the p-vale is that it is the probability of you harvesting the data you did, if the observed statistic (value, difference, slope, etc) was not real.</p>
+<p>The p-value is the metric used to determine whether or not to reject a null hypothesis. There’s a number of ways which I’ve heard the p-value explained. Which I’ll share these explanations from what I think is the more technical to the more intuitive:</p>
+<ul>
+<li><p>The proportion of times if you would collect data with that sample statistic, over repeated trails, if the population parameter was 0 (or another set value).</p></li>
+<li><p>The probability of capturing a sample statistic which is different significantly different from the true population parameter.</p></li>
+<li><p>The likelihood of rejecting the null hypothesis if it is actually true</p></li>
+<li><p>The probability of you collecting the data you did, if the observed statistic (value, difference, slope, etc) was not real. For context: if you collected squirrels from the forest and campus and measured their body fat and found the difference in sample means was 100g (i’m guessing that would be a large number for a squirrel). If your p-value from a t-test comparing those groups was 0.001, that means the chance you would have observed a 100g difference or greater, if the true population difference was 0, is 0.1%.</p></li>
+</ul>
+<p>All those explanations above say exactly the same thing, just in different ways. Regardless of which mantra speaks to you, the p-value is utilized to determine whether or not to (1) reject the null hypothesis and (2) state that your observed difference/effect is statistically significant. To make that determination, we compare the p-value to the alpha-value (p-value threshold).</p>
+<p>Generally, p-value thresholds (referred to as the alpha value) are set at 0.05 (sometimes 0.01). All this means is that researchers are looking for a p-value smaller than that threshold to determine if their effect/difference is “significant”. This could mean significantly different from another group or that there is a significant effect (different from 0 effect) depending on the specific analysis. The threshold is set to minimize our chance of making a type-I error.</p>
+<ul>
+<li><p>Type-I error is essentially a false positive decision</p></li>
+<li><p>Type-II error is essentially a false negative.</p></li>
+</ul>
+<p>Which error is more important is a context-dependent situation. Yet generally statistical analyses are set-up to avoid false positives.</p>
 </section>
 <section id="effect-size" class="level3">
 <h3 class="anchored" data-anchor-id="effect-size">Effect size:</h3>
-<p>A major pitfall with the common approaches of statistics is that researchers get hyper-focused on p-values. They seek to get a result with a low p-value</p>
-<p>The effect size is really what we are interested in</p>
+<p>A major pitfall with the common approaches of statistics is that researchers get hyper-focused on p-values. They seek to get a result with a low p-value otherwise they think their data are worthless. Yet, we are smarter than that. We shouldn’t get trapped in the dogmatic perspective that this imaginary 0.05 threshold is all we can use to evaluate our data.</p>
+<p>The effect size is really what we are interested in as researchers. Effect size varies by analysis but it is typically the value we are interested in. This could mean the average difference in a value between two groups, or it could be the strength of the relationship that one variable has on another.</p>
+<p>For example, if I’m interested in the difference in if student grades in my course are significantly different based on major. I could compare bio-majors to non-bio majors and let’s say I got a significant differences (i.e.&nbsp;my t-test p-value would be &lt; 0.05). However, what if that average difference was just 1%? That’s not a very meaningful difference. Alternatively</p>
+<p>The p-value is just a tool from the statistical test to evaluate how much we should believe our data.</p>
 </section>
 </section>
 <section id="common-statistical-tests-analyses" class="level1">
@@ -365,21 +407,39 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <section id="caveats-with-common-approaches" class="level2">
 <h2 class="anchored" data-anchor-id="caveats-with-common-approaches">Caveats with common approaches:</h2>
+<p>Many statistical tests have a set of assumptions. You should evaluate those assumptions prior to applying a test. Plenty of papers get published without evaluation of the assumptions yet it is best to know thel limitations of different data analysis methods.</p>
 </section>
-<section id="a-note-with-terminology" class="level2">
-<h2 class="anchored" data-anchor-id="a-note-with-terminology">A note with terminology:</h2>
+</section>
+<section id="faq" class="level1">
+<h1>FAQ:</h1>
 <p>There are several things which may get confusing when reading about ecological data analysis.</p>
-<p>-- Wait, is it significant?</p>
-<p>-- What is a model, what is a test?</p>
-<p>Often times, these terms are used loosely and interchangeably. At the most basic, s</p>
-<p>-- What are null hypotheses?</p>
-<p>When learning statistics, you are likely introduced to the term “null” and “alternative” hypotheses. These are artifacts of the most common school of statistical thought, Frequentist Statistics, or Null Hypothesis Significance Testing (NHST). At it’s most basic, NHST is comparing whether or not the data we observed</p>
+<section id="wait-is-it-significant" class="level3">
+<h3 class="anchored" data-anchor-id="wait-is-it-significant">Wait, is it significant?</h3>
+<p>When writing scientifically and discussing data, you need to be very careful about using the term “significant”. Typically this is reserved for things which are statistically significant (i.e.&nbsp;there was a sufficiently low p-value from some test). When stating something is statistically significant in your results you should include the p-value and test in parentheses. However, to determine if something is meaningful, you need to consider the effect size as well.</p>
+<p>There’s a growing movement to reject the p-value dogma in data analysis. I think it is fine as is, yet it can be misleading for uninformed readers who put too much weight in p-values. Personally, in my work I’m trying to increase the use of confidence intervals (rather than p-values) and using terminology like “a clear difference” rather than a “significant difference”.</p>
+<p>More reading for those interested:</p>
+<ul>
+<li><p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/">link 1</a></p></li>
+<li><p><a href="https://www.vox.com/2016/3/15/11225162/p-value-simple-definition-hacking">link 2</a></p></li>
+<li><p><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13159">link 3</a></p></li>
+</ul>
+</section>
+<section id="what-is-a-model-what-is-a-test" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-model-what-is-a-test">What is a model, what is a test?</h3>
+<p>Often times, these terms are used loosely and interchangeably. However there is a subtle difference. Statistical tests are some analysis which evaluates how well a sample statistic matches a supposed population parameter. A model is a broad term of a representation of something else. A statistical model is a description of real world phenomena using some algorithm to optimize the fit of the model to observed data. For example, a simple linear regression is a model (usually fit with the ordinary least squares method). Models often have an associated statistical test which allows us to evaluate if the model statistics are good parameter estimators.</p>
+</section>
+<section id="all-these-hypotheses-are-confusing-me.-what-is-what" class="level3">
+<h3 class="anchored" data-anchor-id="all-these-hypotheses-are-confusing-me.-what-is-what">All these hypotheses are confusing me. What is what?</h3>
+<p>When learning statistics, you are likely introduced to the term “null” and “alternative” hypotheses. These are artifacts of the most common school of statistical thought, Frequentist Statistics, or Null Hypothesis Significance Testing (NHST). At it’s most basic, NHST is comparing whether or not the data we observed is significantly different than 0 or no-effect.</p>
+<p>Frequentist statistical tests have a null and alternative hypothesis. These are just predictions where the null is generally no-effect and the alternative is there is some effect.</p>
+<p>However in biology, we have hypotheses as a much more detailed statement. The biological hypothesis is a proposed mechanism with associated predictions. The biology-based hypothesis can be evaluated based on decisions made with the statistical test. However, when writing your lab reports, l encourage you use hypothesis to refer to the biology-hypothesis not the statistical ones.</p>
 </section>
 </section>
 <section id="emerging-approaches" class="level1">
 <h1>Emerging approaches</h1>
-<p>Multivariate models are increasingly common in ecology. Often times</p>
-<p>Machine learning methods are growing in popularity as well. The exact term “machine learning” can be broadly interpretted depending on how flashy authors might want their titles to be. However, at a basic level, Ordinary least squares is technically a machine learning approach</p>
+<p>Multivariate models are increasingly common in ecology. Often times these are used for preliminary data analysis but there is a wealth of useful tools which are worth investigating.</p>
+<p>Machine learning methods are growing in popularity as well. The exact term “machine learning” can be broadly interpretted depending on how flashy authors might want their titles to be. However, at a basic level, OLS regression is technically a machine learning approach. However, there are some increasingly popular tools, namely regression trees and various classifiers. The fundamental idea behind ML approaches is that they are more prediction oriented rather than traditional statistics approaches which are inference oriented. The applicability of each method depends on the context.</p>
+<p>Bayesian statistics are an alternative school of thought to frequentist statistics. Rather than rigid testing of fixed hypotheses, Bayesian statistics takes a more probabilistic approach in which a researcher can evaluate the probability of their hypothesis being true given the data they’ve observed and any prior knowledge. This is really a more intuitive way to think about data analysis yet it is a little more mathematically complicated. However, it is growing in popularity.</p>
 
 
 </section>
@@ -517,9 +577,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -541,24 +599,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -594,42 +635,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

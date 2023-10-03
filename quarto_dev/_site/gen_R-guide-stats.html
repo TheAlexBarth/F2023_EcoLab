@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 - Introductory Assignment</title>
+<title>570L Fall 2023 - A starter guide to analyzing data in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -183,15 +183,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-background-about-you-5-points" id="toc-part-1-background-about-you-5-points" class="nav-link active" data-scroll-target="#part-1-background-about-you-5-points">Part 1: Background about you (5 points):</a>
+  <li><a href="#comparison-of-two-groups" id="toc-comparison-of-two-groups" class="nav-link active" data-scroll-target="#comparison-of-two-groups">Comparison of two-groups</a>
   <ul class="collapse">
-  <li><a href="#a-what-made-you-interested-in-this-course" id="toc-a-what-made-you-interested-in-this-course" class="nav-link" data-scroll-target="#a-what-made-you-interested-in-this-course">1.a What made you interested in this course?</a></li>
-  <li><a href="#b-what-skills-do-you-hope-to-gain-through-this-lab" id="toc-b-what-skills-do-you-hope-to-gain-through-this-lab" class="nav-link" data-scroll-target="#b-what-skills-do-you-hope-to-gain-through-this-lab">1.b What skills do you hope to gain through this lab?</a></li>
-  <li><a href="#c-what-are-your-career-goals" id="toc-c-what-are-your-career-goals" class="nav-link" data-scroll-target="#c-what-are-your-career-goals">1.c What are your career goals?</a></li>
+  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test">t-test</a></li>
+  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test">Mann-Whitney U-test</a></li>
   </ul></li>
-  <li><a href="#part-2-intro-to-r-5-points" id="toc-part-2-intro-to-r-5-points" class="nav-link" data-scroll-target="#part-2-intro-to-r-5-points">Part 2: Intro to R (5 points):</a>
+  <li><a href="#t-test-1" id="toc-t-test-1" class="nav-link" data-scroll-target="#t-test-1">t-test</a></li>
+  <li><a href="#correlation-tests" id="toc-correlation-tests" class="nav-link" data-scroll-target="#correlation-tests">Correlation Tests</a></li>
+  <li><a href="#linear-models" id="toc-linear-models" class="nav-link" data-scroll-target="#linear-models">Linear Models</a>
   <ul class="collapse">
-  <li><a href="#bonus-5-points" id="toc-bonus-5-points" class="nav-link" data-scroll-target="#bonus-5-points">BONUS (5 points):</a></li>
+  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova">ANOVA</a></li>
+  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression">Simple Linear Regression</a></li>
+  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression">Multiple Linear Regression</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
+  </ul></li>
+  <li><a href="#chi-squared-test" id="toc-chi-squared-test" class="nav-link" data-scroll-target="#chi-squared-test">Chi-Squared test</a></li>
+  <li><a href="#other-common-tests" id="toc-other-common-tests" class="nav-link" data-scroll-target="#other-common-tests">Other Common Tests</a>
+  <ul class="collapse">
+  <li><a href="#nmds" id="toc-nmds" class="nav-link" data-scroll-target="#nmds">NMDS</a></li>
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -201,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introductory Assignment</h1>
+<h1 class="title">A starter guide to analyzing data in R</h1>
 </div>
 
 
@@ -215,27 +226,50 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Submit all answers as a pdf on blackboard’s submission portal.</p>
-<section id="part-1-background-about-you-5-points" class="level1">
-<h1>Part 1: Background about you (5 points):</h1>
-<section id="a-what-made-you-interested-in-this-course" class="level3">
-<h3 class="anchored" data-anchor-id="a-what-made-you-interested-in-this-course">1.a What made you interested in this course?</h3>
+<p>There is a wide, wide, wide, range of ways to analyze data. Here, I hope to provide a starting tool kit for you to explore your data with. However, keep in mind you should always take extended precaution when using an analysis to ensure that you are checking your assumptiosn</p>
+<section id="comparison-of-two-groups" class="level1">
+<h1>Comparison of two-groups</h1>
+<section id="t-test" class="level3">
+<h3 class="anchored" data-anchor-id="t-test">t-test</h3>
 </section>
-<section id="b-what-skills-do-you-hope-to-gain-through-this-lab" class="level3">
-<h3 class="anchored" data-anchor-id="b-what-skills-do-you-hope-to-gain-through-this-lab">1.b What skills do you hope to gain through this lab?</h3>
-</section>
-<section id="c-what-are-your-career-goals" class="level3">
-<h3 class="anchored" data-anchor-id="c-what-are-your-career-goals">1.c What are your career goals?</h3>
+<section id="mann-whitney-u-test" class="level3">
+<h3 class="anchored" data-anchor-id="mann-whitney-u-test">Mann-Whitney U-test</h3>
 </section>
 </section>
-<section id="part-2-intro-to-r-5-points" class="level1">
-<h1>Part 2: Intro to R (5 points):</h1>
-<p>To get some basic familiarity with using R, I want you to make a graph.</p>
-<p>Graph fiddler crab carapace width by two sites. The graph should be appropriate for the type of data and display the mean crab carapace width by site. Standard error bars should be available as well.</p>
-<p>You can download fiddler crab data which I formatted <a href="https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_0_Introduction/main/data/LTER_CrabCarapaces.csv">here</a>. The data originally comes from the LTER’s educational resources page. Just click the link, right-click (or command/control S) and save the data as a .csv file. Note you should be able to open the .csv file using excel.</p>
-<section id="bonus-5-points" class="level3">
-<h3 class="anchored" data-anchor-id="bonus-5-points">BONUS (5 points):</h3>
-<p>Remake the plot but this time include all sites, not just the two. <em>hint</em>: this can be achieved by removing one line of <code>dplyr</code> code.</p>
+<section id="t-test-1" class="level1">
+<h1>t-test</h1>
+</section>
+<section id="correlation-tests" class="level1">
+<h1>Correlation Tests</h1>
+</section>
+<section id="linear-models" class="level1">
+<h1>Linear Models</h1>
+<section id="anova" class="level2">
+<h2 class="anchored" data-anchor-id="anova">ANOVA</h2>
+</section>
+<section id="simple-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="simple-linear-regression">Simple Linear Regression</h2>
+</section>
+<section id="multiple-linear-regression" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-linear-regression">Multiple Linear Regression</h2>
+</section>
+<section id="logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h2>
+</section>
+</section>
+<section id="chi-squared-test" class="level1">
+<h1>Chi-Squared test</h1>
+</section>
+<section id="other-common-tests" class="level1">
+<h1>Other Common Tests</h1>
+<section id="nmds" class="level2">
+<h2 class="anchored" data-anchor-id="nmds">NMDS</h2>
+</section>
+<section id="clustering" class="level2">
+<h2 class="anchored" data-anchor-id="clustering">Clustering</h2>
+</section>
+<section id="pca" class="level2">
+<h2 class="anchored" data-anchor-id="pca">PCA</h2>
 
 
 </section>

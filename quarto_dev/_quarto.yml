@@ -22,10 +22,14 @@ website:
           text: Behavioral Ecology Analysis Code
         - href: code_lab-02.qmd
           text: Biodiversity Analysis Code
+        - href: code_lab-03.qmd
+          text: Community Assemblage Analysis Code
       - text: Class Documents
         menu:
         - href: gen_expectations.qmd
           text: General Grading Expectations
+        - href: gen_stats-guide.qmd
+          text: 'Statistics for Ecology'
         - href: lab_0_intro_assignment.qmd
           text: Intro Assignment
         - href: lab_1_behavioral-ecology.qmd
@@ -47,6 +51,8 @@ website:
         
 format:
   html:
+    toc: true
+    toc-location: right
     theme:
       light: flatly
       dark: darkly

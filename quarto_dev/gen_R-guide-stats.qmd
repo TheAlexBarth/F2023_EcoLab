@@ -2,7 +2,13 @@
 title: A starter guide to analyzing data in R
 ---
 
-There is a wide, wide, wide, range of ways to analyze data. Here, I hope to provide a starting tool kit for you to explore your data with. However, keep in mind you should always take extended precaution when using an analysis to ensure that you
+There is a wide, wide, wide, range of ways to analyze data. Here, I hope to provide a starting tool kit for you to explore your data with. However, keep in mind you should always take extended precaution when using an analysis to ensure that you are checking your assumptiosn
+
+# Comparison of two-groups
+
+### t-test
+
+### Mann-Whitney U-test
 
 # t-test
 

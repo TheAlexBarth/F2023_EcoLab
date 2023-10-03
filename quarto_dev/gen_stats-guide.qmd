@@ -87,7 +87,7 @@ Let's take the squirrel example above. In that case, our explanatory variable wo
 
 Plots should always offer a nice visual representation of your data. They should have some level of summary or trends visible through the image. Always make sure that your figure caption and axes titles
 
-See this example guide for a reference on what plots work well for what data
+See this [example guide](./gen_R-guide-plotting.html)for a reference on what plots work well for what data types.
 
 # The basic idea behind most analyses
 
@@ -107,17 +107,35 @@ We then would put all our sample data into a t-test to evaluate whether or not t
 
 ### P-values
 
-The p-value is the metric used to determine whether or not to reject a null hypothesis. There's a number of ways which I've heard the p-value explained
+The p-value is the metric used to determine whether or not to reject a null hypothesis. There's a number of ways which I've heard the p-value explained. Which I'll share these explanations from what I think is the more technical to the more intuitive:
 
-The probability
+-   The proportion of times if you would collect data with that sample statistic, over repeated trails, if the population parameter was 0 (or another set value).
 
-I think the most intuitive way of thinking about the p-vale is that it is the probability of you harvesting the data you did, if the observed statistic (value, difference, slope, etc) was not real.
+-   The probability of capturing a sample statistic which is different significantly different from the true population parameter.
+
+-   The likelihood of rejecting the null hypothesis if it is actually true
+
+-   The probability of you collecting the data you did, if the observed statistic (value, difference, slope, etc) was not real. For context: if you collected squirrels from the forest and campus and measured their body fat and found the difference in sample means was 100g (i'm guessing that would be a large number for a squirrel). If your p-value from a t-test comparing those groups was 0.001, that means the chance you would have observed a 100g difference or greater, if the true population difference was 0, is 0.1%.
+
+All those explanations above say exactly the same thing, just in different ways. Regardless of which mantra speaks to you, the p-value is utilized to determine whether or not to (1) reject the null hypothesis and (2) state that your observed difference/effect is statistically significant. To make that determination, we compare the p-value to the alpha-value (p-value threshold).
+
+Generally, p-value thresholds (referred to as the alpha value) are set at 0.05 (sometimes 0.01). All this means is that researchers are looking for a p-value smaller than that threshold to determine if their effect/difference is "significant". This could mean significantly different from another group or that there is a significant effect (different from 0 effect) depending on the specific analysis. The threshold is set to minimize our chance of making a type-I error.
+
+-   Type-I error is essentially a false positive decision
+
+-   Type-II error is essentially a false negative.
+
+Which error is more important is a context-dependent situation. Yet generally statistical analyses are set-up to avoid false positives.
 
 ### Effect size:
 
-A major pitfall with the common approaches of statistics is that researchers get hyper-focused on p-values. They seek to get a result with a low p-value
+A major pitfall with the common approaches of statistics is that researchers get hyper-focused on p-values. They seek to get a result with a low p-value otherwise they think their data are worthless. Yet, we are smarter than that. We shouldn't get trapped in the dogmatic perspective that this imaginary 0.05 threshold is all we can use to evaluate our data.
 
-The effect size is really what we are interested in
+The effect size is really what we are interested in as researchers. Effect size varies by analysis but it is typically the value we are interested in. This could mean the average difference in a value between two groups, or it could be the strength of the relationship that one variable has on another.
+
+For example, if I'm interested in the difference in if student grades in my course are significantly different based on major. I could compare bio-majors to non-bio majors and let's say I got a significant differences (i.e. my t-test p-value would be \< 0.05). However, what if that average difference was just 1%? That's not a very meaningful difference. Alternatively
+
+The p-value is just a tool from the statistical test to evaluate how much we should believe our data.
 
 # Common Statistical Tests & Analyses
 
@@ -155,22 +173,42 @@ The effect size is really what we are interested in
 
 ## Caveats with common approaches:
 
-## A note with terminology:
+Many statistical tests have a set of assumptions. You should evaluate those assumptions prior to applying a test. Plenty of papers get published without evaluation of the assumptions yet it is best to know thel limitations of different data analysis methods.
+
+# FAQ:
 
 There are several things which may get confusing when reading about ecological data analysis.
 
-\-- Wait, is it significant?
+### Wait, is it significant?
 
-\-- What is a model, what is a test?
+When writing scientifically and discussing data, you need to be very careful about using the term "significant". Typically this is reserved for things which are statistically significant (i.e. there was a sufficiently low p-value from some test). When stating something is statistically significant in your results you should include the p-value and test in parentheses. However, to determine if something is meaningful, you need to consider the effect size as well.
 
-Often times, these terms are used loosely and interchangeably. At the most basic, s
+There's a growing movement to reject the p-value dogma in data analysis. I think it is fine as is, yet it can be misleading for uninformed readers who put too much weight in p-values. Personally, in my work I'm trying to increase the use of confidence intervals (rather than p-values) and using terminology like "a clear difference" rather than a "significant difference".
 
-\-- What are null hypotheses?
+More reading for those interested:
 
-When learning statistics, you are likely introduced to the term "null" and "alternative" hypotheses. These are artifacts of the most common school of statistical thought, Frequentist Statistics, or Null Hypothesis Significance Testing (NHST). At it's most basic, NHST is comparing whether or not the data we observed
+-   [link 1](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3444174/)
+
+-   [link 2](https://www.vox.com/2016/3/15/11225162/p-value-simple-definition-hacking)
+
+-   [link 3](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13159)
+
+### What is a model, what is a test?
+
+Often times, these terms are used loosely and interchangeably. However there is a subtle difference. Statistical tests are some analysis which evaluates how well a sample statistic matches a supposed population parameter. A model is a broad term of a representation of something else. A statistical model is a description of real world phenomena using some algorithm to optimize the fit of the model to observed data. For example, a simple linear regression is a model (usually fit with the ordinary least squares method). Models often have an associated statistical test which allows us to evaluate if the model statistics are good parameter estimators.
+
+### All these hypotheses are confusing me. What is what?
+
+When learning statistics, you are likely introduced to the term "null" and "alternative" hypotheses. These are artifacts of the most common school of statistical thought, Frequentist Statistics, or Null Hypothesis Significance Testing (NHST). At it's most basic, NHST is comparing whether or not the data we observed is significantly different than 0 or no-effect.
+
+Frequentist statistical tests have a null and alternative hypothesis. These are just predictions where the null is generally no-effect and the alternative is there is some effect.
+
+However in biology, we have hypotheses as a much more detailed statement. The biological hypothesis is a proposed mechanism with associated predictions. The biology-based hypothesis can be evaluated based on decisions made with the statistical test. However, when writing your lab reports, l encourage you use hypothesis to refer to the biology-hypothesis not the statistical ones.
 
 # Emerging approaches
 
-Multivariate models are increasingly common in ecology. Often times
+Multivariate models are increasingly common in ecology. Often times these are used for preliminary data analysis but there is a wealth of useful tools which are worth investigating.
 
-Machine learning methods are growing in popularity as well. The exact term "machine learning" can be broadly interpretted depending on how flashy authors might want their titles to be. However, at a basic level, Ordinary least squares is technically a machine learning approach
+Machine learning methods are growing in popularity as well. The exact term "machine learning" can be broadly interpretted depending on how flashy authors might want their titles to be. However, at a basic level, OLS regression is technically a machine learning approach. However, there are some increasingly popular tools, namely regression trees and various classifiers. The fundamental idea behind ML approaches is that they are more prediction oriented rather than traditional statistics approaches which are inference oriented. The applicability of each method depends on the context.
+
+Bayesian statistics are an alternative school of thought to frequentist statistics. Rather than rigid testing of fixed hypotheses, Bayesian statistics takes a more probabilistic approach in which a researcher can evaluate the probability of their hypothesis being true given the data they've observed and any prior knowledge. This is really a more intuitive way to think about data analysis yet it is a little more mathematically complicated. However, it is growing in popularity.
