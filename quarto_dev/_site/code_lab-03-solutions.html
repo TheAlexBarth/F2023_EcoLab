@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>570L Fall 2023 - Some approaches analyze lab 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">570L Fall 2023</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Class Code</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-code">    
+        <li>
+    <a class="dropdown-item" href="./code_main.html">
+ <span class="dropdown-text">General Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-00.html">
+ <span class="dropdown-text">Intro Assignment Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-01.html">
+ <span class="dropdown-text">Behavioral Ecology Analysis Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-02.html">
+ <span class="dropdown-text">Biodiversity Analysis Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-03.html">
+ <span class="dropdown-text">Community Assemblage Analysis Code</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Class Documents</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
+        <li>
+    <a class="dropdown-item" href="./gen_expectations.html">
+ <span class="dropdown-text">General Grading Expectations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gen_stats-guide.html">
+ <span class="dropdown-text">Statistics for Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_0_intro_assignment.html">
+ <span class="dropdown-text">Intro Assignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_1_behavioral-ecology.html">
+ <span class="dropdown-text">Lab 1: Behavioral Urban Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_2_forest-biodiversity.html">
+ <span class="dropdown-text">Lab 2: Intermediate Distrubance &amp; Forest Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_3_community-assemblages.html">
+ <span class="dropdown-text">Lab 3: Community Assemblages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_4.qmd">
+ <span class="dropdown-text">Lab 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_5.qmd">
+ <span class="dropdown-text">Lab 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./proj_main.html">
+ <span class="dropdown-text">Independent Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./addtl_resources.html">
+ <span class="menu-text">Additional Resources</span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#some-context" id="toc-some-context" class="nav-link active" data-scroll-target="#some-context">Some Context</a></li>
+  <li><a href="#exploratory-data-analysis-for-trees" id="toc-exploratory-data-analysis-for-trees" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-trees">Exploratory Data Analysis for Trees</a>
+  <ul class="collapse">
+  <li><a href="#an-attempt-at-regression" id="toc-an-attempt-at-regression" class="nav-link" data-scroll-target="#an-attempt-at-regression">An attempt at regression</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-for-inverts" id="toc-exploratory-data-analysis-for-inverts" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-inverts">Exploratory Data Analysis for inverts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Some approaches analyze lab 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>As we covered in our in-class lab analysis, there is no one correct way to analyze a complex dataset like the one that we have in our lab 3. However, I’ll share my approaches here.</p>
+<section id="some-context" class="level1">
+<h1>Some Context</h1>
+<p>Let’s return to the lab’s hypotheses:</p>
+<p>(H1): Along a strong, but short, moisture gradient the dominant tree species will vary in distinct regions. (H2.A): Trees alter the soil composition at a hyper-local scale, so that their leaf-litter supports distinct communities of invertebrates. (H2.B): Alternative to H2.A, it could simply be that the abiotic factors are the primary factor determining soil community structure, and the community will vary based on the soil characteristics rather than treespecies.</p>
+<p>So for the first hypothesis, we want to evaluate if the dominance of different trees varies along the hillside. To assess “dominance” of trees, we can use the relative importance index and compare how it changes for different trees along the slope.</p>
+<p>The second hypothesis is a little more complicated. We are simply interested if there is <em>some</em> difference in community composition between (A) particular trees vs open areas vs others or (B) between soil characteristics (which we assume are associated with the region). Thus, our first hypothesis is someone dependent on the results of the first hypothesis. If the tree community composition varies along the hill side then we’ll only be able to compare . However, if tree dominance doesn’t vary with the slope, we can assess soil community based on the tree-base and the soil community separately.</p>
+<p>One general concern I had for this data analysis was that the wasn’t really a true “open” area from which we could collect. The tree canopy covers the entire slopeside so we can’t just compare tree vs.&nbsp;non-tree. However, if trees are different based on regions of the slope, we can still assess if the community composition is different. Another challenge of this lab is we have relatively small samples sizes for the transects. However we do have good data for the inverts.</p>
+<p>My approach to analyze the data is very exploratory, I try a bunch of possible approaches to see if we can tease out a signal. However, as you’ll see, analyses are just a tool - while some may be more useful in a given case, generally if there truly isn’t a pattern - your data will show it!</p>
+<p>For all this, I’m am using a few more advanced approaches to make it quicker. I’ll show clearly how to run a simple version, but there’s also the advanced options for those of you interested in some of the more powerful applications of R.</p>
+<div class="cell">
+
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Adv.</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>In a simple approach, we read in our data by downloading from the github repo’s data folder, put it in our folder of choice, then read it in locally (this is what I’ve taught so far):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>inverts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'inverts.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tree_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'tree_raw.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>What I actually do when writing the tutorials is I will read in the files directly from the internet. You can give read.csv an html address with a csv file. These can be found by clicking “raw” on the github page when looking at the csv of the data. That normally would look like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>inverts <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_3_Community-Assemblages/main/data/inverts.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, because we have multiple files, I could click through and manually copy all links, but that’s less fun. So I decided to try and figure out how to get all links automatically using githubs API. Now, this took longer to learn how to do than it would’ve to just copy-and-paste. But I had fun learning this for the past 10mins. Admittedly this is way more than just the ‘advanced version’, but you clicked on this tab so ha.</p>
+<p>Thanks chatGPT for the framework!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the code that actually got ran</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># I need R's api and json libraries</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>repo <span class="ot">&lt;-</span> <span class="st">'usc-ecology-lab/Lab_3_Community-Assemblages'</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>folder_path <span class="ot">&lt;-</span> <span class="st">'./data'</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>api_url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"https://api.github.com/repos/"</span>, repo, <span class="st">"/contents/"</span>, folder_path)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># read it all in</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>response <span class="ot">&lt;-</span> <span class="fu">GET</span>(api_url) <span class="sc">|&gt;</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">content</span>(<span class="st">'text'</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fromJSON</span>()</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>file_names <span class="ot">&lt;-</span> response<span class="sc">$</span>name <span class="sc">|&gt;</span> </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gsub</span>(<span class="at">pattern =</span> <span class="st">'.csv'</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">replacement =</span> <span class="st">""</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>       )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># now I can create a list of dataframe</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>df_list <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># loop through and download</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(response)) {</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  df_list[[i]] <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(response<span class="sc">$</span>download_url[i])</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_list) <span class="ot">&lt;-</span> file_names <span class="co">#name the list</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">list2env</span>(df_list, <span class="at">envir =</span> .GlobalEnv) <span class="co">#load the list to the environment</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">"df_list"</span>, <span class="st">"repo"</span>, <span class="st">"folder"</span>, <span class="st">"api_url"</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">'file_names'</span>,<span class="st">'folder_path'</span>,<span class="st">'i'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploratory-data-analysis-for-trees" class="level1">
+<h1>Exploratory Data Analysis for Trees</h1>
+<p>To address the first hypothesis, we need to explore how the importance of trees varies with the slope. However, to do this we need to think about the data we have.</p>
+<p>The <code>tree_raw</code> dataframe does not offer much to work with. Unless we wanted to investigate a question like “does loblolly size vary based on slope?”. Instead we need to rely on the RIV (relative importance value). I already calculated this for you in a few approaches. First, I did it by species and by category (grouping some similar species together). I also calculated RIV in 5m bins and then again in 3-large bins which correspond to the defined sub regions people listed on their transects.</p>
+<p>RIV is calculated by effectively measuring the total area in a set bin which is occupied by that particular species. Such that for each <span class="math inline">\(s\)</span> species, and <span class="math inline">\(i\)</span> tree (belonging to a <span class="math inline">\(s\)</span> species):</p>
+<p><span class="math display">\[
+RIV_{s} = \frac{\sum_{i_s} \pi \frac{DBH_{i_s}}{2}^2}{\sum_{i} \pi \frac{DBH_{i}}{2}^2}
+\]</span></p>
+<section id="an-attempt-at-regression" class="level3">
+<h3 class="anchored" data-anchor-id="an-attempt-at-regression">An attempt at regression</h3>
+<p>I really wanted to try a correlation/regression analysis in this lab. However, the data don’t really make it all that clean (or appropriate). Nonetheless, I figured if I make 5-m bins we can try to treat them as a continuous variable and run a regression. The problem is that the tree observations are so sparse that there just isn’t enough data.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Adv.</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>We can only look at one tree’s RIV change at a time. For the simple example, let’s just do hardwoods because they are the most abundant overall</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hardwood_bins <span class="ot">&lt;-</span> tree_cat_5m <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> <span class="st">'hardwood'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>hardwood_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_cat_5m)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hardwood_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = riv ~ bin, data = tree_cat_5m)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.6934 -0.2554  0.1867  0.2551  0.3483 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.651744   0.129688   5.025 6.48e-05 ***
+bin         0.005830   0.007936   0.735    0.471    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3708 on 20 degrees of freedom
+Multiple R-squared:  0.02628,   Adjusted R-squared:  -0.02241 
+F-statistic: 0.5397 on 1 and 20 DF,  p-value: 0.4711</code></pre>
+</div>
+</div>
+<p>From the above output, we can look at the p-value of “bin” to see if there is a signficant effect of bin (slope location) on riv. It is 0.471, so we would conclude the slope is not significantly different from 0. Or in simpler words there is no effect.</p>
+<p>To be quick, I just looked at this data using base R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(riv <span class="sc">~</span> bin, hardwood_bins)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(hardwood_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This isn’t a pretty plot I would present, but it is useful for my purposes.</p>
+<p>To do this with other categories, you can just change where we filter for hardwoods and try for other categories!</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Really, in fully data exploration mode, I want to run the simple analysis for every single species and every single categories. It gets fairly messy to do this “by-hand” and copy-pasting code over and over and changing little details. Instead what I really would do here is loop through all categories and print out the regression output and make quick, ugly plots. If there’s something interesting, I can clean it up later.</p>
+<p>I can now scroll through all this output and read what I want!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tree_sp <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">unique</span>(tree_sp_riv_5m<span class="sc">$</span>tree_id)) {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  tree_sp[[tree]] <span class="ot">&lt;-</span> tree_sp_riv_5m <span class="sc">|&gt;</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(tree_id <span class="sc">==</span> tree)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># run the regressions here</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>tree_5m_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  tree_5m_reg_mod[[tree]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_sp[[tree]])</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(tree) <span class="co"># print out name of trees</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(tree_5m_reg_mod[[tree]]))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sycamore"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+      1       2 
+ 0.1658 -0.1658 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)   0.8342     0.1658   5.031    0.125
+bin               NA         NA      NA       NA
+
+Residual standard error: 0.2345 on 1 degrees of freedom
+
+[1] "dogwood"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+      1       2       3 
+ 0.1778 -0.3556  0.1778 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) -0.52779    0.66524  -0.793    0.573
+bin          0.09000    0.06159   1.461    0.382
+
+Residual standard error: 0.4355 on 1 degrees of freedom
+Multiple R-squared:  0.6811,    Adjusted R-squared:  0.3621 
+F-statistic: 2.135 on 1 and 1 DF,  p-value: 0.3821
+
+[1] "hickory"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+      1       2       3       4       5 
+ 0.2163 -0.5976  0.2350 -0.1588  0.3050 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 0.6799888  0.4188987   1.623    0.203
+bin         0.0007486  0.0336468   0.022    0.984
+
+Residual standard error: 0.4387 on 3 degrees of freedom
+Multiple R-squared:  0.000165,  Adjusted R-squared:  -0.3331 
+F-statistic: 0.000495 on 1 and 3 DF,  p-value: 0.9836
+
+[1] "loblolly"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+         1          2          3 
+ 1.388e-17  7.426e-02 -7.426e-02 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  1.021809   0.181902   5.617    0.112
+bin         -0.003843   0.008575  -0.448    0.732
+
+Residual standard error: 0.105 on 1 degrees of freedom
+Multiple R-squared:  0.1672,    Adjusted R-squared:  -0.6655 
+F-statistic: 0.2008 on 1 and 1 DF,  p-value: 0.7318
+
+[1] "whiteoak"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+ALL 2 residuals are 0: no residual degrees of freedom!
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  1.00e+00        NaN     NaN      NaN
+bin         -6.28e-17        NaN     NaN      NaN
+
+Residual standard error: NaN on 0 degrees of freedom
+Multiple R-squared:    NaN, Adjusted R-squared:    NaN 
+F-statistic:   NaN on 1 and 0 DF,  p-value: NA
+
+[1] "poplar"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+ALL 1 residuals are 0: no residual degrees of freedom!
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)        1        NaN     NaN      NaN
+bin               NA         NA      NA       NA
+
+Residual standard error: NaN on 0 degrees of freedom
+
+[1] "bay"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+      1       2 
+ 0.4594 -0.4594 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)   0.5406     0.4594   1.177    0.448
+bin               NA         NA      NA       NA
+
+Residual standard error: 0.6497 on 1 degrees of freedom
+
+[1] "wateroak"
+
+Call:
+lm(formula = riv ~ bin, data = tree_sp[[tree]])
+
+Residuals:
+       1        2        3        4        5 
+ 0.38173 -0.12478 -0.09681 -0.48781  0.32768 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept) 0.456404   0.334137   1.366    0.265
+bin         0.007197   0.017371   0.414    0.706
+
+Residual standard error: 0.4147 on 3 degrees of freedom
+Multiple R-squared:  0.05413,   Adjusted R-squared:  -0.2612 
+F-statistic: 0.1717 on 1 and 3 DF,  p-value: 0.7065</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_sp[[tree]],</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> tree)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_5m_reg_mod[[tree]])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  'a' and 'b' must be finite</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  'a' and 'b' must be finite</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  'a' and 'b' must be finite</code></pre>
+</div>
+</div>
+<p>I can also do this by category:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tree_cat <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">unique</span>(tree_cat_5m<span class="sc">$</span>Tree_cat)) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  tree_cat[[cat]] <span class="ot">&lt;-</span> tree_cat_5m <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> cat)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>tree_cat_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  tree_cat_reg_mod[[cat]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_cat[[cat]])</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(cat)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(tree_cat_reg_mod[[cat]]))</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hardwood"
+
+Call:
+lm(formula = riv ~ bin, data = tree_cat[[cat]])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.6879 -0.1268  0.1870  0.2389  0.3860 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)  0.79501    0.19889   3.997  0.00397 **
+bin         -0.00905    0.01896  -0.477  0.64595   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4067 on 8 degrees of freedom
+Multiple R-squared:  0.02768,   Adjusted R-squared:  -0.09386 
+F-statistic: 0.2278 on 1 and 8 DF,  p-value: 0.646
+
+[1] "pine"
+
+Call:
+lm(formula = riv ~ bin, data = tree_cat[[cat]])
+
+Residuals:
+         1          2          3 
+ 1.388e-17  7.426e-02 -7.426e-02 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  1.021809   0.181902   5.617    0.112
+bin         -0.003843   0.008575  -0.448    0.732
+
+Residual standard error: 0.105 on 1 degrees of freedom
+Multiple R-squared:  0.1672,    Adjusted R-squared:  -0.6655 
+F-statistic: 0.2008 on 1 and 1 DF,  p-value: 0.7318
+
+[1] "oak"
+
+Call:
+lm(formula = riv ~ bin, data = tree_cat[[cat]])
+
+Residuals:
+       1        2        3        4        5        6        7 
+ 0.15129  0.35024  0.22350 -0.08382 -0.16453 -0.62798  0.15129 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  0.41544    0.28435   1.461    0.204
+bin          0.01444    0.01295   1.115    0.315
+
+Residual standard error: 0.3597 on 5 degrees of freedom
+Multiple R-squared:  0.1992,    Adjusted R-squared:  0.03904 
+F-statistic: 1.244 on 1 and 5 DF,  p-value: 0.3155
+
+[1] "other"
+
+Call:
+lm(formula = riv ~ bin, data = tree_cat[[cat]])
+
+Residuals:
+      1       2 
+ 0.4594 -0.4594 
+
+Coefficients: (1 not defined because of singularities)
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)   0.5406     0.4594   1.177    0.448
+bin               NA         NA      NA       NA
+
+Residual standard error: 0.6497 on 1 degrees of freedom</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_cat[[cat]],</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> cat)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_cat_reg_mod[[cat]])</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  'a' and 'b' must be finite</code></pre>
+</div>
+</div>
+<p>Again in all these cases we just don’t have enough data or any semblance of a trend to make a conclusion.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exploratory-data-analysis-for-inverts" class="level1">
+<h1>Exploratory Data Analysis for inverts</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
