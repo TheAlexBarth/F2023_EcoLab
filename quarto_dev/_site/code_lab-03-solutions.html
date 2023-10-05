@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-99.9.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -146,17 +146,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html">
- <span class="menu-text">Syllabus</span></a>
+    <a class="nav-link" href="./syllabus.html">Syllabus</a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Code</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Code</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-code">    
         <li>
     <a class="dropdown-item" href="./code_main.html">
@@ -181,9 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Class Documents</span>
-    </a>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Documents</a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
         <li>
     <a class="dropdown-item" href="./gen_expectations.html">
@@ -223,10 +217,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./addtl_resources.html">
- <span class="menu-text">Additional Resources</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Additional Resources</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-additional-resources">    
+        <li>
+    <a class="dropdown-item" href="./addtl_resources.html">
+ <span class="dropdown-text">Additional Resources</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./gen_R-guide-plotting.html">
+ <span class="dropdown-text">Plotting Guide</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
               <div class="quarto-toggle-container">
                   <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -253,7 +256,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#some-context" id="toc-some-context" class="nav-link active" data-scroll-target="#some-context">Some Context</a></li>
   <li><a href="#exploratory-data-analysis-for-trees" id="toc-exploratory-data-analysis-for-trees" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-trees">Exploratory Data Analysis for Trees</a>
   <ul class="collapse">
-  <li><a href="#an-attempt-at-regression" id="toc-an-attempt-at-regression" class="nav-link" data-scroll-target="#an-attempt-at-regression">An attempt at regression</a></li>
+  <li><a href="#an-attempt-at-regression-correlation" id="toc-an-attempt-at-regression-correlation" class="nav-link" data-scroll-target="#an-attempt-at-regression-correlation">An attempt at regression &amp; correlation</a></li>
+  <li><a href="#the-kruskall-wallace-approach" id="toc-the-kruskall-wallace-approach" class="nav-link" data-scroll-target="#the-kruskall-wallace-approach">The Kruskall-Wallace approach</a></li>
   </ul></li>
   <li><a href="#exploratory-data-analysis-for-inverts" id="toc-exploratory-data-analysis-for-inverts" class="nav-link" data-scroll-target="#exploratory-data-analysis-for-inverts">Exploratory Data Analysis for inverts</a></li>
   </ul>
@@ -272,7 +276,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
@@ -342,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">"df_list"</span>, <span class="st">"repo"</span>, <span class="st">"folder"</span>, <span class="st">"api_url"</span>,</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">"df_list"</span>, <span class="st">"repo"</span>, <span class="st">"api_url"</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="st">'file_names'</span>,<span class="st">'folder_path'</span>,<span class="st">'i'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -357,14 +360,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[
 RIV_{s} = \frac{\sum_{i_s} \pi \frac{DBH_{i_s}}{2}^2}{\sum_{i} \pi \frac{DBH_{i}}{2}^2}
 \]</span></p>
-<section id="an-attempt-at-regression" class="level3">
-<h3 class="anchored" data-anchor-id="an-attempt-at-regression">An attempt at regression</h3>
-<p>I really wanted to try a correlation/regression analysis in this lab. However, the data don’t really make it all that clean (or appropriate). Nonetheless, I figured if I make 5-m bins we can try to treat them as a continuous variable and run a regression. The problem is that the tree observations are so sparse that there just isn’t enough data.</p>
+<section id="an-attempt-at-regression-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="an-attempt-at-regression-correlation">An attempt at regression &amp; correlation</h3>
+<p>I really wanted to try a correlation/regression analysis in this lab. However, the data don’t really make it all that clean (or appropriate). Nonetheless, I figured if I make 5-m bins we can try to treat them as a continuous variable and run a regression. Regressions, as you can see below don’t apply in this case. However, we can use a non-parametric correlation to say something about our data.</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Adv.</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Adv.</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Better plots</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>We can only look at one tree’s RIV change at a time. For the simple example, let’s just do hardwoods because they are the most abundant overall</p>
+<p>We can only look at one tree’s RIV change at a time. For the simple example, let’s just do hardwoods because they are the most abundant overall.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>hardwood_bins <span class="ot">&lt;-</span> tree_cat_5m <span class="sc">|&gt;</span> </span>
@@ -378,22 +381,22 @@ Call:
 lm(formula = riv ~ bin, data = tree_cat_5m)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--0.6934 -0.2554  0.1867  0.2551  0.3483 
+     Min       1Q   Median       3Q      Max 
+-0.25000 -0.18992 -0.13095 -0.08333  0.89286 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.651744   0.129688   5.025 6.48e-05 ***
-bin         0.005830   0.007936   0.735    0.471    
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.250000   0.065199   3.834 0.000228 ***
+bin         -0.004762   0.003117  -1.528 0.129951    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3708 on 20 degrees of freedom
-Multiple R-squared:  0.02628,   Adjusted R-squared:  -0.02241 
-F-statistic: 0.5397 on 1 and 20 DF,  p-value: 0.4711</code></pre>
+Residual standard error: 0.3499 on 94 degrees of freedom
+Multiple R-squared:  0.02423,   Adjusted R-squared:  0.01385 
+F-statistic: 2.334 on 1 and 94 DF,  p-value: 0.13</code></pre>
 </div>
 </div>
-<p>From the above output, we can look at the p-value of “bin” to see if there is a signficant effect of bin (slope location) on riv. It is 0.471, so we would conclude the slope is not significantly different from 0. Or in simpler words there is no effect.</p>
+<p>From the above output, we can look at the p-value of “bin” to see if there is a signficant effect of bin (slope location) on riv. It is 0.129951, so we would conclude the slope is not significantly different from 0. Or in simpler words there is no effect.</p>
 <p>To be quick, I just looked at this data using base R:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(riv <span class="sc">~</span> bin, hardwood_bins)</span>
@@ -402,282 +405,139 @@ F-statistic: 0.5397 on 1 and 20 DF,  p-value: 0.4711</code></pre>
 <p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>This isn’t a pretty plot I would present, but it is useful for my purposes.</p>
+<p>This isn’t a pretty plot I would present, but it is useful for my purposes. We can see that the regression line is largely influenced by the large amount of 0’s at high bins. A linear regression in this case is not really the best method given the fact the <a href="https://www.statology.org/linear-regression-assumptions/">LIINE</a> assumptions are not met. However, we can test if there is a significant correlation using a non-parametric correlation test. Correlation tests aren’t as useful as regressions since they don’t give us an effect size like slope - which is a quantitative relationship with predictive power. Instead, correlations just tell us how tightly two variables are related (from 0-1). Correlations work well with <a href="https://en.wikipedia.org/wiki/Monotonic_function">monotonic</a> relationships, and there are several methods for using non-normal, non-linear data. Here, we’ll use spearman’s rank correlation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="at">x =</span> hardwood_bins<span class="sc">$</span>bin, <span class="at">y =</span> hardwood_bins<span class="sc">$</span>riv, <span class="at">method =</span> <span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  hardwood_bins$bin and hardwood_bins$riv
+S = 3873.7, p-value = 0.0002268
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.6842051 </code></pre>
+</div>
+</div>
+<p>Here, we can conclude that there is a significant, negative correlation between increasing distance up the slope (bin) and the relative importance value of hardwoods (spearman’s <span class="math inline">\(\rho\)</span> = -0.684, p &lt; 0.001).</p>
 <p>To do this with other categories, you can just change where we filter for hardwoods and try for other categories!</p>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>Really, in fully data exploration mode, I want to run the simple analysis for every single species and every single categories. It gets fairly messy to do this “by-hand” and copy-pasting code over and over and changing little details. Instead what I really would do here is loop through all categories and print out the regression output and make quick, ugly plots. If there’s something interesting, I can clean it up later.</p>
 <p>I can now scroll through all this output and read what I want!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tree_sp <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">unique</span>(tree_sp_riv_5m<span class="sc">$</span>tree_id)) {</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  tree_sp[[tree]] <span class="ot">&lt;-</span> tree_sp_riv_5m <span class="sc">|&gt;</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(tree_id <span class="sc">==</span> tree)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># run the regressions here</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>tree_5m_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  tree_5m_reg_mod[[tree]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_sp[[tree]])</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(tree) <span class="co"># print out name of trees</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(tree_5m_reg_mod[[tree]]))</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tree_sp <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">unique</span>(tree_sp_riv_5m<span class="sc">$</span>tree_id)) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  tree_sp[[tree]] <span class="ot">&lt;-</span> tree_sp_riv_5m <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(tree_id <span class="sc">==</span> tree)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># run the regressions here</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>tree_5m_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  tree_5m_reg_mod[[tree]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_sp[[tree]])</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(tree) <span class="co"># print out name of trees</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">cor.test</span>(<span class="at">x =</span> tree_sp[[tree]]<span class="sc">$</span>bin, <span class="at">y =</span> tree_sp[[tree]]<span class="sc">$</span>riv,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">'spearman'</span>))</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sycamore"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-      1       2 
- 0.1658 -0.1658 
-
-Coefficients: (1 not defined because of singularities)
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)   0.8342     0.1658   5.031    0.125
-bin               NA         NA      NA       NA
-
-Residual standard error: 0.2345 on 1 degrees of freedom
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 3358.3, p-value = 0.02367
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.4601307 
 
 [1] "dogwood"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-      1       2       3 
- 0.1778 -0.3556  0.1778 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept) -0.52779    0.66524  -0.793    0.573
-bin          0.09000    0.06159   1.461    0.382
-
-Residual standard error: 0.4355 on 1 degrees of freedom
-Multiple R-squared:  0.6811,    Adjusted R-squared:  0.3621 
-F-statistic: 2.135 on 1 and 1 DF,  p-value: 0.3821
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 2857.1, p-value = 0.2541
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.2422138 
 
 [1] "hickory"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-      1       2       3       4       5 
- 0.2163 -0.5976  0.2350 -0.1588  0.3050 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept) 0.6799888  0.4188987   1.623    0.203
-bin         0.0007486  0.0336468   0.022    0.984
-
-Residual standard error: 0.4387 on 3 degrees of freedom
-Multiple R-squared:  0.000165,  Adjusted R-squared:  -0.3331 
-F-statistic: 0.000495 on 1 and 3 DF,  p-value: 0.9836
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 2946.6, p-value = 0.1833
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.2811346 
 
 [1] "loblolly"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-         1          2          3 
- 1.388e-17  7.426e-02 -7.426e-02 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  1.021809   0.181902   5.617    0.112
-bin         -0.003843   0.008575  -0.448    0.732
-
-Residual standard error: 0.105 on 1 degrees of freedom
-Multiple R-squared:  0.1672,    Adjusted R-squared:  -0.6655 
-F-statistic: 0.2008 on 1 and 1 DF,  p-value: 0.7318
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 2110.8, p-value = 0.7024
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+0.08226127 
 
 [1] "whiteoak"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-ALL 2 residuals are 0: no residual degrees of freedom!
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  1.00e+00        NaN     NaN      NaN
-bin         -6.28e-17        NaN     NaN      NaN
-
-Residual standard error: NaN on 0 degrees of freedom
-Multiple R-squared:    NaN, Adjusted R-squared:    NaN 
-F-statistic:   NaN on 1 and 0 DF,  p-value: NA
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 1694.7, p-value = 0.214
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.2631807 
 
 [1] "poplar"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-ALL 1 residuals are 0: no residual degrees of freedom!
-
-Coefficients: (1 not defined because of singularities)
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)        1        NaN     NaN      NaN
-bin               NA         NA      NA       NA
-
-Residual standard error: NaN on 0 degrees of freedom
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 3032.6, p-value = 0.1293
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+-0.318511 
 
 [1] "bay"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-      1       2 
- 0.4594 -0.4594 
-
-Coefficients: (1 not defined because of singularities)
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)   0.5406     0.4594   1.177    0.448
-bin               NA         NA      NA       NA
-
-Residual standard error: 0.6497 on 1 degrees of freedom
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 3055.9, p-value = 0.1169
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.3286648 
 
 [1] "wateroak"
 
-Call:
-lm(formula = riv ~ bin, data = tree_sp[[tree]])
+    Spearman's rank correlation rho
 
-Residuals:
-       1        2        3        4        5 
- 0.38173 -0.12478 -0.09681 -0.48781  0.32768 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept) 0.456404   0.334137   1.366    0.265
-bin         0.007197   0.017371   0.414    0.706
-
-Residual standard error: 0.4147 on 3 degrees of freedom
-Multiple R-squared:  0.05413,   Adjusted R-squared:  -0.2612 
-F-statistic: 0.1717 on 1 and 3 DF,  p-value: 0.7065</code></pre>
+data:  tree_sp[[tree]]$bin and tree_sp[[tree]]$riv
+S = 2419.1, p-value = 0.8101
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+        rho 
+-0.05178796 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_sp[[tree]],</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> tree)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_5m_reg_mod[[tree]])</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
-  'a' and 'b' must be finite</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
-  'a' and 'b' must be finite</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
-  'a' and 'b' must be finite</code></pre>
-</div>
-</div>
-<p>I can also do this by category:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tree_cat <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">unique</span>(tree_cat_5m<span class="sc">$</span>Tree_cat)) {</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  tree_cat[[cat]] <span class="ot">&lt;-</span> tree_cat_5m <span class="sc">|&gt;</span> </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> cat)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>tree_cat_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  tree_cat_reg_mod[[cat]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_cat[[cat]])</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(cat)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(tree_cat_reg_mod[[cat]]))</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hardwood"
-
-Call:
-lm(formula = riv ~ bin, data = tree_cat[[cat]])
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--0.6879 -0.1268  0.1870  0.2389  0.3860 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)   
-(Intercept)  0.79501    0.19889   3.997  0.00397 **
-bin         -0.00905    0.01896  -0.477  0.64595   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4067 on 8 degrees of freedom
-Multiple R-squared:  0.02768,   Adjusted R-squared:  -0.09386 
-F-statistic: 0.2278 on 1 and 8 DF,  p-value: 0.646
-
-[1] "pine"
-
-Call:
-lm(formula = riv ~ bin, data = tree_cat[[cat]])
-
-Residuals:
-         1          2          3 
- 1.388e-17  7.426e-02 -7.426e-02 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  1.021809   0.181902   5.617    0.112
-bin         -0.003843   0.008575  -0.448    0.732
-
-Residual standard error: 0.105 on 1 degrees of freedom
-Multiple R-squared:  0.1672,    Adjusted R-squared:  -0.6655 
-F-statistic: 0.2008 on 1 and 1 DF,  p-value: 0.7318
-
-[1] "oak"
-
-Call:
-lm(formula = riv ~ bin, data = tree_cat[[cat]])
-
-Residuals:
-       1        2        3        4        5        6        7 
- 0.15129  0.35024  0.22350 -0.08382 -0.16453 -0.62798  0.15129 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)  0.41544    0.28435   1.461    0.204
-bin          0.01444    0.01295   1.115    0.315
-
-Residual standard error: 0.3597 on 5 degrees of freedom
-Multiple R-squared:  0.1992,    Adjusted R-squared:  0.03904 
-F-statistic: 1.244 on 1 and 5 DF,  p-value: 0.3155
-
-[1] "other"
-
-Call:
-lm(formula = riv ~ bin, data = tree_cat[[cat]])
-
-Residuals:
-      1       2 
- 0.4594 -0.4594 
-
-Coefficients: (1 not defined because of singularities)
-            Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)   0.5406     0.4594   1.177    0.448
-bin               NA         NA      NA       NA
-
-Residual standard error: 0.6497 on 1 degrees of freedom</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_cat[[cat]],</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> cat)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_cat_reg_mod[[cat]])</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(tree <span class="cf">in</span> <span class="fu">names</span>(tree_sp)) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_sp[[tree]],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> tree)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_5m_reg_mod[[tree]])</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -690,19 +550,464 @@ Residual standard error: 0.6497 on 1 degrees of freedom</code></pre>
 <div class="cell-output-display">
 <p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
 </div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-8-8.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looking at it by species, it is not very clear</p>
+<p>I can also do this by category:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop analysis:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tree_cat <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">unique</span>(tree_cat_5m<span class="sc">$</span>Tree_cat)) {</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  tree_cat[[cat]] <span class="ot">&lt;-</span> tree_cat_5m <span class="sc">|&gt;</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> cat)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>tree_cat_reg_mod <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  tree_cat_reg_mod[[cat]] <span class="ot">&lt;-</span> <span class="fu">lm</span>(riv <span class="sc">~</span> bin, <span class="at">data =</span> tree_cat[[cat]])</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(cat)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">cor.test</span>(<span class="at">x =</span> tree_cat[[cat]]<span class="sc">$</span>riv,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> tree_cat[[cat]]<span class="sc">$</span>bin,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">method =</span> <span class="st">'spearman'</span>))</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
-  'a' and 'b' must be finite</code></pre>
+<pre><code>[1] "hardwood"
+
+    Spearman's rank correlation rho
+
+data:  tree_cat[[cat]]$riv and tree_cat[[cat]]$bin
+S = 3873.7, p-value = 0.0002268
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.6842051 
+
+[1] "pine"
+
+    Spearman's rank correlation rho
+
+data:  tree_cat[[cat]]$riv and tree_cat[[cat]]$bin
+S = 2110.8, p-value = 0.7024
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+0.08226127 
+
+[1] "oak"
+
+    Spearman's rank correlation rho
+
+data:  tree_cat[[cat]]$riv and tree_cat[[cat]]$bin
+S = 1953.5, p-value = 0.4823
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.1506457 
+
+[1] "other"
+
+    Spearman's rank correlation rho
+
+data:  tree_cat[[cat]]$riv and tree_cat[[cat]]$bin
+S = 3055.9, p-value = 0.1169
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+       rho 
+-0.3286648 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat)) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>({</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(riv <span class="sc">~</span> bin, tree_cat[[cat]],</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> cat)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">abline</span>(tree_cat_reg_mod[[cat]])</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Again in all these cases we just don’t have enough data or any semblance of a trend to make a conclusion.</p>
+<p>Looking at all the categories, our only significant correlation is with the hardwoods. However, it is worth noting that the pines only occur in the mid-slope area. This would make the relationship non-monotonic so we can’t capture that relationship with a simple rank-correlation test.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>If I wanted to plot these data to look a little better, I’d use ggplot and loess smoothers:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(hardwood_bins, <span class="fu">aes</span>(<span class="at">x =</span> bin, <span class="at">y =</span> riv)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">'black'</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Distance up slope [m]'</span>, <span class="at">y =</span> <span class="st">'Hardwood RIV'</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </div>
+</div>
+</div>
+</section>
+<section id="the-kruskall-wallace-approach" class="level3">
+<h3 class="anchored" data-anchor-id="the-kruskall-wallace-approach">The Kruskall-Wallace approach</h3>
+<p>Since we don’t really have enough data for a regression, the alternative approach is to use an ANOVA with RIV as the response variable and sub region as the predictor. Since we have a RIV value for each tree, we will need to run the ANOVA for each response variable. I’m not even investigating my assumptions for an ANOVA however because I have such small sample size, I’m going to assume that the non-parametric approach is necessary.</p>
+<p>I can make one graph to show all this data, but then run multiple tests to investigate the data.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Adv.</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>I’ll just do this for groups by category since we already well know that there is not enough data for grouping by species.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tree_cat_summary <span class="ot">&lt;-</span> tree_cat_subregion <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Subregion, Tree_cat) <span class="sc">|&gt;</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_riv =</span> <span class="fu">mean</span>(riv),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_riv =</span> <span class="fu">sd</span>(riv))</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tree_cat_summary) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tree_cat, <span class="at">y =</span> mean_riv, <span class="at">fill =</span> Subregion),</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tree_cat, <span class="at">ymin =</span> mean_riv,</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_riv <span class="sc">+</span> sd_riv,</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> Subregion),</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Tree Category'</span>, <span class="at">y =</span> <span class="st">'RIV'</span>, <span class="at">fill =</span> <span class="st">"Subregion"</span>,</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Subregion"</span>) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Similar to the regression approach, we will need to run a kruskall.wallace test for each individual tree-category. I’m going to use the <code>dunn.test()</code> function from the <code>dunn.test</code> package because it will run both the kruskall wallace test and the post-hoc tests at once. The KW test tells us if there is <em>some</em> difference between the groups then the dunn test tells us pair-wise comparisons.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dunn.test)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we'll use the category &amp; subregion dataframe</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># let's look at pines this time</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>pine_regions <span class="ot">&lt;-</span> tree_cat_subregion <span class="sc">|&gt;</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> <span class="st">'pine'</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(<span class="at">g =</span> pine_regions<span class="sc">$</span>Subregion, <span class="at">x =</span> pine_regions<span class="sc">$</span>riv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 2.102, df = 2, p-value = 0.35
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |        bog    dryhill
+---------+----------------------
+ dryhill |  -1.416983
+         |     0.0782
+         |
+   slope |  -0.974176   0.442807
+         |     0.1650     0.3290
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2</code></pre>
+</div>
+</div>
+<p>This tells us that the relative importance value of pines is not significantly different across regions (Kruskall wallace test, p = 0.35)</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>Again, I just want to run all the tests at once. This time, to keep it clean, I’ll just do it for the categories:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tree_cat_reg <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">unique</span>(tree_cat_subregion<span class="sc">$</span>Tree_cat)) {</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  tree_cat_reg[[cat]] <span class="ot">&lt;-</span> tree_cat_subregion <span class="sc">|&gt;</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Tree_cat <span class="sc">==</span> cat)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(cat <span class="cf">in</span> <span class="fu">names</span>(tree_cat_reg)) {</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(cat)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dunn.test</span>(<span class="at">g=</span> tree_cat_reg[[cat]]<span class="sc">$</span>Subregion,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> tree_cat_reg[[cat]]<span class="sc">$</span>riv)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "hardwood"
+  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 4.3556, df = 2, p-value = 0.11
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |        bog    dryhill
+---------+----------------------
+ dryhill |   2.086996
+         |    0.0184*
+         |
+   slope |   1.043498  -1.043498
+         |     0.1484     0.1484
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2
+[1] "oak"
+  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 2.7152, df = 2, p-value = 0.26
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |        bog    dryhill
+---------+----------------------
+ dryhill |  -1.556997
+         |     0.0597
+         |
+   slope |  -0.311399   1.245598
+         |     0.3777     0.1065
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2
+[1] "pine"
+  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 2.102, df = 2, p-value = 0.35
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |        bog    dryhill
+---------+----------------------
+ dryhill |  -1.416983
+         |     0.0782
+         |
+   slope |  -0.974176   0.442807
+         |     0.1650     0.3290
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2
+[1] "other"
+  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 1.1667, df = 2, p-value = 0.56
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |        bog    dryhill
+---------+----------------------
+ dryhill |   1.020620
+         |     0.1537
+         |
+   slope |   0.204124  -0.816496
+         |     0.4191     0.2071
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>All in all, the kruskall-wallace tests suggest that there are no significant differences between subregions and RIV for any tree category. However, we did see a significant negative correlation between increasing slope distance and hardwood RIV. If I were discussing these results, I’d probably talk about how there were strong trends for some taxa to be in certain regions but there isn’t a large enough amount of data to distinguish between different regions. I’d also note that the hardwood RIV relationship was influenced by the one large Tulip poplar and the American sycamores which tended to be in the bog, or at the bog edge. There was a consistent amount of oaks, albeit from different species up the hill and pines were notable, but sparse.</p>
+<p>Also maybe DBH isn’t the best metric because although pines don’t get too thick, they get very tall and produce many leaves which may have a dispropotionate influence on the leaf litter.</p>
 </section>
 </section>
 <section id="exploratory-data-analysis-for-inverts" class="level1">
 <h1>Exploratory Data Analysis for inverts</h1>
+<p>To assess if the invertebrate community is significantly different between litter invertebrate community and (A) tree-base or (B) slope-region. These data are not too clear to disentangle because based on our tree analysis, we know the tree community is not <em>that</em> different along the slope. However, there are some subtle differences between tree RIV (hardwoods tend to be lower on the slope). So if we see a significant difference, is it from the slope-soil characteristics or the tree litter composition. Theoretically, our open-sampling locations would help disentangle this, however, we didn’t get a truly open sample. Nonetheless, I’ll treat it as such.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Simple</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Advanced</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>First, we need to make a summary dataframe with means and standard deviations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>invert_sum <span class="ot">&lt;-</span> inverts <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Spp, Sampling_tree, Region) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_count =</span> <span class="fu">mean</span>(Num),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">sd_count =</span> <span class="fu">sd</span>(Num))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, I have three categories to plot, Species, Sampling_tree, and Region. And I want to show the mean count for each species. This is too much to fit on one plot so I’ll make a plot for each species then display it. Given the large number of species in a study like this, it would be OK to focus on the most abundant or a few unique ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># let's just look at mites</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>acari_sum <span class="ot">&lt;-</span> invert_sum <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Spp <span class="sc">==</span> <span class="st">'Acari'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(acari_sum) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">y =</span> mean_count, <span class="at">fill =</span> Sampling_tree),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Region, <span class="at">ymin =</span> mean_count,</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_count <span class="sc">+</span> sd_count, <span class="at">color =</span> Sampling_tree),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Slope Region"</span>, <span class="at">y =</span> <span class="st">"Mean Acari Abundance"</span>, </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Tree"</span>, <span class="at">color  =</span> <span class="st">"Tree"</span>) <span class="sc">+</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>This analysis is a little bit tricky. We want to compare how abundance of a single species (we’ll use acari) varies between certain trees and slope region. If we had a balanced dataset, we could use a two-way ANOVA to compare both slope region, tree, and the interaction. However, because some tree categories didn’t occur in some regions we can’t do that. Instead, I’ll use an kruskall-wallace test to compare: within a region, does the insect litter community vary between the tree which were sampled. For the example, I’ll just do upper, but you can run this for every region.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>upper_acari <span class="ot">&lt;-</span> inverts <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Region <span class="sc">==</span> <span class="st">'Upper'</span>, Spp <span class="sc">==</span> <span class="st">'Acari'</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dunn.test</span>(<span class="at">g =</span> upper_acari<span class="sc">$</span>Sampling_tree, <span class="at">x =</span> upper_acari<span class="sc">$</span>Num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Kruskal-Wallis rank sum test
+
+data: x and group
+Kruskal-Wallis chi-squared = 3.1767, df = 2, p-value = 0.2
+
+                           Comparison of x by group                            
+                                (No adjustment)                                
+Col Mean-|
+Row Mean |   Loblolly        Oak
+---------+----------------------
+     Oak |  -0.674849
+         |     0.2499
+         |
+    Open |   1.173673   1.724615
+         |     0.1203     0.0423
+
+alpha = 0.05
+Reject Ho if p &lt;= alpha/2</code></pre>
+</div>
+</div>
+<p>So based in the results of the kruskall-wallace test there’s no significant difference in acari abundance between the Loblolly site, the open site, and the oak site (KW test p-value = 0.2). Discussing these results, I’d note that the pine litter appeared to dominate the whole system and acari were generally well spread throughout all litter communities. I’d also likely run a few more tests in the different regions and with different taxa to see what patterns arise.</p>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<p>A common approach for assessing community composition is a <a href="https://archetypalecology.wordpress.com/2018/02/18/non-metric-multidimensional-scaling-nmds-what-how/">Non-metic Multidimensional Scaling</a> approach. This is an ordination technique usable for count data (with a lot of 0’s). Effectively, what NMDS does is it takes all the many response variables (counts of every taxa) and assess how different each row (site) is based on the counts of the taxa. It does this by ranking them in multidimensional space and measuring the distance. Then, it mushes those distances into a lower dimension where we can look at it. Then we can overlay the site/tree/whatever to visualize if there are any clear patterns that arise. It is important to note that when plotting in NMDS-space the distances between the points do not mean anything (hence non-metric) yet we can make relative assessments on the visual groupings.</p>
+<p>We’ll need to use the <code>vegan</code> package so install it if you don’t have it. I’ll also use <code>tidyr</code> for the data prep.</p>
+<p>When running the nmds, it iterates to find an optimal solution. Yet we specify the number of dimensions to reduce into. Ideally, we want a low stress value (&lt;0.2). So I’ll play around with the number of dimensions to get it lower. I did this a few times and ended up setting <code>k = 3</code> for three dimensions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>invert_comm <span class="ot">&lt;-</span> inverts <span class="sc">|&gt;</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Spp,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> Num)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1000</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>invert_nmds<span class="ot">=</span><span class="fu">metaMDS</span>(invert_comm[,<span class="dv">4</span><span class="sc">:</span><span class="fu">ncol</span>(invert_comm)], <span class="co"># Our community-by-species matrix</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">k=</span><span class="dv">3</span>) <span class="co"># The number of reduced dimensions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Square root transformation
+Wisconsin double standardization
+Run 0 stress 0.1285056 
+Run 1 stress 0.1340613 
+Run 2 stress 0.1348327 
+Run 3 stress 0.1297093 
+Run 4 stress 0.1297095 
+Run 5 stress 0.1297095 
+Run 6 stress 0.1348331 
+Run 7 stress 0.1285056 
+... New best solution
+... Procrustes: rmse 3.606478e-05  max resid 8.770583e-05 
+... Similar to previous best
+Run 8 stress 0.1480649 
+Run 9 stress 0.1315938 
+Run 10 stress 0.1285056 
+... Procrustes: rmse 0.0003471511  max resid 0.0007761196 
+... Similar to previous best
+Run 11 stress 0.1649935 
+Run 12 stress 0.1305927 
+Run 13 stress 0.1285056 
+... New best solution
+... Procrustes: rmse 2.07782e-05  max resid 4.203106e-05 
+... Similar to previous best
+Run 14 stress 0.1285059 
+... Procrustes: rmse 0.0005192305  max resid 0.001164083 
+... Similar to previous best
+Run 15 stress 0.1285059 
+... Procrustes: rmse 0.0005116436  max resid 0.001147285 
+... Similar to previous best
+Run 16 stress 0.1315938 
+Run 17 stress 0.1480648 
+Run 18 stress 0.1315938 
+Run 19 stress 0.1285056 
+... Procrustes: rmse 0.0002657652  max resid 0.0005953675 
+... Similar to previous best
+Run 20 stress 0.1480647 
+*** Best solution repeated 4 times</code></pre>
+</div>
+</div>
+<p>To plot my nmds, I’ll need to make three plots because I have three dimensions. I can look at 1v2, 1v3, and 2v3. Effectively, I’m plotting the different faces of the cube that these points exist in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plot_nmds <span class="ot">&lt;-</span> <span class="fu">cbind</span>(invert_comm[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], invert_nmds<span class="sc">$</span>points)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_nmds,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2, <span class="at">color =</span> Sampling_tree,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> Region),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species), </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS2, <span class="at">label =</span> <span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species))))<span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_nmds,</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS2, <span class="at">y =</span> MDS3, <span class="at">color =</span> Sampling_tree,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> Region),</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species), </span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS2, <span class="at">y =</span> MDS3, <span class="at">label =</span> <span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species))))<span class="sc">+</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> plot_nmds,</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS3, <span class="at">color =</span> Sampling_tree,</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">shape =</span> Region),</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> <span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species), </span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> MDS1, <span class="at">y =</span> MDS3, <span class="at">label =</span> <span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(invert_nmds<span class="sc">$</span>species))))<span class="sc">+</span></span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>p1</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>p2</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>p3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-23-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="code_lab-03-solutions_files/figure-html/unnamed-chunk-23-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Looking at these figures there are not really any clear clusters which pop out. This is another way to see there isn’t a strong difference in community composition across the slope/tree sides</p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -840,9 +1145,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
+  } 
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -864,24 +1167,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -917,42 +1203,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

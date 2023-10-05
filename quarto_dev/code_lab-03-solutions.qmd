@@ -8,11 +8,7 @@ As we covered in our in-class lab analysis, there is no one correct way to analy
 
 Let's return to the lab's hypotheses:
 
-(H1): Along a strong, but short, moisture gradient the dominant tree species will vary in distinct regions.
-(H2.A): Trees alter the soil composition at a hyper-local scale, so that their leaf-litter supports distinct
-communities of invertebrates.
-(H2.B): Alternative to H2.A, it could simply be that the abiotic factors are the primary factor determining
-soil community structure, and the community will vary based on the soil characteristics rather than treespecies.
+(H1): Along a strong, but short, moisture gradient the dominant tree species will vary in distinct regions. (H2.A): Trees alter the soil composition at a hyper-local scale, so that their leaf-litter supports distinct communities of invertebrates. (H2.B): Alternative to H2.A, it could simply be that the abiotic factors are the primary factor determining soil community structure, and the community will vary based on the soil characteristics rather than treespecies.
 
 So for the first hypothesis, we want to evaluate if the dominance of different trees varies along the hillside. To assess "dominance" of trees, we can use the relative importance index and compare how it changes for different trees along the slope.
 
@@ -84,7 +80,7 @@ for(i in 1:nrow(response)) {
 }
 names(df_list) <- file_names #name the list
 list2env(df_list, envir = .GlobalEnv) #load the list to the environment
-rm(list = c("df_list", "repo", "folder", "api_url",
+rm(list = c("df_list", "repo", "api_url",
             'file_names','folder_path','i'))
 ```
 :::
@@ -101,14 +97,14 @@ $$
 RIV_{s} = \frac{\sum_{i_s} \pi \frac{DBH_{i_s}}{2}^2}{\sum_{i} \pi \frac{DBH_{i}}{2}^2}
 $$
 
-### An attempt at regression
+### An attempt at regression & correlation
 
-I really wanted to try a correlation/regression analysis in this lab. However, the data don't really make it all that clean (or appropriate). Nonetheless, I figured if I make 5-m bins we can try to treat them as a continuous variable and run a regression. The problem is that the tree observations are so sparse that there just isn't enough data.
+I really wanted to try a correlation/regression analysis in this lab. However, the data don't really make it all that clean (or appropriate). Nonetheless, I figured if I make 5-m bins we can try to treat them as a continuous variable and run a regression. Regressions, as you can see below don't apply in this case. However, we can use a non-parametric correlation to say something about our data.
 
 ::: panel-tabset
 #### Simple
 
-We can only look at one tree's RIV change at a time. For the simple example, let's just do hardwoods because they are the most abundant overall
+We can only look at one tree's RIV change at a time. For the simple example, let's just do hardwoods because they are the most abundant overall.
 
 ```{r}
 library(dplyr)
@@ -119,7 +115,7 @@ hardwood_lm <- lm(riv ~ bin, data = tree_cat_5m)
 summary(hardwood_lm)
 ```
 
-From the above output, we can look at the p-value of "bin" to see if there is a signficant effect of bin (slope location) on riv. It is 0.471, so we would conclude the slope is not significantly different from 0. Or in simpler words there is no effect.
+From the above output, we can look at the p-value of "bin" to see if there is a signficant effect of bin (slope location) on riv. It is 0.129951, so we would conclude the slope is not significantly different from 0. Or in simpler words there is no effect.
 
 To be quick, I just looked at this data using base R:
 
@@ -128,7 +124,13 @@ plot(riv ~ bin, hardwood_bins)
 abline(hardwood_lm)
 ```
 
-This isn't a pretty plot I would present, but it is useful for my purposes.
+This isn't a pretty plot I would present, but it is useful for my purposes. We can see that the regression line is largely influenced by the large amount of 0's at high bins. A linear regression in this case is not really the best method given the fact the [LIINE](https://www.statology.org/linear-regression-assumptions/) assumptions are not met. However, we can test if there is a significant correlation using a non-parametric correlation test. Correlation tests aren't as useful as regressions since they don't give us an effect size like slope - which is a quantitative relationship with predictive power. Instead, correlations just tell us how tightly two variables are related (from 0-1). Correlations work well with [monotonic](https://en.wikipedia.org/wiki/Monotonic_function) relationships, and there are several methods for using non-normal, non-linear data. Here, we'll use spearman's rank correlation
+
+```{r}
+cor.test(x = hardwood_bins$bin, y = hardwood_bins$riv, method = 'spearman')
+```
+
+Here, we can conclude that there is a significant, negative correlation between increasing distance up the slope (bin) and the relative importance value of hardwoods (spearman's $\rho$ = -0.684, p \< 0.001).
 
 To do this with other categories, you can just change where we filter for hardwoods and try for other categories!
 
@@ -151,7 +153,8 @@ tree_5m_reg_mod <- list()
 for(tree in names(tree_sp)) {
   tree_5m_reg_mod[[tree]] <- lm(riv ~ bin, data = tree_sp[[tree]])
   print(tree) # print out name of trees
-  print(summary(tree_5m_reg_mod[[tree]]))
+  print(cor.test(x = tree_sp[[tree]]$bin, y = tree_sp[[tree]]$riv,
+                 method = 'spearman'))
 }
 
 for(tree in names(tree_sp)) {
@@ -163,6 +166,8 @@ for(tree in names(tree_sp)) {
 }
 
 ```
+
+Looking at it by species, it is not very clear
 
 I can also do this by category:
 
@@ -178,7 +183,9 @@ tree_cat_reg_mod <- list()
 for(cat in names(tree_cat)) {
   tree_cat_reg_mod[[cat]] <- lm(riv ~ bin, data = tree_cat[[cat]])
   print(cat)
-  print(summary(tree_cat_reg_mod[[cat]]))
+  print(cor.test(x = tree_cat[[cat]]$riv,
+                 y = tree_cat[[cat]]$bin,
+                 method = 'spearman'))
 }
 
 for(cat in names(tree_cat)) {
@@ -191,12 +198,33 @@ for(cat in names(tree_cat)) {
 
 ```
 
-Again in all these cases we just don't have enough data or any semblance of a trend to make a conclusion.
+Looking at all the categories, our only significant correlation is with the hardwoods. However, it is worth noting that the pines only occur in the mid-slope area. This would make the relationship non-monotonic so we can't capture that relationship with a simple rank-correlation test.
+
+#### Better plots
+
+If I wanted to plot these data to look a little better, I'd use ggplot and loess smoothers:
+
+```{r, eval = F}
+ggplot(hardwood_bins, aes(x = bin, y = riv)) +
+  geom_point() +
+  geom_smooth(color = 'black') +
+  labs(x = 'Distance up slope [m]', y = 'Hardwood RIV') +
+  theme_classic()
+```
+
+```{r, echo = F}
+h1 = ggplot(hardwood_bins, aes(x = bin, y = riv)) +
+  geom_point() +
+  geom_smooth(color = 'black') +
+  labs(x = 'Distance up slope [m]', y = 'Hardwood RIV') +
+  theme_classic()
+watermark_plot(h1)
+```
 :::
 
 ### The Kruskall-Wallace approach
 
-Since we don't really have enough data for a regression, the alternative approach is to use an ANOVA with RIV as the response variable and subregion as the predictor. Since we have a RIV value for each tree, we will need to run the ANOVA for each response variable. I'm not even investigating my assumptions for an ANOVA however because I have such small sample size, I'm going to assume that the non-parametric approach is necessary
+Since we don't really have enough data for a regression, the alternative approach is to use an ANOVA with RIV as the response variable and sub region as the predictor. Since we have a RIV value for each tree, we will need to run the ANOVA for each response variable. I'm not even investigating my assumptions for an ANOVA however because I have such small sample size, I'm going to assume that the non-parametric approach is necessary.
 
 I can make one graph to show all this data, but then run multiple tests to investigate the data.
 
@@ -248,7 +276,179 @@ watermark_plot(p1)
 
 #### Simple
 
+Similar to the regression approach, we will need to run a kruskall.wallace test for each individual tree-category. I'm going to use the `dunn.test()` function from the `dunn.test` package because it will run both the kruskall wallace test and the post-hoc tests at once. The KW test tells us if there is *some* difference between the groups then the dunn test tells us pair-wise comparisons.
+
+```{r}
+library(dunn.test)
+
+# we'll use the category & subregion dataframe
+# let's look at pines this time
+pine_regions <- tree_cat_subregion |> 
+  filter(Tree_cat == 'pine')
+
+dunn.test(g = pine_regions$Subregion, x = pine_regions$riv)
+```
+
+This tells us that the relative importance value of pines is not significantly different across regions (Kruskall wallace test, p = 0.35)
+
 #### Adv.
+
+Again, I just want to run all the tests at once. This time, to keep it clean, I'll just do it for the categories:
+
+```{r}
+tree_cat_reg <- list()
+
+for(cat in unique(tree_cat_subregion$Tree_cat)) {
+  tree_cat_reg[[cat]] <- tree_cat_subregion |> 
+    filter(Tree_cat == cat)
+}
+  
+for(cat in names(tree_cat_reg)) {
+  print(cat)
+  dunn.test(g= tree_cat_reg[[cat]]$Subregion,
+            x = tree_cat_reg[[cat]]$riv)
+}
+
+
+```
 :::
 
+All in all, the kruskall-wallace tests suggest that there are no significant differences between subregions and RIV for any tree category. However, we did see a significant negative correlation between increasing slope distance and hardwood RIV. If I were discussing these results, I'd probably talk about how there were strong trends for some taxa to be in certain regions but there isn't a large enough amount of data to distinguish between different regions. I'd also note that the hardwood RIV relationship was influenced by the one large Tulip poplar and the American sycamores which tended to be in the bog, or at the bog edge. There was a consistent amount of oaks, albeit from different species up the hill and pines were notable, but sparse.
+
+Also maybe DBH isn't the best metric because although pines don't get too thick, they get very tall and produce many leaves which may have a dispropotionate influence on the leaf litter.
+
 # Exploratory Data Analysis for inverts
+
+To assess if the invertebrate community is significantly different between litter invertebrate community and (A) tree-base or (B) slope-region. These data are not too clear to disentangle because based on our tree analysis, we know the tree community is not *that* different along the slope. However, there are some subtle differences between tree RIV (hardwoods tend to be lower on the slope). So if we see a significant difference, is it from the slope-soil characteristics or the tree litter composition. Theoretically, our open-sampling locations would help disentangle this, however, we didn't get a truly open sample. Nonetheless, I'll treat it as such.
+
+::: panel-tabset
+#### Plot
+
+First, we need to make a summary dataframe with means and standard deviations.
+
+```{r}
+invert_sum <- inverts |> 
+  group_by(Spp, Sampling_tree, Region) |> 
+  summarize(mean_count = mean(Num),
+          sd_count = sd(Num))
+```
+
+Now, I have three categories to plot, Species, Sampling_tree, and Region. And I want to show the mean count for each species. This is too much to fit on one plot so I'll make a plot for each species then display it. Given the large number of species in a study like this, it would be OK to focus on the most abundant or a few unique ones.
+
+```{r, eval = F}
+# let's just look at mites
+acari_sum <- invert_sum |> 
+  filter(Spp == 'Acari')
+
+ggplot(acari_sum) +
+  geom_bar(aes(x = Region, y = mean_count, fill = Sampling_tree),
+           stat = 'identity', position = 'dodge') +
+  geom_errorbar(aes(x = Region, ymin = mean_count,
+                    ymax = mean_count + sd_count, color = Sampling_tree),
+                position = 'dodge') +
+  labs(x = "Slope Region", y = "Mean Acari Abundance", 
+       fill = "Tree", color  = "Tree") +
+  theme_classic()
+```
+
+```{r, echo=FALSE}
+acari_sum <- invert_sum |> 
+  filter(Spp == 'Acari')
+
+a1 = ggplot(acari_sum) +
+  geom_bar(aes(x = Region, y = mean_count, fill = Sampling_tree),
+           stat = 'identity', position = 'dodge') +
+  geom_errorbar(aes(x = Region, ymin = mean_count,
+                    ymax = mean_count + sd_count, color = Sampling_tree),
+                position = 'dodge') +
+  labs(x = "Slope Region", y = "Mean Acari Abundance", 
+       fill = "Tree", color  = "Tree") +
+  theme_classic()
+
+watermark_plot(a1)
+```
+
+#### Simple
+
+This analysis is a little bit tricky. We want to compare how abundance of a single species (we'll use acari) varies between certain trees and slope region. If we had a balanced dataset, we could use a two-way ANOVA to compare both slope region, tree, and the interaction. However, because some tree categories didn't occur in some regions we can't do that. Instead, I'll use an kruskall-wallace test to compare: within a region, does the insect litter community vary between the tree which were sampled. For the example, I'll just do upper, but you can run this for every region.
+
+```{r}
+upper_acari <- inverts |> 
+  filter(Region == 'Upper', Spp == 'Acari')
+
+
+dunn.test(g = upper_acari$Sampling_tree, x = upper_acari$Num)
+```
+
+So based in the results of the kruskall-wallace test there's no significant difference in acari abundance between the Loblolly site, the open site, and the oak site (KW test p-value = 0.2). Discussing these results, I'd note that the pine litter appeared to dominate the whole system and acari were generally well spread throughout all litter communities. I'd also likely run a few more tests in the different regions and with different taxa to see what patterns arise.
+
+#### Advanced
+
+A common approach for assessing community composition is a [Non-metic Multidimensional Scaling](https://archetypalecology.wordpress.com/2018/02/18/non-metric-multidimensional-scaling-nmds-what-how/) approach. This is an ordination technique usable for count data (with a lot of 0's). Effectively, what NMDS does is it takes all the many response variables (counts of every taxa) and assess how different each row (site) is based on the counts of the taxa. It does this by ranking them in multidimensional space and measuring the distance. Then, it mushes those distances into a lower dimension where we can look at it. Then we can overlay the site/tree/whatever to visualize if there are any clear patterns that arise. It is important to note that when plotting in NMDS-space the distances between the points do not mean anything (hence non-metric) yet we can make relative assessments on the visual groupings.
+
+We'll need to use the `vegan` package so install it if you don't have it. I'll also use `tidyr` for the data prep.
+
+When running the nmds, it iterates to find an optimal solution. Yet we specify the number of dimensions to reduce into. Ideally, we want a low stress value (\<0.2). So I'll play around with the number of dimensions to get it lower. I did this a few times and ended up setting `k = 3` for three dimensions.
+
+```{r}
+
+library(vegan)
+library(tidyr)
+invert_comm <- inverts |> 
+  pivot_wider(names_from = Spp,
+              values_from = Num)
+set.seed(1000)
+invert_nmds=metaMDS(invert_comm[,4:ncol(invert_comm)], # Our community-by-species matrix
+                     k=3) # The number of reduced dimensions
+
+```
+
+To plot my nmds, I'll need to make three plots because I have three dimensions. I can look at 1v2, 1v3, and 2v3. Effectively, I'm plotting the different faces of the cube that these points exist in.
+
+```{r}
+
+plot_nmds <- cbind(invert_comm[,1:3], invert_nmds$points)
+
+
+p1 = ggplot() +
+  geom_point(data = plot_nmds,
+             aes(x = MDS1, y = MDS2, color = Sampling_tree,
+                 shape = Region),
+             size = 5)+
+  geom_label(data = as.data.frame(invert_nmds$species), 
+             aes(x = MDS1, y = MDS2, label = rownames(as.data.frame(invert_nmds$species))))+
+  theme_minimal()
+
+p2 = ggplot() +
+  geom_point(data = plot_nmds,
+             aes(x = MDS2, y = MDS3, color = Sampling_tree,
+                 shape = Region),
+             size = 5)+
+  geom_label(data = as.data.frame(invert_nmds$species), 
+             aes(x = MDS2, y = MDS3, label = rownames(as.data.frame(invert_nmds$species))))+
+  theme_minimal()
+
+p3 = ggplot() +
+  geom_point(data = plot_nmds,
+             aes(x = MDS1, y = MDS3, color = Sampling_tree,
+                 shape = Region),
+             size = 5)+
+  geom_label(data = as.data.frame(invert_nmds$species), 
+             aes(x = MDS1, y = MDS3, label = rownames(as.data.frame(invert_nmds$species))))+
+  theme_minimal()
+```
+
+```{r, eval = F}
+p1
+p2
+p3
+```
+
+```{r, echo = F}
+watermark_plot(p1)
+watermark_plot(p2)
+watermark_plot(p3)
+```
+
+Looking at these figures there are not really any clear clusters which pop out. This is another way to see there isn't a strong difference in community composition across the slope/tree sides
+:::
