@@ -33,3 +33,7 @@ In your groups, choose which dataset you think will be most useful for your anal
 -   Decide how to visualize your data
 
 -   Choose the appropriate statistical analysis for you data
+
+# Link to my approaches:
+
+[link](https://usc-ecology-lab.github.io/code_lab-03-solutions.html)
