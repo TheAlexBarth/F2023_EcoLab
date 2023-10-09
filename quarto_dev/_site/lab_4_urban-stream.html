@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>570L Fall 2023 - A starter guide to analyzing data in R</title>
+<title>570L Fall 2023 - Urban Stream Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -189,26 +189,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#comparison-of-two-groups" id="toc-comparison-of-two-groups" class="nav-link active" data-scroll-target="#comparison-of-two-groups">Comparison of two-groups</a>
+  <li><a href="#lab-this-week" id="toc-lab-this-week" class="nav-link active" data-scroll-target="#lab-this-week">Lab This Week:</a></li>
+  <li><a href="#quantification-sampling-strategy" id="toc-quantification-sampling-strategy" class="nav-link" data-scroll-target="#quantification-sampling-strategy">Quantification &amp; Sampling Strategy</a></li>
+  <li><a href="#logistics" id="toc-logistics" class="nav-link" data-scroll-target="#logistics">Logistics:</a>
   <ul class="collapse">
-  <li><a href="#t-test" id="toc-t-test" class="nav-link" data-scroll-target="#t-test">t-test</a></li>
-  <li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test" class="nav-link" data-scroll-target="#mann-whitney-u-test">Mann-Whitney U-test</a></li>
-  </ul></li>
-  <li><a href="#t-test-1" id="toc-t-test-1" class="nav-link" data-scroll-target="#t-test-1">t-test</a></li>
-  <li><a href="#correlation-tests" id="toc-correlation-tests" class="nav-link" data-scroll-target="#correlation-tests">Correlation Tests</a></li>
-  <li><a href="#linear-models" id="toc-linear-models" class="nav-link" data-scroll-target="#linear-models">Linear Models</a>
-  <ul class="collapse">
-  <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova">ANOVA</a></li>
-  <li><a href="#simple-linear-regression" id="toc-simple-linear-regression" class="nav-link" data-scroll-target="#simple-linear-regression">Simple Linear Regression</a></li>
-  <li><a href="#multiple-linear-regression" id="toc-multiple-linear-regression" class="nav-link" data-scroll-target="#multiple-linear-regression">Multiple Linear Regression</a></li>
-  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression">Logistic Regression</a></li>
-  </ul></li>
-  <li><a href="#chi-squared-test" id="toc-chi-squared-test" class="nav-link" data-scroll-target="#chi-squared-test">Chi-Squared test</a></li>
-  <li><a href="#other-common-tests" id="toc-other-common-tests" class="nav-link" data-scroll-target="#other-common-tests">Other Common Tests</a>
-  <ul class="collapse">
-  <li><a href="#nmds" id="toc-nmds" class="nav-link" data-scroll-target="#nmds">NMDS</a></li>
-  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
-  <li><a href="#pca" id="toc-pca" class="nav-link" data-scroll-target="#pca">PCA</a></li>
+  <li><a href="#addresses" id="toc-addresses" class="nav-link" data-scroll-target="#addresses">Addresses:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">A starter guide to analyzing data in R</h1>
+<h1 class="title">Urban Stream Ecology</h1>
 </div>
 
 
@@ -232,50 +217,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>There is a wide, wide, wide, range of ways to analyze data. Here, I hope to provide a starting tool kit for you to explore your data with. However, keep in mind you should always take extended precaution when using an analysis to ensure that you are checking your assumptiosn</p>
-<section id="comparison-of-two-groups" class="level1">
-<h1>Comparison of two-groups</h1>
-<section id="t-test" class="level3">
-<h3 class="anchored" data-anchor-id="t-test">t-test</h3>
+<p>Access the full project plan <a href="./docs/2023_WS4_ProjectPlan.pdf">here</a></p>
+<p>Access the full WS4 <a href="./docs/2023_W4_template.pdf">here</a></p>
+<p>In this lab we will compare two stream locations with differing levels of urbanization to assess the overall ecosystem health. Often times when assessing ecosystem health, ecologists, conservationists, and ecosystem managers will utilize “indicator” species. These are taxa who might respond more quickly to environmental perturbations. Generally, there are some species which will respond extremely quickly to environmental perturbations. These tend to be specialist species which cannot survive a range of conditions. Urban streams are subjected to increased variability in water flow, increased nutrient and contaminant inputs, and decreases in oxygen. These all will likely reduce the number of sensitive and moderately sensitive species. Alternatively there are pollution tolerant species who can survive these suboptimal conditions. At times these tolerant species can even thrive.</p>
+<p>As we learned last week, assessing differences in community composition can be a decent challenge to quantify. By relying on indicator species, we can easily compare abundance of different groups of organisms to compare the overall ecological health of an ecosystem.</p>
+<section id="lab-this-week" class="level1">
+<h1>Lab This Week:</h1>
+<p>For lab this week we will travel to two stream locations with anticipated differences in urban alterations. We will assess the stream’s overall health using a generalized stream health assessment survey. Then we will quantify the overall abundance of common stream macroinvertebrates. We can then pool these to compare the overall abundance of sensitive, moderately sensitive, and pollution tolerant taxa. By comparing these taxa we can assess overall stream health between the two locations.</p>
 </section>
-<section id="mann-whitney-u-test" class="level3">
-<h3 class="anchored" data-anchor-id="mann-whitney-u-test">Mann-Whitney U-test</h3>
+<section id="quantification-sampling-strategy" class="level1">
+<h1>Quantification &amp; Sampling Strategy</h1>
+<p>This week we will employ a systematic, time-based survey of macro-invertebrates. In previous labs, we employed systematic, haphazard, and random sampling based on spatially defined units. However, in our stream ecosystems the overall area to work with is relatively small. Yet we want to ensure that we sample a consistent way that way we are able to compare the two stream locations without bases of sampling effort, area, etc. As such, we will sample the streams for a fixed interval of time to ensure that we survey the areas with equal effort.</p>
+<p>Will will deploy six, 5-minute all out surveys of non-overlapping 2-m stretch of stream. During our all-out survey efforts the stream will be surveyed using seine nets to sample smaller macro invertebrates, dip nets for collection of medium-sized organisms, and visual observers to count flying insects, large benthic organisms, etc.</p>
 </section>
-</section>
-<section id="t-test-1" class="level1">
-<h1>t-test</h1>
-</section>
-<section id="correlation-tests" class="level1">
-<h1>Correlation Tests</h1>
-</section>
-<section id="linear-models" class="level1">
-<h1>Linear Models</h1>
-<section id="anova" class="level2">
-<h2 class="anchored" data-anchor-id="anova">ANOVA</h2>
-</section>
-<section id="simple-linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="simple-linear-regression">Simple Linear Regression</h2>
-</section>
-<section id="multiple-linear-regression" class="level2">
-<h2 class="anchored" data-anchor-id="multiple-linear-regression">Multiple Linear Regression</h2>
-</section>
-<section id="logistic-regression" class="level2">
-<h2 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h2>
-</section>
-</section>
-<section id="chi-squared-test" class="level1">
-<h1>Chi-Squared test</h1>
-</section>
-<section id="other-common-tests" class="level1">
-<h1>Other Common Tests</h1>
-<section id="nmds" class="level2">
-<h2 class="anchored" data-anchor-id="nmds">NMDS</h2>
-</section>
-<section id="clustering" class="level2">
-<h2 class="anchored" data-anchor-id="clustering">Clustering</h2>
-</section>
-<section id="pca" class="level2">
-<h2 class="anchored" data-anchor-id="pca">PCA</h2>
+<section id="logistics" class="level1">
+<h1>Logistics:</h1>
+<p>For time sake, we will have one section survey one stream location. Both locations are approximately 20-minutes away from campus, however, they are about 20-minutes from each other. The pristine area will be selected by Monday The urbanized stream will be a branch of Gills Creek. This is the same watershed, however by the time the water reaches this point, it has passed through several artificial lakes in residential areas. Also the stretch of creek itself is altered in a heavily trafficked, commercial area.</p>
+<p>We will meet at 25-minutes after the start of class so please plan to arrive by 3:15 at the meeting location.</p>
+<p>Here is our general schedule:</p>
+<p>3:15-3:30: Arrival, set-up, discuss</p>
+<p>3:30-3:45: Initial Stream Health Assessment Form</p>
+<p>3:45-4:30: Surveys, with buffer time</p>
+<p>4:30-4:45: Clean-up discuss</p>
+<p>4:45: Depart</p>
+<p>5:15: You get where you need to be.</p>
+<section id="addresses" class="level3">
+<h3 class="anchored" data-anchor-id="addresses">Addresses:</h3>
+<p>Tuesday: 723 Crowson Rd, Columbia, SC 29205</p>
+<p>Thursday: TBD</p>
+<p>Students are encouraged to wear shoes which they can get wet, long sleeves, bug-spray, and pants/shorts with belt loops. I will provide a selection of waders but we’re limited in the number and sizes.</p>
 
 
 </section>

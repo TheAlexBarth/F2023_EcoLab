@@ -1,0 +1,49 @@
+---
+title: "Urban Stream Ecology"
+---
+
+Access the full project plan [here](./docs/2023_WS4_ProjectPlan.pdf)
+
+Access the full WS4 [here](./docs/2023_W4_template.pdf)
+
+In this lab we will compare two stream locations with differing levels of urbanization to assess the overall ecosystem health. Often times when assessing ecosystem health, ecologists, conservationists, and ecosystem managers will utilize "indicator" species. These are taxa who might respond more quickly to environmental perturbations. Generally, there are some species which will respond extremely quickly to environmental perturbations. These tend to be specialist species which cannot survive a range of conditions. Urban streams are subjected to increased variability in water flow, increased nutrient and contaminant inputs, and decreases in oxygen. These all will likely reduce the number of sensitive and moderately sensitive species. Alternatively there are pollution tolerant species who can survive these suboptimal conditions. At times these tolerant species can even thrive.
+
+As we learned last week, assessing differences in community composition can be a decent challenge to quantify. By relying on indicator species, we can easily compare abundance of different groups of organisms to compare the overall ecological health of an ecosystem.
+
+# Lab This Week:
+
+For lab this week we will travel to two stream locations with anticipated differences in urban alterations. We will assess the stream's overall health using a generalized stream health assessment survey. Then we will quantify the overall abundance of common stream macroinvertebrates. We can then pool these to compare the overall abundance of sensitive, moderately sensitive, and pollution tolerant taxa. By comparing these taxa we can assess overall stream health between the two locations.
+
+# Quantification & Sampling Strategy
+
+This week we will employ a systematic, time-based survey of macro-invertebrates. In previous labs, we employed systematic, haphazard, and random sampling based on spatially defined units. However, in our stream ecosystems the overall area to work with is relatively small. Yet we want to ensure that we sample a consistent way that way we are able to compare the two stream locations without bases of sampling effort, area, etc. As such, we will sample the streams for a fixed interval of time to ensure that we survey the areas with equal effort.
+
+Will will deploy six, 5-minute all out surveys of non-overlapping 2-m stretch of stream. During our all-out survey efforts the stream will be surveyed using seine nets to sample smaller macro invertebrates, dip nets for collection of medium-sized organisms, and visual observers to count flying insects, large benthic organisms, etc.
+
+# Logistics:
+
+For time sake, we will have one section survey one stream location. Both locations are approximately 20-minutes away from campus, however, they are about 20-minutes from each other. The pristine area will be selected by Monday The urbanized stream will be a branch of Gills Creek. This is the same watershed, however by the time the water reaches this point, it has passed through several artificial lakes in residential areas. Also the stretch of creek itself is altered in a heavily trafficked, commercial area.
+
+We will meet at 25-minutes after the start of class so please plan to arrive by 3:15 at the meeting location.
+
+Here is our general schedule:
+
+3:15-3:30: Arrival, set-up, discuss
+
+3:30-3:45: Initial Stream Health Assessment Form
+
+3:45-4:30: Surveys, with buffer time
+
+4:30-4:45: Clean-up discuss
+
+4:45: Depart
+
+5:15: You get where you need to be.
+
+### Addresses:
+
+Tuesday: 723 Crowson Rd, Columbia, SC 29205
+
+Thursday: TBD
+
+Students are encouraged to wear shoes which they can get wet, long sleeves, bug-spray, and pants/shorts with belt loops. I will provide a selection of waders but we're limited in the number and sizes.
