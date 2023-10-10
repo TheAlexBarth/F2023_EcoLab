@@ -4,7 +4,7 @@ title: "Urban Stream Ecology"
 
 Access the full project plan [here](./docs/2023_WS4_ProjectPlan.pdf)
 
-Access the full WS4 [here](./docs/2023_W4_template.pdf)
+Access the full WS4 [here](./docs/2023_W4_Template.pdf)
 
 In this lab we will compare two stream locations with differing levels of urbanization to assess the overall ecosystem health. Often times when assessing ecosystem health, ecologists, conservationists, and ecosystem managers will utilize "indicator" species. These are taxa who might respond more quickly to environmental perturbations. Generally, there are some species which will respond extremely quickly to environmental perturbations. These tend to be specialist species which cannot survive a range of conditions. Urban streams are subjected to increased variability in water flow, increased nutrient and contaminant inputs, and decreases in oxygen. These all will likely reduce the number of sensitive and moderately sensitive species. Alternatively there are pollution tolerant species who can survive these suboptimal conditions. At times these tolerant species can even thrive.
 
