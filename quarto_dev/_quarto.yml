@@ -24,6 +24,8 @@ website:
           text: Biodiversity Analysis Code
         - href: code_lab-03.qmd
           text: Community Assemblage Analysis Code
+        - href: code_lab-04.qmd
+          text: Stream Analysis Code
       - text: Class Documents
         menu:
         - href: gen_expectations.qmd

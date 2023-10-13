@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-99.9.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>570L Fall 2023 - Lab 4 Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.26/datatables.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">570L Fall 2023</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus.html">Syllabus</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-code" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Code</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-code">    
+        <li>
+    <a class="dropdown-item" href="./code_main.html">
+ <span class="dropdown-text">General Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-00.html">
+ <span class="dropdown-text">Intro Assignment Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-01.html">
+ <span class="dropdown-text">Behavioral Ecology Analysis Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-02.html">
+ <span class="dropdown-text">Biodiversity Analysis Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-03.html">
+ <span class="dropdown-text">Community Assemblage Analysis Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./code_lab-04.html">
+ <span class="dropdown-text">Stream Analysis Code</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-class-documents" role="button" data-bs-toggle="dropdown" aria-expanded="false">Class Documents</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-class-documents">    
+        <li>
+    <a class="dropdown-item" href="./gen_expectations.html">
+ <span class="dropdown-text">General Grading Expectations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gen_stats-guide.html">
+ <span class="dropdown-text">Statistics for Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_0_intro_assignment.html">
+ <span class="dropdown-text">Intro Assignment</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_1_behavioral-ecology.html">
+ <span class="dropdown-text">Lab 1: Behavioral Urban Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_2_forest-biodiversity.html">
+ <span class="dropdown-text">Lab 2: Intermediate Distrubance &amp; Forest Ecology</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_3_community-assemblages.html">
+ <span class="dropdown-text">Lab 3: Community Assemblages</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_4_urban-stream.html">
+ <span class="dropdown-text">Lab 4: Urban Stream Syndrome</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lab_5.qmd">
+ <span class="dropdown-text">Lab 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./proj_main.html">
+ <span class="dropdown-text">Independent Projects</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-additional-resources" role="button" data-bs-toggle="dropdown" aria-expanded="false">Additional Resources</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-additional-resources">    
+        <li>
+    <a class="dropdown-item" href="./addtl_resources.html">
+ <span class="dropdown-text">Additional Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./gen_R-guide-plotting.html">
+ <span class="dropdown-text">Plotting Guide</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#stream-quality" id="toc-stream-quality" class="nav-link active" data-scroll-target="#stream-quality">Stream Quality</a></li>
+  <li><a href="#macroinvertebrate-assessment" id="toc-macroinvertebrate-assessment" class="nav-link" data-scroll-target="#macroinvertebrate-assessment">Macroinvertebrate assessment</a></li>
+  <li><a href="#bonus-diversity-assessment" id="toc-bonus-diversity-assessment" class="nav-link" data-scroll-target="#bonus-diversity-assessment">Bonus: Diversity Assessment</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4 Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>This week, we are analyzing the data from our stream quality assessments. I want to make a figure to associate with the analysis comparing the abundance of different groups of organisms. We’ll also want to report our stream health assessment metrics.</p>
+<p>Our hypothesis states that less disturbed streams will have better habitat quality, thus supporting a higher abundance of sensitive and moderate taxa while the poor-quality stream will have a higher abundance of tolerant taxa. To do this we have a response variable of taxa abundance (count/continuous data) and a predictor of stream site (Categorical with two levels: “ShoppingPlaza” and “Upstream”). However, we also have taxa group with three levels: Tolerant, Moderate, and Sensitive. Because taxa count is our response variable, will will need three analyses, one for each level of taxa type. Thus we will only compare “Is there a significant difference between the plaza and the upstream site in terms of tolerant taxa abundance”, then ask that same comparison for moderate, and sensitive taxa (it’s like having three different response variables). We will use a t-test, or more likely a mann-whitney U-test to compare the two levels of site for each response variable.</p>
+<p>Before you get started, make sure to load all the packages you might want:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<p>Look below for where to get which datasets:</p>
+<section id="stream-quality" class="level1">
+<h1>Stream Quality</h1>
+<p>While this is not necessary for just comparing two site, we did the stream health assessment form to score the stream on a standarized unit. Reporting these data in a table will look nice and add value to the worksheet. This tells a reader how different these two streams qualitatively are.</p>
+<p>You can access our stream health assessment data <a href="https://github.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/blob/main/data/stream_quality.csv">here</a>.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Local Import</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Advanced Web-Import</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>If you download the data you can read it in the same way we always have</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">'path/to/your/wd'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>stream_quality <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'stream_quality.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stream_quality <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/main/data/stream_quality.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>You can check out the data before you get started:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(stream_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6a29cd3eededdaf62f37" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6a29cd3eededdaf62f37">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"],["Substrate","Embeddness","habitatDiversity","Deposition","Flow","channel","sinuosity","stabilty","vegProtection","vegWidth","Substrate","Embeddness","habitatDiversity","Deposition","Flow","channel","sinuosity","stabilty","vegProtection","vegWidth"],["ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream"],[5,8,3,2,8,3,2,7,8,7.5,7,5,8,6,7,8,10,7,7,6.5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Eval_Param<\/th>\n      <th>Site<\/th>\n      <th>Score<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>For each site, we have 10 evaluation parameters, on a score of one-to-ten. To summarize this data, we just add up all ten parameters for each site. We can do that using dplyr language:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>stream_quality <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_score =</span> <span class="fu">sum</span>(Score))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Site          total_score
+  &lt;chr&gt;               &lt;dbl&gt;
+1 ShoppingPlaza        53.5
+2 Upstream             71.5</code></pre>
+</div>
+</div>
+<p>So our qualitative assessment suggests that the ShoppingPlaza is considerably poorer quality than the Upstream habitat. The score is out of 100, so the ShoppingPlaza gets an F while the Upstream gets a C-! This would be a nice table to include in your figures section of the worksheet. Make sure to review how to format table captions (vs figure captions).</p>
+</section>
+<section id="macroinvertebrate-assessment" class="level1">
+<h1>Macroinvertebrate assessment</h1>
+<p>Now we can test the hypothesis. As described above we’ll have three response variables, abundance of tolerant, moderate, and sensitive taxa. We’ll be comparing abundance at two levels (ShoppingPlaza and Upstream). So we need to run three t-tests/Mann Whitney U-tests.</p>
+<p>First, you can get your data <a href="https://github.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/blob/main/data/macro_survey.csv">here</a>.</p>
+<p>You can load it into r the same way we always have - with read.csv. I’m going to assign the file to a variable named <code>macro_survey</code></p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Local Import</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Advanced Web-Import</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>If you download the data you can read it in the same way we always have</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>macro_survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'macro_survey.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>You can read it straight from the internet:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>macro_survey <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/main/data/macro_survey.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Now before we do anything, take a look at the data. You’ll notice that there are records for each survey (kick seine haul) with a row for each possible taxa we observed. Now we don’t really care at that level of specificity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(macro_survey)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-012743b30e9990e29074" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-012743b30e9990e29074">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310"],["Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda","Asian_Clam","Odonata","Aquatic_Worm","Rock_Snail","Round_Worm","Stonefly","RiffleBeetle","Diptera","Diplopoda","Chilopoda"],["ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza1","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza2","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza3","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza4","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza5","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza6","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza7","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza8","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza9","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza10","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza11","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza12","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza13","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza14","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza15","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza16","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza17","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","ShoppingPlaza18","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream1","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream2","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream3","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream4","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream5","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream6","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream7","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream8","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream9","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream10","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream11","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream12","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13","Upstream13"],["ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","ShoppingPlaza","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream","Upstream"],[1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,15,16,16,16,16,16,16,16,16,16,16,17,17,17,17,17,17,17,17,17,17,18,18,18,18,18,18,18,18,18,18,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,7,7,7,7,7,7,7,7,7,7,8,8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9,9,9,10,10,10,10,10,10,10,10,10,10,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13],["A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","A","A","A","A","A","A","A","A","A","A","B","B","B","B","B","B","B","B","B","B","C","C","C","C","C","C","C","C","C","C","D","D","D","D","D","D","D","D","D","D","C","C","C","C","C","C","C","C","C","C","D","D","D","D","D","D","D","D","D","D","C","C","C","C","C","C","C","C","C","C","D","D","D","D","D","D","D","D","D","D","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","D","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","D","D","D","D","D","D","D","D","D","D"],[2,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,7,1,0,0,0,0,0,0,0,0,75,0,0,0,0,0,0,0,0,0,18,0,0,0,0,0,0,0,0,0,32,0,0,0,0,0,0,0,0,0,105,0,0,0,0,0,0,0,0,0,17,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,2,1,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,0,1,1,0,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],["Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate","Tolerant","Moderate","Tolerant","Moderate","Tolerant","Sensitive","Moderate","Moderate","Moderate","Moderate"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Taxa<\/th>\n      <th>tag<\/th>\n      <th>Site<\/th>\n      <th>Survey<\/th>\n      <th>Group_id<\/th>\n      <th>Count<\/th>\n      <th>Tolerance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,6]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>We want to group things by Tolerant, Moderate, or Sensitive. So let’s create a new dataframe which adds taxa counts into those groups for each survey, we can use <code>dplyr</code> language here and group by tolerance levels, site, and survey. We can assign this new dataframe to a variable called <code>macro_by_group</code>. We will mostly work with this from here on out:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>macro_by_group <span class="ot">&lt;-</span> macro_survey <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tolerance, Site, Survey) <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">sum</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s get into the meat of this worksheet:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Plotting:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Assumption Checking:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Analysis:</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Advanced Code Analysis:</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p>While we do have three separate analyses to run, we can still fit all the data on the same plot. Again this figure will be similar to some work we’ve done before making a grouped barplot with standard deviation shown.</p>
+<p>First, we’ll need to make our summary dataframe which we can plot from:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create sumamry df</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>macro_plot_df <span class="ot">&lt;-</span> macro_by_group <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tolerance, Site) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_count =</span> <span class="fu">mean</span>(count),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_count =</span> <span class="fu">sd</span>(count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now lets make our plot using ggplot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(macro_plot_df) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tolerance, <span class="at">y =</span> mean_count,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> Site),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">stat =</span> <span class="st">'identity'</span>, <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tolerance, <span class="at">ymin =</span> mean_count,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ymax =</span> mean_count <span class="sc">+</span> sd_count,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> Site),</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">'dodge'</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'lightblue'</span>, <span class="st">'darkblue'</span>)) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">'lightblue'</span>, <span class="st">'darkblue'</span>)) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">'Invertebrate Tolerance Level'</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">'Mean Abundance'</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">""</span>, <span class="at">color =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="code_lab-04_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This figure looks nice! Just by glancing at it, we can see that the tolerant taxa were most abundant on average at both sites. However, more so at the Shopping Plaza. We can can see there is pretty high variation within sites, particularly at the shopping plaza. That could be due to clustering of clams in the sediment or differences in kicking efficiency of samplers.</p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Before we embark on the statstical analysis, we need to decide whether or not to do a t-test or a mann whitney U-test. The core difference is that the t-test assumes that the data are normally distributed (or at least we have a fairly large sample size).</p>
+<p>To check for normality we can make some figures. Note these are not figures we need to share (don’t put it in your worksheet). But we want to see this for ourselves.</p>
+<p>For the simple analyses, I’m just going to work with the tolerant taxa. However, you will want to repeat this analysis for moderate and sensitive taxa. To do this, we can make a new dataframe which filters <code>macro_by_group</code> to just have what we are focusing on. Let’s call it <code>Tolerant_group</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Tolerant_group <span class="ot">&lt;-</span> macro_by_group <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tolerance <span class="sc">==</span> <span class="st">'Tolerant'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can visualize the distribution of data for each site. Note, I don’t really care if you understand this code (it isn’t ggplot/dplyr so it is a little more complex and uses base R logic). However, the main thing to take away is evaluating if the data are normal:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check assumption of normality</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Tolerant_group<span class="sc">$</span>count[Tolerant_group<span class="sc">$</span>Site <span class="sc">==</span> <span class="st">'ShoppingPlaza'</span>] <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="st">'ShoppingPlaza'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-04_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Tolerant_group<span class="sc">$</span>count[Tolerant_group<span class="sc">$</span>Site <span class="sc">==</span> <span class="st">'Upstream'</span>] <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">density</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="st">'Upstream'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="code_lab-04_files/figure-html/unnamed-chunk-17-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see the data are fairly right-skewed and zero-inflated. We also have a fairly small sample size (&lt;25) so let’s use the non-parametric test. This is a Mann Whitney U test.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p>If you jumped to this tab without doing the assumption checking you’ll have some issues. Mainly because we’ve already made our filtered dataframe. Make sure you have created a dataframe, filtered by tolerance group!</p>
+<p>Again here I’m just going to do the analysis for Tolerant taxa, but you will want to repeat the same analysis for moderate and sensitive taxa. You can do this by changing <code>filter(Tolerance == 'Tolerant')</code> to <code>filter(Tolerance == 'Sensitive')</code> (or moderate). Make sure that you consider renaming the dataframe from <code>Tolerant_group</code> to sensitive or whatever. I’ll also save you the trouble of plotting and tell you the data are all non-normal and we should use the Mann Whitney test like below for all tolerance levels.</p>
+<p>To run the mann-whitney U test in R we use the wilcox.test function and the formula layout. There’s some additional arguments as well.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(count <span class="sc">~</span> Site, <span class="at">data =</span> Tolerant_group,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  count by Site
+W = 180.5, p-value = 0.01102
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+  0.9999634 15.9999727
+sample estimates:
+difference in location 
+              4.999996 </code></pre>
+</div>
+</div>
+<p>Here, we have a small p-value which suggests the two groups are significantly different. Our confidence interval says that we think, with 95% confidence, the true difference in tolerant taxa abundance between the Upstream and shopping plaza point is between ~1 and ~16 individuals per kick-net haul. This lines up well with what we visually can deduce from our bar chart.</p>
+<p>Repeat this for Sensitive and Moderate taxa.</p>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<p>Here, I’m keeping with the dplyr approach to filter, but I’m storing all three dataframes in one list. I can make them in a loop. Then I can run the mann-whitney U test in a loop for each taxa and see all output at once! You can see all I’m really changing is rather than typing “Tolerant” as my filter, I loop through the unique levels of Tolerance column in macro_by_group dataframe. Then I can filter on the ‘level’ iterator. I then run the test in the same loop but print out my level at the top so I can make sense of the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tolerance_levels <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(level <span class="cf">in</span> <span class="fu">unique</span>(macro_by_group<span class="sc">$</span>Tolerance)) {</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  tolerance_levels[[level]] <span class="ot">&lt;-</span> macro_by_group <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tolerance <span class="sc">==</span> level)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(level)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox.test</span>(count <span class="sc">~</span> Site, <span class="at">data =</span> tolerance_levels[[level]],</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>()</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Moderate"
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  count by Site
+W = 82, p-value = 0.05878
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -9.999325e-01  1.336044e-05
+sample estimates:
+difference in location 
+          -5.32433e-05 
+
+[1] "Sensitive"
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  count by Site
+W = 99, p-value = 0.1
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -6.571325e-05  0.000000e+00
+sample estimates:
+difference in location 
+                     0 
+
+[1] "Tolerant"
+
+    Wilcoxon rank sum test with continuity correction
+
+data:  count by Site
+W = 180.5, p-value = 0.01102
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+  0.9999634 15.9999727
+sample estimates:
+difference in location 
+              4.999996 </code></pre>
+</div>
+</div>
+<p>Looking at all the data, we don’t have a significant difference in abundance of the sensitive or moderate groups. This is somewhat surprising and something to think about in your discussion. A key thing to think about is that sensitive taxa are completely absent from the Shopping Plaza site. The lack of significance from the test comes from the fact we don’t have enough data to be confident that the population abundance is significantly different than 0 at the Upstream site. This is where stats and biology can differ a bit. While in a statistics world you are forced to say somthing like “we fail to reject the null hypothesis that there is a significant difference in sensitive taxa abundance between the plaza and upstream sites”. In the biology world we want to evaluate if stream quality effects who lives there. While the sensitive taxa were sparse at the upstream site, they were totally absent from the plaza site. This alone provides weak support for the hypothesis. We also would want to note that we sampled directly following a large rain event at the upstream sight. This could have reduced the population sizes with large flusing and our results may be deflated compared to the average stream value. We might want to consider extending this study to sample at various time points following large disturbances.</p>
+<p>That is something to address in your discussion.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="bonus-diversity-assessment" class="level1">
+<h1>Bonus: Diversity Assessment</h1>
+<p>In our original approach, we just compared if there is a significant difference in abundance between the two sites.</p>
+<p>However, we could look at a metric like diversity rather than abundance. Let’s do that here!</p>
+<p>For this analyses, we don’t want to use the processed data. We want to use the raw data. You can access that <a href="https://github.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/blob/main/data/raw_macro_survey.csv">here</a></p>
+<p>Since this is bonus, I’m just going to read in from my website directly. You should know how to locally import if that’s what you’re doing</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>raw_macro <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_4_Urban-Stream-Ecology/main/data/raw_macro_survey.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We’ll use code similar to lab 2 here. We don’t necessarily care about the species, just what are the differences in diversity from each kicknet haul?<br>
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can write a function to do this repeatedly!</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>diversity_calculator <span class="ot">&lt;-</span> <span class="cf">function</span>(count) {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> count <span class="sc">/</span> <span class="fu">sum</span>(count) <span class="co"># create counts</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  lnp <span class="ot">&lt;-</span> <span class="fu">log</span>(p)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  H <span class="ot">&lt;-</span>  <span class="sc">-</span><span class="fu">sum</span>(p <span class="sc">*</span> lnp)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(H)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>diversity_df <span class="ot">&lt;-</span> raw_macro <span class="sc">|&gt;</span> </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Site, Survey) <span class="sc">|&gt;</span> </span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">H =</span> <span class="fu">diversity_calculator</span>(Count))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>One issue here is that in sites where there were no taxa, the calculation messes up and reports NaN (not a number). However, we can say that having 0 taxa is the same Shannon Wiener value as all of one taxa (essentially no diversity). So let’s change to NaNs to zeros:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diversity_df<span class="sc">$</span>H[<span class="fu">is.nan</span>(diversity_df<span class="sc">$</span>H)] <span class="ot">&lt;-</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can compare H between sites with a mann-whitney U test:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(H <span class="sc">~</span> Site, <span class="at">data =</span> diversity_df,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">exact =</span> <span class="cn">FALSE</span>, <span class="at">conf.int =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  H by Site
+W = 100, p-value = 0.3024
+alternative hypothesis: true location shift is not equal to 0
+95 percent confidence interval:
+ -2.170960e-05  6.642698e-05
+sample estimates:
+difference in location 
+         -9.031466e-06 </code></pre>
+</div>
+</div>
+<p>So this suggests there is not a significant difference in the H (shannon wiener diversity index) between the two sites. Overall diversity was very low at both locations. However, it is again likely driven by our small sampling size and the large flushing event which may have pushed out some of the sensitive macro invertebrates. However, this is a good example of when indicator species are valuable. If the diversity is low, but occupied by native, sensitive taxa the stream is likely healthier than one with massive invasive populations. This difference is not captured by the a taxonomic agnostic approach like the Shannon Wiener index</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
