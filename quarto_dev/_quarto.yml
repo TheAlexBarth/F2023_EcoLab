@@ -26,6 +26,7 @@ website:
           text: Community Assemblage Analysis Code
         - href: code_lab-04.qmd
           text: Stream Analysis Code
+        - href: code_lab-05.qmd
       - text: Class Documents
         menu:
         - href: gen_expectations.qmd
@@ -42,8 +43,8 @@ website:
           text: "Lab 3: Community Assemblages"
         - href: lab_4_urban-stream.qmd
           text: "Lab 4: Urban Stream Syndrome"
-        - href: lab_5.qmd
-          text: "Lab 5"
+        - href: lab_5_phenology.qmd
+          text: "Lab 5: Phenology"
         - href: proj_main.qmd
           text: "Independent Projects"
       - text: Additional Resources

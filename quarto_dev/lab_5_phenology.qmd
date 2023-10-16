@@ -1,0 +1,12 @@
+---
+Lab 5: Phenology
+---
+
+Project Plan [here](./docs/2023_WS5_ProjectPlan.pdf)
+Worksheet [here](./docs/2023_WS5_Template.pdf)
+
+# This Week
+
+Phenology is the study of cyclical dynamics, typically over annual cycles in natural phenomena. Seasonal variation is a fundamental component of many natural populations and can structure ecological interactions, population growth, and many other phenomena. Read the project plan for a full background. To well characterize phenological phenomena, you need to have long-term datasets. Then you can evaluate how such patterns shift over time.
+
+There majority of the lab will be dicussed on the code page.

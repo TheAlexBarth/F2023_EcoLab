@@ -1,0 +1,443 @@
+---
+title: Phenology Analysis
+---
+
+# Getting the data
+
+I downloaded all the data from the [MeadoWatch project](https://www.nature.com/articles/s41597-022-01206-8) and made it available on our github page for easy access [here](https://github.com/USC-Ecology-Lab/Lab_5_Phenology/tree/main/data). We'll be processing all this data so take a look and figure out what is what:
+
+-   MW_PhenoDat_2013_2019_anonymized.csv: The individual observations of whether or not a given plot is flowering
+
+-   MW_Phenocurves.csv: Calculated flowering probabilities for given species. These are from [Ris Lambers et al. 2021](https://www.sciencedirect.com/science/article/pii/S2666900521000083).
+
+-   MW_SDDall.csv: date of snow dissappearance, fortunately it is already aslo in the phenocurve data
+
+-   MW_SiteInfo_2013_2020.csv: This data has the main information, particularly elevation from each
+
+-   MW_metadata.xlsx: We don't worry about that. It explains all the data.
+
+One thing to note about this data: They identify
+
+However, our hypotheses are broadly about blooming time. We are not particularly interested in individual species but rather a broader ecological trend. Thus, we will have to consider the variation introduced by inter-specific variation in bloom time.
+
+Ok let's get set-up. We'll need a few packages. If you haven't installed these yet make sure to `install.packages('packagename')`.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+```
+
+```{r, echo = F}
+source('./utils.R')
+```
+
+# Initial Visualization
+
+First, let's look the general cycles across the years. This is a good approach to get a general idea of bloom time patterns across the years
+
+### Data Processing
+
+Here we are going to use the MW_PhenoDat_2013_2019_anonymized.csv dataset. Make sure to set your working directory to wherever you've stored the file:
+
+::: panel-tabset
+### Local Import:
+
+```{r, eval = F}
+pheno_dat <- pheno_dat <- read.csv('./data/MW_PhenoDat_2013_2019_anonymized.csv')
+```
+
+### Web Import:
+
+```{r}
+pheno_dat <- read.csv('https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_5_Phenology/main/data/MW_PhenoDat_2013_2019_anonymized.csv')
+```
+:::
+
+Take a look at the data frame - it's fairly large. Its actually too big for the view function to work on this webpage. It might break your R!
+
+```{r, eval = F}
+View(pheno_dat)
+```
+
+```{r, echo = F}
+# DT::datatable(pheno_dat)
+```
+
+The main column we are interested in is `Flower` which is a binary variable of whether or not a given plant in a plot is flowering. However, using some dplyr language, we can easily calculate the proportion flowering in each site at each date:
+
+```{r}
+pheno_sum <- pheno_dat |> 
+  group_by(Date = as.Date(Date, format = '%m/%d/%y'),Site_Code, Transect) |> 
+  summarize(prop_flowering = sum(Flower)/length(Flower))
+```
+
+We can safely take a look at pheno_sum.
+
+```{r, eval = F}
+View(pheno_sum)
+```
+
+```{r, echo = F}
+DT::datatable(pheno_sum)
+```
+
+We can see that there are for each plot, at particular dates a proportion of the flower which have flowered. This can be used for a nice plot. But first, I want to make a figure which has day-of-year on the x-axis and then different years as different colors. So I need to make a new column for day of year. Here I can use the lubridate package:
+
+```{r}
+pheno_sum$DOY <- pheno_sum$Date |> yday()
+```
+
+### Plotting
+
+Now let's make the plot. I'll have loess smoothing lines and points. One thing I want to show as well is the different transects of the study. Here, I can use a nifty ggplot feature called `facet_wrap` where I can specify how to break a figure into two panels.
+
+```{r, eval=F}
+ggplot(pheno_sum)+
+  geom_point(aes(x = DOY, y = prop_flowering,
+                 color = as.factor(year(Date))),
+             alpha = 0.25)+
+  geom_smooth(aes(x = DOY, y = prop_flowering,
+                  color = as.factor(year(Date))),
+              se = F)+
+  scale_y_continuous(limits = c(0,1))+
+  facet_wrap(~Transect)+
+  labs(x = 'Day of Year', y  = 'Proportion Flowering',
+       color = 'Year') +
+  theme_classic()
+```
+
+```{r, echo = F}
+p2 = 
+ggplot(pheno_sum)+
+  geom_point(aes(x = DOY, y = prop_flowering,
+                 color = as.factor(year(Date))),
+             alpha = 0.25)+
+  geom_smooth(aes(x = DOY, y = prop_flowering,
+                  color = as.factor(year(Date))),
+              se = F)+
+  scale_y_continuous(limits = c(0,1))+
+  facet_wrap(~Transect)+
+  labs(x = 'Day of Year', y  = 'Proportion Flowering',
+       color = 'Year') +
+  theme_classic()
+watermark_plot(p2)
+```
+
+This figure is fairly helpful to get a general intuition of when flowers start flowering. For the most part, they are flowering in summer but there was one early year in 2015. This figure doesn't get at our hypotheses but it does suggest there are some interesting mechanisms governing flowering patterns.
+
+# Statistical Analysis
+
+Now we can build some models to help identify what the primary factors governing flowering patterns are. First, we'll need a few more packages (which you probably haven't encountered yet). I'm going to load `lme4` to build linear mixed models (discussed below) and `wiqid` which has a function `standardize2match` which we'll want to use later.
+
+```{r}
+library(lme4)
+library(wiqid)
+```
+
+### Data Loading & Manipulation
+
+We'll want three new datasets and I'm going to do some fairly advanced processing here. This is less important to understand, just make sure that you copy everything correctly and it should go well.
+
+We want the MW_SiteInfo_2013_2020 for elevation data, the MW_SDDall data for snow dis, and the MW_Phenocurves for peak flowering probability which is our main response variable of interest
+
+::: panel-tabset
+#### Local Import
+
+```{r, eval=F}
+site_meta <- read.csv('MW_SiteInfo_2013_2020.csv')
+pheno_calced <- read.csv('MW_Phenocurves.csv')
+```
+
+#### Web-import
+
+```{r}
+site_meta <- read.csv('https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_5_Phenology/main/data/MW_SiteInfo_2013_2020.csv')
+
+pheno_calced <- read.csv('https://raw.githubusercontent.com/USC-Ecology-Lab/Lab_5_Phenology/main/data/MW_Phenocurves.csv')
+```
+:::
+
+It's always good to take a quick look at your data and make sure it is how you are expecting!
+
+```{r, eval = F}
+View(site_meta)
+```
+
+```{r, echo= F}
+DT::datatable(site_meta)
+```
+
+```{r, eval= F}
+View(pheno_calced)
+```
+
+```{r, echo = F}
+DT::datatable(pheno_calced)
+```
+
+We need to match up elevation values to the pheno_calced values based on the Site_Loc and Year columns. Here we can use some fancy dplyr. However, a tricky issue is that the names don't match (i.e. pheno_calced has a site_code column while site_meta has a Site_Loc colume). Don't worry, dplyr makes it easy!
+
+```{r}
+pheno_calced <- site_meta |> 
+  select(Site_Loc, Elevation) |> 
+  right_join(pheno_calced, by = c("Site_Loc" = 'site_code'))
+```
+
+Great, now we can get into the actual model building!
+
+### Simple Linear Modelling
+
+For this analysis we will be using a variety of linear models. Fundamentally, these models follow the idea of fitting a line to the data. Think of a basic $Y = mx + b$. However, in statistics, you'll more often see the format:
+
+$$
+\hat{Y} = \beta_0 + \beta_1x
+$$
+
+Where $\beta_0$ is the intercept and $\beta_1$ is the slope of the line. To get accustomed to this idea, let's just fit a simple model. Note I'll be making plots as we make the models because I believe that helps the understanding the best.
+
+Before we get started, let's review the three hypotheses:
+
+(H1) Earlier snowmelts will facilitate earlier blooms as melts may act as a cue for initiating plant growth, starting the cycle earlier;
+
+(H2) Because higher elevations typically have harsher conditions, the peak bloom will be delayed at elevation, however;
+
+(H3) Consistent with climate change theory, higher-elevations will be more sensitive to change resulting in an increased impact of snowmelt changes at altitudes on bloom timing.
+
+Thus, we would expect 1- A significant effect of snow disappearance date (SDD) delaying peak flowering probability date, 2- A significant effect of elevation delaying peak flowering probability date, 3- Increasing elevation to increase the effect that SDD has on peak flowering probability date.
+
+First let's look at the simple linear model case. This is one variable and one response (one x, one y). In R, we will fit a linear model using base R, with the function `lm()`. This allows for the function formula notation `y~x, data = data.frame`. For this exercise, when I run linear model, I will save it to a new variable. On a technical note, this then saves that linear model as a model object which is a list with all sorts of features we can use later. Mainly we just want to get a summary of the model object.
+
+For the next several tabs, I'll explore simple linear models. I will provide most the explanation in the first tab. However, read through all tabs for maximum learning. Note, the actual analysis for this lab will be a more complicated model. However, this is the warm-up. I encourage you to run this all in R, but don't overly stress on it.
+
+::: panel-tabset
+#### Snow Disappearance Date
+
+Here we can use `SDD` as our predictor variable and `peak` as the response.
+
+```{r}
+simple_sdd_mod <- lm(peak ~ SDD, data = pheno_calced)
+
+summary(simple_sdd_mod)
+```
+
+There's a lot to look at here but some key pieces of information to extract are (1) The estimate and significance of the SDD Coefficient on the model. We can find this information in the Coefficients table on the second row. In statistical language, the intercept and the SDD are our $\beta_0$ and our $\beta_1$ respectively. For biology/interpretation, the SDD coefficient is the effect that increasing SDD has on our response variable. So looking at the table, we could say for every day later in the year snow disappears, we'd expect the peak flowering probability date to delay 0.44 days. Many times in a linear model the intercept is difficult to understand in context but here it makes a lot of sense: if the SDD was 0, or if there was no snow in the year, we'd expect peak flowering probability to occur at day 136.72, on average.
+
+Now, the coefficient reported for SDD is the effect determined in our sample of data, however we are interested in making an inference to the population level. So we need to rely on the statistical test which is performed while the model is fit and we have a p-value at the end of our coefficients table. This test evaluates whether or nor the slope of the line is significantly different from 0 (can we be 95% confident that our sample effect reflects the true-population level effect). Our p-value is less than 2 x 10^-16^. So we can conclude that if there really is no effect of SDD on peak flowering probability date, the probability of us observing the effect in our sample that we did is effectively impossible.
+
+One other key pieces of information from our regression summary is the R^2^ value. This is essentially the proportion of variance in the y variable that can be explained by the x. In our case, it is 0.35. While only explaining 35% of the variation may seem small, in ecology this is actually considered a fairly good fit. When you think about all the things occurring in nature, the fact we can attribute 35% of the variability to one single factor is fairly impressive.
+
+This is all more information that we'd typically write up however. In reality, we'd be more likely to write "There is a significant effect of SDD on peak flowering probability date ($\beta_{SDD}$ = 0.446, p \< 0.001, R^2^ = 0.35)." Alternatively: "On average, there was a significant delay of peak flowering date by 0.446 days for each day delay of SDD (p \< 0.001, R^2^ = 0.35)".
+
+Another way to interpret the effect of SDD on peak flowering probability date is to use a confidence interval. A confidence interval reports (usually 95%) the range of possible values where we believe the true population level effect is. If a confidence interval includes 0, then the p-value is greater than 0.05 and we would conclude no significant effect (e.g. based on the data collected we can't conclude there is a real effect). Alternatively, if the effect does not include 0, we can conclude there is some significant effect. Confidence intervals are a nice way to present the data because it gives a more intuitive range of the data than just a p-value.
+
+```{r}
+confint(simple_sdd_mod)
+```
+
+Here, I can look at the confidence intervals for the coefficients and report "There was a significant effect of SDD delaying peak flowering probability (0.397-0.494 days, 95% CI for $\beta_{SDD}$).
+
+#### SDD Plot
+
+Let's make a nice plot to visualize our relationship we described above.
+
+```{r}
+ggplot(pheno_calced) +
+  geom_point(aes(x = SDD, y = peak)) +
+  geom_smooth(aes(x = SDD, y = peak),
+              method = 'lm') +
+  labs(x = "Snow Diss. Date [Day]", y = 'Peak Flowering Probability [Day]') +
+  theme_bw()
+```
+
+Here, we can visualize a pretty clear relationship! One thing to note is that there is increased variation at early snowmelt dates compared to later melt dates (Fig. 1).
+
+#### Elevation
+
+Now let's make a simple linear regression for elevation's effect on peak date. From an R perspective, I only need to change one piece of the code. However, I'm also going to save the model to a new object name which makes a little more sense:
+
+```{r}
+simple_ele_mod <- lm(peak ~ Elevation, data = pheno_calced)
+
+summary(simple_ele_mod)
+```
+
+By looking at the data above, we can conclude that there is a significant effect of elevation delaying peak day on average 0.02 days per meter elevation (p \< 0.001). However the effect is very weak (R^2^ = 0.02). When we look at the plot in the next tab,
+
+#### Elevation Plot
+
+```{r}
+ggplot(pheno_calced) +
+  geom_point(aes(x = Elevation, y = peak)) +
+  geom_smooth(aes(x = Elevation, y = peak),
+              method = 'lm') +
+  labs(x = "Elevation [m]", y = 'Peak Flowering Probability [Day]') +
+  theme_bw()
+```
+
+So again, we can see that our
+
+#### Checking assumptions
+
+When constructing linear models, we are making several implicit assumptions. There are referred to as the LINE assumptions: Linearity - the data have a linear relationship, Independence of observations - one observation doesn't influence the next, Normality of errors - the distance away from the regression line are normally distributed across the data (residuals are normal), and equality of variance - there isn't high variance at one level versus another. These assumptions can all have a variety of influences if broken, but the main ones to look out for are the normality of errors and to see if there are severe outliers (this is a feature of lack of equal variance. In R, we can explore assumptions very quickly by `plot` -ing our linear model object:
+
+```{r}
+plot(simple_ele_mod)
+```
+
+These are confusing plots with no context. But focus on the first two. The first one is essentially our figure from the plots rotated to be horizontal around the regression line. What we look for here is that the data don't have a strong funnel shape (residuals are even and homogeneous across the x-axis). It looks pretty good but there's some weird values at low levels. The second plot is the q-q plot and it tells us how normal our errors are. We want a pretty straight line. We pretty much have that but we can see at the lower tail there's some leverage. This suggests that at lower elevations, the data get a little non-linear and it might be pulling down the slope of our model.
+:::
+
+### SLR: Takeaways:
+
+The simple linear models address the first and second part of our hypotheses fairly well. However, it doesn't account for the third part of our hypotheses. The simple models also leave some questions lingering. Notably, in the SDD model, there is high variance at early SDD values. This suggests there might be some effect of certain species of plant flowering earlier when snow melt facilitates it. However, in cold years, the snow stays longer preventing all species from blooming. Also in our elevation model, the fit was very poor, so while there was a significant effect, is it really meaningful? We can build more comprehensive models to explore all these questions.
+
+### Building More Comprehensive Models:
+
+This dataset and our hypothesis provide the ideal scenario to explore the use of linear mixed models. These models incorporate what are called both random and fixed effects. I'll provide a lay description here with the next few tabs.
+
+::: panel-tabset
+#### Multiple Linear Regression
+
+In the previous example, we explored singular linear regression. These models fit just a single effect to one y. However, we can include multiple x's fairly easily. This allows us to take in account how important one factor is while accounting for all others. In statistics language this looks like:
+
+$$
+\hat{Y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n
+$$
+
+Thus, we can fit as many predictor variables to try and explain a single response variable. We can also fit "interactions" to see how the value of one predictor influences the effect of another:
+
+$$
+\hat{Y} = \beta_0 + \beta_1x_1 + \beta_2x_2 + \beta_3 x_1x_2
+$$
+
+In the above model, we create a third coefficient for the multiplicative interaction between a continuous $x_1$ and $x_2$. If you're thinking ahead, you can realize how this will be useful for testing our third hypothesis, we can evaluate how the value of elevation influences the effect of sdd:
+
+$$
+\hat{peak} = \beta_0 + \beta_{sdd}SDD + \beta_{ele}Elevation + \beta_3 SDD * Elevation
+$$
+
+#### Fixed vs Random Effects
+
+So far, we discussed everything in a classic model framework. These are all fixed effects: we are interested in the fixed effect of SDD and elevation on peak date. However, there are other things influencing peak date which we haven't yet thought about. Specifically the species of flower
+
+A random effect can be added to a model to account for some source of variation we know might be there but aren't particularly interested in. This is typically used when we have a bunch of different levels of some categorical factor but don't care about the impact of each of those levels. In our case, we are interested in a broad scale pattern, but we know there might be some effect that species has on peak date. A random effect assumes that there is some group-wide average (an average flowering peak date), and all the different levels (different flowers) are pulled from a normal distribution around that average. In our case, this is a pretty intuitive application. Another area of variation could be the observation plot itself. Since there were different plots observed at different locations, there might be some mid-scale patchiness effects which we aren't particularly interested in but want to account for.
+
+At a statistical level: we are effectively fitting a separate intercept for each instance of a different flower species/ observation plot. But the intercepts themselves are fit to some normal distribution, constraining their effects.
+
+#### Putting it together
+
+We can build a mixed effect model to incorporate both the fixed effects we are interested and the random effects we want to account for. In our case, we will model SDD and elevation as fixed effect while accounting for flower species and plot as random effects.
+
+A key difference between a mixed effects model and a multiple linear model is the algorithm used to fit the model. A typical regression (linear model) uses Least Squares (called ordinary least squares or OLS regression) to fit the line to the data. However, because in a mixed effect model, we assume the random effects come from some normal distribution. It will use a Restricted Maximum Likelihood fit (REML). (Super technical: OLS is a maximum likelihood method, just not restricted on the effects and allows each effect's its own normal distribution).
+
+#### Model Building
+
+When building a model, the goal is parsimony: how can we provide the most simple example while accounting for the maximal variation. There are statistical tests to compare between the models to compare metrics for how well a model describes the data in the fewest parameters possible. Some common metrics to compare are AIC, BIC, and R^2^ adjusted. We'll use AIC, arguable the most common. The value itself is not necessarily meaningful to use but we are interested in a lower value. We can compare models using an ANOVA to see if it is a significantly better fit.
+
+#### Further reading
+
+https://stats.oarc.ucla.edu/other/mult-pkg/introduction-to-linear-mixed-models/
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5970551/
+:::
+
+#### Building the model in R:
+
+Ok, that was a lot of background. Now, let's get into the model building process in. I will create four models with increasing complexity, starting with just a single random effect and fixed effect then adding them in.
+
+On a technical note: when constructing a multiple-effect model, it is recommended to center the variables. This allows for when data have different magnitudes to compare their effects directly. In our case, this is very necessary as elevation is on the order of 1000's while sdd is on the order of 10's. So if we didn't center the variables, it can introduce some problems for model fitting and evaluation. In R we can do this with `scale()`
+
+In R, we will need to use a package called `lme4`. There's a few packages for mixed effects models but this is a common one.
+
+```{r}
+library(lme4)
+```
+
+Now we'll use the lmer function rather than lm.
+
+```{r}
+peak_mod1 <- lmer(peak ~ scale(SDD) + (1 | species), data = pheno_calced) 
+peak_mod2 <- lmer(peak ~ scale(Elevation) + scale(SDD) + (1 | species), data = pheno_calced)
+peak_mod3 <- lmer(peak ~ scale(Elevation) + scale(SDD) + scale(Elevation) * scale(SDD) + (1 | species), data = pheno_calced)
+peak_mod4 <- lmer(peak ~ scale(Elevation) + scale(SDD) + scale(Elevation) * scale(SDD) + (1 | species) + (1|Site_Loc), data = pheno_calced)
+```
+
+Great, now we've made our models, let's evaluate them.
+
+```{r}
+anova(peak_mod1, peak_mod2, peak_mod3, peak_mod4)
+```
+
+Ok, looking at our ANOVA results, each model is significantly different, indicating that our final model is the best one. So let's look at the summary:
+
+```{r}
+summary(peak_mod4)
+```
+
+The fixed effect table is good as it provides an estimate for our coefficients, but it doesn't provide a p-value, we'll just use confidence intervals instead:
+
+```{r}
+confint(peak_mod4)
+```
+
+Great, we can see there is a significant effect of SDD but not elevation (once accounting for the variation in sdd and species/plot effects). However, we do have a significant effect of elevation on the effect of sdd --\> there is a significant interaction! This means that as we increase elevation , the effect of sdd increases as well (95% CI: 0.61-2.61). Another thing to note is that the scaled data are not directly interpretative for the effect. Technically we can say: for each unit increase of scaled SDD, there is a 1.6 day delay in average flower peak. But that isn't very meaningful, we need to unscale the data to interpret it. This creates a challenge for plotting:
+
+### What should I takeaway?
+
+When constructing multiple models, it was found the ideal model included fixed effects as Elevation, SDD, and the interaction of those terms and random effects to account for flowering species and observation plot (AVONA, p-value \< 0.001). In this model it was found that there was a significant effect of SDD and the interaction term. However elevation itself was not significant.
+
+This supports our first and third hypotheses, but did not support the second one! Some possible explanations for that might be that the high-elevation plants are adapted to flower at harsh conditions but are senstive to changes as they might be specialists.
+
+### Plotting the model results!
+
+Now we want to make a plot to display the effect of SDD on peak. WE ALREADY MADE THAT PLOT ABOVE!. However, the line fit by ggplot uses a basic linear model fit. We want the slope of the line to reflect the more complicated model.
+
+As mentioned above, we need to plot the effect using scaled data. Do to this I'm going to use the `standardize2match` function from the `wiqid`. This function takes two vectors and will standardize the first vector to match the variation of the second one. For our purposes, I'm going to match a range of values which reflect the range of SDD:
+
+```{r}
+sdd_scaled <- standardize2match(c(104:204), pheno_calced$SDD)
+```
+
+I saved my scaled-data as a new variable. Now I can generate predicted values from the model. Note I'm getting these values from the summary of fixed effects above.
+
+```{r}
+mod_predicted_peak <- 213.47 + 17.438 * sdd_scaled
+```
+
+Now we have enough data for our plot:
+
+```{r, eval = F}
+ggplot() +
+  geom_point(aes(x = SDD, y = peak), data = pheno_calced) +
+  geom_smooth(aes(x = c(104:204), y = mod_predicted_peak),
+              method = 'lm') +
+  labs(x = "Snow Diss. Date [Day]", y = 'Peak Flowering Probability [Day]') +
+  theme_classic()
+```
+
+```{r, echo = F}
+p = ggplot() +
+  geom_point(aes(x = SDD, y = peak), data = pheno_calced) +
+  geom_smooth(aes(x = c(104:204), y = mod_predicted_peak),
+              method = 'lm') +
+  labs(x = "Snow Diss. Date [Day]", y = 'Peak Flowering Probability [Day]') +
+  theme_classic()
+watermark_plot(p)
+```
+
+This is the plot you should include in your worksheet. For comparison, this is the same plot with the original line added in black:
+
+```{r}
+ggplot() +
+  geom_point(aes(x = SDD, y = peak), data = pheno_calced) +
+  geom_smooth(aes(x = c(104:204), y = mod_predicted_peak),
+              method = 'lm') +
+  geom_smooth(aes(x = SDD, y = peak), data = pheno_calced,
+              color = 'black', method = 'lm') +
+  theme_classic()
+```
+
+We can see when we account for the random effects and elevation, the average slope of SDD on peak is steeper. We know that this is driven in part by the interaction of elevation and SDD, when elevation is higher, the impact of SDD is higher on peak.
+
+For your worksheets, I don't expect you to run all the models we ran in the tutorial. I mainly am interested in you reporting the best model and its associated plots. If you were to do this type of analysis for a full paper, it is pretty common to include a table comparing the model effects which we described above.
