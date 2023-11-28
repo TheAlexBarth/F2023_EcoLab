@@ -57,9 +57,11 @@ Some specific considerations for this class:
 
 Students will write a mini-manuscript to communicate their findings. These should be formatted as a small version of work which would be submitted to an ecological peer-reviewed journal. Writing is a critical skill in aiding your thinking and processing of information. Being able to communicate scientific results clearly in writing is important!
 
+### General Presentation Guidelines
+
 Access the rubric [here](./docs/2023_GenDoc_Paper-Rubric.pdf)
 
-Generally, the grading follows the generalized rubric we've used over the course of the class. However, some specifics which might be useful. Think of these as "minimum" requirements. A good paper should exceed these. For example, should should have tried to address your hypotheses which multiple analyses. You may not find it necessary to share every bit of exploratory data but you should include anything that is useful to advance the story you are trying to tell with your data.
+Generally, the grading follows the generalized rubric we've used over the course of the class. However, some specifics which might be useful. Think of these as "minimum" requirements. A good paper should exceed these. For example, you should have tried to address your hypotheses which multiple analyses. You may not find it necessary to share every bit of exploratory data but you should include anything that is useful to advance the story you are trying to tell with your data.
 
 -   5+ pages
 
